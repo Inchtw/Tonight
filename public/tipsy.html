@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="personal project website. updated at 2020." />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/tipsy.css" media="all" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/lib.js" defer></script>
+
+    <script src="./js/tipsy.js" defer></script>
+
+    <title>Tonight Cocktails</title>
+</head>
+
+<body>
+    <header class="bgi  ">
+        <div class="padding-mobile"></div>
+        <div class="logo"><a href="./"><img src="imgs/Tonight (2).png" /></a></div>
+        <nav>
+            <div class="item"><a href="/">Home</a></div>
+            <div class="item"><a href="#">About</a></div>
+            <div class="item"><a href="#">Tipsy</a></div>
+            <div class="item"><a href="#">Bar</a></div>
+        </nav>
+        <div class="feature">
+            <div>search</div>
+            <div class="item"><a href="#">Login</a></div>
+            </a>
+            <div class="item member">
+                <img src="./imgs/member.png" />
+            </div>
+        </div>
+
+    </header>
+    <section class="blank_section">
+    </section>
+    <section id="Tipsy">
+        <form class="search_row ">
+            <div class=" cocktail_search">
+                <!-- <div class="search_items searchtype">2</div> -->
+                <div class="select_items ">
+                    <select class="select_item" name=" search_type" id="selected">
+                        <option value="By Name">By Name</option>
+                        <option value="By Author">By Author</option>
+
+                    </select>
+                    <!-- <div class="search_item">2</div> -->
+                </div>
+                <input class="search_items name_input " placeholder="type key words"></input>
+                <input class="search_items ingredient_input" placeholder="type ingredient dive by space"></input>
+                <button class="search_btn">Search</button>
+
+            </div>
+        </form>
+
+        <div class="section_container view spad">
+
+            <div id="cocktail_views" class="views">
+                <div class="catagories">
+                    <a href="/tipsy.html?filter=Views">
+                        <div class="catagory">Most Views</div>
+                    </a>
+                    <a href="/tipsy.html?filter=likes">
+                        <div class="catagory">Top Likes</div>
+                    </a>
+                    <a href="/tipsy.html?category=vodka&&page=1">
+                        <div class="catagory">Vodka</div>
+                    </a>
+                    <a href="/tipsy.html?category=rum&&page=1">
+                        <div class="catagory">Rum</div>
+                    </a>
+                    <a href="/tipsy.html?category=gin&&page=1">
+                        <div class="catagory">Gin</div>
+                    </a>
+                    <a href="/tipsy.html?category=tequila&&page=1">
+                        <div class="catagory">Tequila</div>
+                    </a>
+                    <a href="/tipsy.html?category=brandy&&page=1">
+                        <div class="catagory">Brandy</div>
+                    </a>
+                    <a href="/tipsy.html?category=whiskey&&page=1">
+                        <div class="catagory">Whiskey</div>
+                    </a>
+                    <a href="/tipsy.html?category=specials&&page=1">
+                        <div class="catagory">Specials</div>
+                    </a>
+                </div>
+
+                <div class="cocktails">
+
+                    <!-- <div class="page">
+                        <div class="pagination">
+                            <ul>
+                                <li><a href="/tipsy.html?page=8">8</a></li>
+                                <li><a href="/tipsy.html?page=8">8</a></li>
+                                <li><a href="/tipsy.html?page=9">9</a></li>
+                                <li><a href="/tipsy.html?page=10">10</a></li>
+                                <li><a href="/tipsy.html?page=11">11</a></li>
+                                <li><a href="/tipsy.html?page=12">12</a></li>
+                                <li><a href="/tipsy.html?page=8">8</a></li>
+
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <footer>
+            <div class="view">
+                <div class="link link-0">
+                    <div class="item">About</div>
+                    <div class="item">Service</div>
+                    <div class="item">Privacy</div>
+                </div>
+                <div class="link link-1">
+                    <div class="item">Contact</div>
+                    <div class="item">FAQ</div>
+                </div>
+                <div class="social">
+                    <img src="imgs/line.png" />
+                    <img src="imgs/twitter.png" />
+                    <img src="imgs/facebook.png" />
+                </div>
+                <div class="copyright">
+                    &copy; 2020. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+</body>
+
+</html>
+
+
+<!-- <a class="cocktail_container" href="/cocktail.html">
+                        <div class="cocktail"
+                            style="background-image: url('https://images.media-allrecipes.com/userphotos/171959.jpg')">
+
+                        </div>
+                        <div class="cocktail-cata"> Vodka</div>
+                        <div class="cocktail-info">
+                            <h3>$3 Hooker Shot</h3>
+                            <h6>From : Tipsybartender</h6>
+                        </div>
+                    </a> -->

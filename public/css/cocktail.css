@@ -1,0 +1,198 @@
+@import "common.css";
+/* @import "cocktail.css" */
+
+section{
+width: 100%;
+height: auto;
+
+
+}
+
+.section_container{
+    max-width: 980px;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: flex-start;
+}
+
+.contents{  
+    display: flex;
+    width: 100%;
+    /* max-width: 800px; */
+    justify-content: center;
+    align-items: flex-start;
+    padding-bottom: 5%;
+
+}
+.title {
+    /* border: 1px solid black; */
+    font-weight: 900;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ 
+    
+    left: 1em;
+    margin: 1em 0 0 0;
+    /* position: relative; */
+    /* justify-content: left; */
+    }
+.title>span , .subscribe {
+    
+        font-size: 0.6em;
+        background-color: rgb(var(--blue-3));
+        border-radius: 0.1em;
+        color: white;
+        /* padding: 0 1em ; */
+   
+        margin-left: 1.5em;
+        }
+.subscribe >button{
+     border-radius: 0.1em;
+        color: white;
+        padding: 0 1em ;
+   
+    background-color: rgb(var(--blue-3));
+border: none;
+    color: white;
+}
+.main_image , .briefs {
+    /* flex: none; */
+    /* width: 50%; */
+    margin: 2%;
+}
+
+.main_image{
+    /* display: block; */
+    max-width:50%;
+    max-height:400px;
+    /* width: auto; */
+    height: auto;
+    width: auto;
+
+}
+.brief{
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+.descriptions{
+    margin-top: 1em;
+}
+.descriptions>p{
+    max-width: 80%;
+    margin-top: 1em;
+    font-size: 0.8em;
+
+}
+.source , .author{
+    margin-left: 1em;
+    font-size: 0.8em;
+
+
+}
+
+.ingredients, .steps{
+    position: relative;
+    /* flex: none; */
+    left: 1em;
+    width: 50%;
+    margin-left: 4%;
+}
+
+
+
+.maylike{
+    width: 80%;
+}
+
+
+.cocktails {
+	/* border: black 1px solid; */
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	justify-content: center;
+	align-items: flex-start;
+	line-height: 2em;
+	letter-spacing: 4px;
+	
+
+}
+
+.cocktails>.cocktail_container {
+	display: block;
+	flex: none;
+	width: 28%;
+
+	margin: 0 2% 0 2% ;
+	text-align: center;
+	position: relative;
+	box-shadow: 1.5px 2px 4px 1.5px rgb(var(--dark-purple-3),0.1) ;
+	border-radius: 3px;
+	
+    
+	
+}
+
+
+
+.cocktail{
+	text-align: center;
+	display: block;
+	flex: none;
+	width: 100%;
+
+	height: 300px;
+
+	overflow: hidden;
+	background-size: cover;
+	background-position: center;
+	position: relative;
+}
+
+.cocktails>.cocktail_container>.cocktail>img {
+	width: 150%;
+}
+
+.cocktails>.cocktail>.name {
+	white-space: nowrap;
+	overflow: hidden;
+}
+.maylike>h2,
+h2{
+	padding: 2% 0;
+	margin :auto;
+	color: rgba(var(--dark-blue-3 ));
+	z-index: 5;
+	/* color: white; */
+}
+.cocktail-cata{
+	position: absolute;
+	z-index: 50;
+	vertical-align: middle;
+	height: 4em;	
+
+	align-items: center;
+	font-size: 0.5em;
+	font-weight: 900;
+	color: white;
+	padding: 0 20px;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	display: flex;
+  	justify-content: center;
+  	align-content: center;
+    background-color: rgba(var(--dark-blue-3));
+  
+  
+	
+}
+.cocktail-info h3
+{
+	padding-top: 10%;
+	color: black;
+} 
