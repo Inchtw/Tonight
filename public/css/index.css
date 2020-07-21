@@ -1,4 +1,5 @@
 @import "common.css";
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 
 /* .keyvisual */
 
@@ -453,7 +454,7 @@ main .products>.product>.colors>.color {
 background-color: rgba(0,0,0,0.2);
 }
 .quote{
-	color: white;
+	color: rgba(255, 255, 255,0.95);
 	position: relative;
 	/* width: 200px; */
 	text-align: center;
@@ -461,6 +462,7 @@ background-color: rgba(0,0,0,0.2);
 	line-height:100px;
 	border-radius: 50%;
 	letter-spacing: 0.05em;
+	font-family: 'Kaushan Script', cursive;
 	
 	font-size: 3.5em;
 	/* height: 200px; */

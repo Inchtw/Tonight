@@ -67,8 +67,11 @@ header>.logo{
 	flex:none;width:200px;margin-left:10px;
 }
 header>.logo img{
-	width:auto;height:50px;
+	width:auto;height:36px;
 }
+/* header>.logo img{
+	width:auto;height:50px;
+} */
 header>nav{
 	flex:auto;display:flex;
 }
