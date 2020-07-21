@@ -114,7 +114,7 @@ body{
     /* border: 1px solid black; */
     
 }
-input{
+#Tipsy input{
     width: 40%;
     line-height: 2.5em;
     /* border-left: transparent ; */
@@ -143,7 +143,7 @@ input{
     /* white-space: nowrap; */
 }
 
-.search_btn{
+.cocktail_search_btn{
     color: white;
     padding: 0 0.5em;
     line-height: 2.6em;

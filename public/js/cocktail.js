@@ -39,6 +39,9 @@ app.init = function () {
 
             let authorlink = 'profile.html';
             // console.log(cocktail);
+            $(document).ready(function() {
+                document.title = cocktail.name;
+            });
 
             let img = $(`<img class="main_image" src="${cocktail.ori_image}" alt="">`);
             let title = $(`<h2 class="title">${cocktail.name}<span>${cocktail.category}</span></h2>`);

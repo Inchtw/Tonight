@@ -3,7 +3,8 @@
 
 app.init = function () {
     let category = app.getParameter('category')||'';
-
+    // console.log( 'Bearer '+accessToken.replace(/['"]+/g, ''));
+    console.log(accessToken);
     let page = app.getParameter('page');
     let query='';
 
@@ -65,7 +66,8 @@ app.init = function () {
         }),
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Authorization' : 'Bearer '+ accessToken
         }
     } ).then(res => res.json())
         .then(res=>{

@@ -5,14 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="personal project website. updated at 2020." />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
+        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    </link>
     <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
     <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="css/profile.css" media="all" />
+
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script src="./js/lib.js" defer></script>
     <script src="./js/index.js" defer></script>
-    <script src="./js/test.js"></script>
-    <title>Tonight-Tipsy Online</title>
+    <script src="./js/profile.js" defer></script>
+
+    <title>My profile</title>
 </head>
 
 <body>
@@ -20,55 +30,136 @@
         <div class="padding-mobile"></div>
         <div class="logo"><a href="./"><img src="imgs/Tonight (2).png" /></a></div>
         <nav>
-            <div class="item"><a href="/">Home</a></div>
 
             <div class="item"><a href="#about">About</a></div>
-            <div class="item"><a href="/tipsy.html">Tipsy</a></div>
+            <div class="item"><a href="/tipsy.html">Recipes</a></div>
             <!-- <div class="item"><a href="#">About</a></div> -->
-            <div class="item"><a href="#">Bar</a></div>
+            <!-- <div class="item"><a href="/chat">Tonight</a></div> -->
+            <div class="item"><a href="/profile.html">Profile</a></div>
+
         </nav>
         <div class="feature">
-            <div>search</div>
-            <div class="item"><a href="#">Login</a></div>
-            <!-- <div class="item"><a href="#">Logout</a></div> -->
+            <input class="nav-search" type="text" placeholder="Search..." /><button class="fa fa-paper-plane"
+                onclick=""></button>
+            <!-- <div class="item"><a class="headlogin" href="#">Login</a></div> -->
+            <div id="head_login" class="logout "><a href="/login.html">Login</a></div>
+            <div id="logout" class="logout   loghide " onclick="logout()"> Logout</div>
+
+            <!-- </a> -->
+            <a class="item member fa fa-user" href="/profile.html">
 
             </a>
-            <div class="item member">
-                <img src="./imgs/member.png" />
-            </div>
+
         </div>
+
 
     </header>
-    <section id="main_view">
-        <h2 id="test"></h2>
-
-
+    <section class="blank_section">
 
     </section>
-    <section id="about" class="about spad">
 
-        <div class="section_container view">
-            <h2 id="about_title">About</h2>
-            <div class="views">
-                <div id="about_recipes" class="about_view">
-                    <div id="about_recipes_content" class="about_content"></div>
-                    <div class="about_button about_recipe_button"></div>
+    <div class="container">
+        <div class="innerwrap">
+            <section class="section1 clearfix">
+                <div>
+                    <div class="row grid clearfix">
+                        <div class="col2 first">
+                            <img src="http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg" alt="">
+                            <h1>david beckham</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been the industry's</p>
+                            <span>Follow</span>
+                        </div>
+                        <div class="col2 last">
+                            <div class="grid clearfix">
+                                <div class="col3 first">
+                                    <h1>694</h1>
+                                    <span>Posts</span>
+                                </div>
+                                <div class="col3">
+                                    <h1>452</h1>
+                                    <span>Likes</span>
+                                </div>
+                                <div class="col3 last">
+                                    <h1>1207</h1>
+                                    <span>Followers</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <ul class="row2tab clearfix">
+                            <li><i class="fa fa-list-alt"></i> Posts </li>
+                            <li><i class="fa fa-heart"></i> Likes </li>
+                            <li><i class="fa fa-check"></i> Following </li>
+                            <li><i class="fa fa-users "></i> Followers </li>
+                        </ul>
+                    </div>
                 </div>
-                <div id="about_chat" class="about_view">
-                    <div id="about_chat_content" class="about_content"></div>
-                    <div class="about_button about_chat_button"></div>
-                </div>
+                <span class="smalltri">
 
-            </div>
+                    <i class="fa fa-star"></i>
+                </span>
+            </section>
+            <section class="section2 clearfix">
+                <div class="section_container view spad">
+                    <div id="" class="views">
+                        <div id="" class="cocktails">
+                            <div class="cocktail_container">
+                                <a class="cocktail" href=""
+                                    style="background-image: url('https://tipsyvideo.imgix.net/3-hooker-shot/poster.jpg?w=600')">
+                                    <!-- <div class="hot_context"> -->
+                                    <!-- <h3>$3 Hooker Shot</h3>
+                                        <h6>From: Tipsybartender</h6>
+                                    </div> -->
+                                </a>
+                                <div class="cocktail-cata"> Rum</div>
+                                <div class="cocktail-info">
+                                    <h3>$3 Hooker Shot</h3>
+                                    <h6>From : Tipsybartender</h6>
+                                </div>
+                            </div>
 
+                            <div class="cocktail_container">
+                                <a class="cocktail" href=""
+                                    style="background-image: url('https://images.media-allrecipes.com/userphotos/171959.jpg')">
+                                    <!-- <div class="hot_context"> -->
+                                    <!-- <h3>$3 Hooker Shot</h3>
+                                        <h6>From: Tipsybartender</h6>
+                                    </div> -->
+                                </a>
+                                <a href="">
+                                    <div class="cocktail-cata"> Vodka</div>
+                                </a>
+                                <a href="">
+                                    <div class="cocktail-info">
+                                        <h3>$3 Hooker Shot</h3>
+                                        <h6>From : Tipsybartender</h6>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="cocktail_container">
+                                <a class="cocktail" href=""
+                                    style="background-image: url('https://images.media-allrecipes.com/userphotos/1249577.jpg')">
+                                    <!-- <div class="hot_context"> -->
+                                    <!-- <h3>$3 Hooker Shot</h3>
+                                        <h6>From: Tipsybartender</h6>
+                                    </div> -->
+                                </a>
+                                <div class="cocktail-cata"> Whiskey</div>
+                                <div class="cocktail-info">
+                                    <h3>$3 Hooker Shot</h3>
+                                    <h6>From : Tipsybartender</h6>
+                                </div>
+                            </div>
+                        </div>
 
+            </section>
         </div>
+    </div>
 
 
-    </section>
-    <!-- <div class="fakebody">
 
-    </div> -->
     <footer>
         <div class="view">
             <div class="link link-0">

@@ -39,6 +39,9 @@ header{
 	
 
 }
+.loghide{
+	display: none;
+}
 .bgi{
 	/* add bg i */
 	background:
@@ -70,7 +73,8 @@ header>nav{
 	flex:auto;display:flex;
 }
 header>nav>.item{
-	font-weight: 600;
+	
+	font-weight: 500;
 	margin: 0 100px;
 	/* flex:auto; */
 	width:50px;
@@ -88,6 +92,28 @@ header>nav>.item:hover{
 	/* color: rgba(var(--light-blue-3)); */
 	
 }
+header>.feature>.logout{
+	border: 1px solid rgba(var(--light-blue-3) ,0.3);
+	border-radius: 5px;
+	color: inherit;
+	margin-left: 1em;
+	font-weight: 500;
+	text-align:center;
+	padding: 0 3px;
+	cursor:pointer;
+	/* border-bottom: 1px solid rgba(0,0,0,0); */
+
+
+
+}
+header>.feature>.logout:hover{
+	transition-duration: 0.2s;
+	/* border-bottom: 1px solid rgba(var(--light-blue-3)); */
+	background-color:rgba(var(--light-blue-3),0.2) ;
+	color: rgba(var(--pink-4));
+	/* color: rgba(var(--light-blue-3)); */
+	
+}
 header>nav>.item:first-child{
 	margin-left: auto;
 }
@@ -99,9 +125,29 @@ header>nav>.current{
 }
 header>.feature{
 	flex:none;
-	width:300px;
+	width:320px;
 	
 	display:flex;align-items:center;
+}
+header>.feature>button {
+	position: relative;
+	left: -1.2em;
+	/* line-height: 1em */
+border: none;
+background-color: rgba(0, 0, 0, 0);
+color: white;
+vertical-align: middle;
+/* padding: 2px; */
+font-size: 15px;
+z-index: 10;
+border-radius: 0 6px 6px 0;
+outline:none;
+			transition: all .3s ease-in-out;
+			-moz-transition: all .3s ease-in-out;
+			-webkit-transition: all .3s ease-in-out;
+}
+header>.feature>button:hover{
+	cursor: pointer;
 }
 header>.feature>.item{
 	display:block;
@@ -109,6 +155,138 @@ header>.feature>.item{
 	flex:auto;
 	cursor:pointer;
 }
+.nav-search{
+	z-index: 1;
+	position: relative;
+	background:rgba(0, 0, 0, 0.15);
+	font-size: 16px;
+	-webkit-border-radius:6px;
+	   -moz-border-radius:6px;
+			border-radius:6px;
+			border:none;
+			padding:2px;
+			padding-left:10px;
+			outline:none;
+			transition: all .3s ease-in-out;
+			-moz-transition: all .3s ease-in-out;
+			-webkit-transition: all .3s ease-in-out;
+			color: #FFF;
+
+}
+.nav-search:focus {
+	/* background:#fff; */
+	color: white;
+	transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-webkit-transition: all .3s ease-in-out;
+  }
+
+  
+  .nav-search::-webkit-input-placeholder {
+	 color: #FFF;
+  }
+  
+  .nav-search:-moz-placeholder { 
+	 color: #FFF;
+  }
+  
+  .nav-search::-moz-placeholder {
+	 color: #FFF;
+  }
+  
+  .nav-search:-ms-input-placeholder {  
+	 color: #FFF;
+  }
+
+  @-webkit-keyframes jello-horizontal {
+	0% {
+	  -webkit-transform: scale3d(1, 1, 1);
+			  transform: scale3d(1, 1, 1);
+	}
+	30% {
+	  -webkit-transform: scale3d(1.25, 0.75, 1);
+			  transform: scale3d(1.25, 0.75, 1);
+	}
+	40% {
+	  -webkit-transform: scale3d(0.75, 1.25, 1);
+			  transform: scale3d(0.75, 1.25, 1);
+	}
+	50% {
+	  -webkit-transform: scale3d(1.15, 0.85, 1);
+			  transform: scale3d(1.15, 0.85, 1);
+	}
+	65% {
+	  -webkit-transform: scale3d(0.95, 1.05, 1);
+			  transform: scale3d(0.95, 1.05, 1);
+	}
+	75% {
+	  -webkit-transform: scale3d(1.05, 0.95, 1);
+			  transform: scale3d(1.05, 0.95, 1);
+	}
+	100% {
+	  -webkit-transform: scale3d(1, 1, 1);
+			  transform: scale3d(1, 1, 1);
+	}
+  }
+  @keyframes jello-horizontal {
+	0% {
+	  -webkit-transform: scale3d(1, 1, 1);
+			  transform: scale3d(1, 1, 1);
+	}
+	30% {
+	  -webkit-transform: scale3d(1.25, 0.75, 1);
+			  transform: scale3d(1.25, 0.75, 1);
+	}
+	40% {
+	  -webkit-transform: scale3d(0.75, 1.25, 1);
+			  transform: scale3d(0.75, 1.25, 1);
+	}
+	50% {
+	  -webkit-transform: scale3d(1.15, 0.85, 1);
+			  transform: scale3d(1.15, 0.85, 1);
+	}
+	65% {
+	  -webkit-transform: scale3d(0.95, 1.05, 1);
+			  transform: scale3d(0.95, 1.05, 1);
+	}
+	75% {
+	  -webkit-transform: scale3d(1.05, 0.95, 1);
+			  transform: scale3d(1.05, 0.95, 1);
+	}
+	100% {
+	  -webkit-transform: scale3d(1, 1, 1);
+			  transform: scale3d(1, 1, 1);
+	}
+  }
+  
+  
+  .jello-horizontal {
+	  -webkit-animation: jello-horizontal 0.9s both;
+			  animation: jello-horizontal 0.9s both;
+  }
+  
+  .feature a:hover 
+  {
+	-webkit-animation: jello-horizontal 0.9s both;
+			  animation: jello-horizontal 0.9s both;
+  }
+  
+.headlogin{
+	font-weight: 500;
+	margin: 0 100px;
+	/* flex:auto; */
+	width:50px;
+	margin-left: 5px;
+	/* letter-spacing:25px */
+	/* ;margin-left:30px; */
+	/* border:1px solid #3f3a3a; */
+	text-align:center;
+	cursor:pointer;
+	border-bottom: 1px solid rgba(0,0,0,0);
+}
+
+
+  
 /* header>.feature>.cart{
 	width:44px;height:44px;
 	background-image:url("../imgs/cart.png");

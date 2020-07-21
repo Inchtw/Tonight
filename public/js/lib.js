@@ -2,14 +2,39 @@
 /* eslint-disable no-undef */
 // initialize app structure
 let url = '/graphql';
+let accessToken = JSON.parse(localStorage.getItem('accessToken'))||'';
+let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+
+if(accessToken&&user_info){
+    $('#logout').removeClass('loghide');
+    $('#head_login').addClass('loghide');
+}
+
+function logout(){
+    let ans = confirm('確定登出嗎？');
+    if(ans === true){
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('user_info');
+        location.reload();
+    }else{
+        location.reload();
+    }
+
+}
+
+
+
+console.log(user_info);
+console.log(accessToken);
 let app = {
     fb: {},
     state: {
         auth: null
-    }, evts: {},
+    }, evts: {},accessToken
 };
 
 // core operations
+
 app.get = function (selector) {
     return document.querySelector(selector);
 };

@@ -4,11 +4,7 @@ const typeDefs = gql`
 """
 之後要刪掉的
 """
-
-
   type Query {
-    "A simple type for getting started!"
-    hello: String
     me : User
     cocktails(id:Int) : [Cocktail]
     users : [User]
@@ -32,14 +28,10 @@ const typeDefs = gql`
   }
 
 input CocktailInput{
-    id: ID!
     name : String!
-    ori_image : String 
+    ori_image : String! 
     description : String 
-    category : String 
-    resource : String!
-    link :  String 
-    author : String 
+    category : String! 
     ingredients : [String!] 
     steps : [String!]!
 }
@@ -49,10 +41,14 @@ type User {
     password: String
     name : String!
     friends :[User]
+    
 }
 
 type AuthUser {
     id: ID!
+    name : String!
+    photo : String
+    gender : String
     accessToken : String!
 }
 

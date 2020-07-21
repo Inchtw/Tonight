@@ -13,6 +13,15 @@ app.use(express.static('public'));
 const isAuth = require('./utils/is-auth');
 app.use(isAuth);
 const socketio = require('socket.io');
+const imageupload = require('./utils/photoUpload');
+
+
+
+
+app.post('/imageload',imageupload.fields([{ name: 'chooseFile' }]), async(req,res)=>{
+    res.status(200).json({ url : req.files.chooseFile[0].location });
+
+} );
 
 
 const server = new ApolloServer({

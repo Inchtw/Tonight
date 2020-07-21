@@ -62,8 +62,46 @@ const signIn = async (args) => {
     }
 };
 
+
+const createCocktail = async (args,context) =>{
+    let {name, ori_image,description,category,ingredients,steps} = args.cocktailInput;
+    let author = 'me';
+
+    try {
+        await transaction();
+        let cocktail_info = {
+            name,
+            ori_image,
+            description,
+            resource : 'Tonight',
+            link: '/',
+            author,
+            ingredients : JSON.stringify(ingredients),
+            category ,
+            steps: JSON.stringify(steps),
+            createdAt: context.tools.moment().format('YYYY/MM/DD HH:mm:ss'),
+            authorId : 123
+        };
+        const createQuery = 'INSERT INTO cocktails SET ?';
+        console.log(cocktail_info);
+
+        let cockinsert =  await query(createQuery,cocktail_info);
+        cocktail_info.ingredients =ingredients;
+        cocktail_info.steps =steps;
+        cocktail_info.id = cockinsert.insertId;
+        await commit();
+        console.log(cocktail_info);
+        return cocktail_info ;
+    } catch (error) {
+        await rollback();
+        console.log(error);
+        return { error };
+    }
+};
+
 module.exports = {
     signUp,
-    signIn
+    signIn,
+    createCocktail
 
 };

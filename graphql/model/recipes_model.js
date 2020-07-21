@@ -2,12 +2,40 @@ const { UserInputError} = require('apollo-server-express');
 
 
 const getRecipesPaging = async(args,tools) =>{
+
     const {first, after, last, before,category} =args;
 
     if (!first && after) {throw new UserInputError('after must be with first');}
     if ((last && !before) || (!last && before)) {throw new UserInputError('last and before must be used together');}
     if (first && after && last && before) {throw new UserInputError('Incorrect Arguments Usage.');}
     let recipes;
+    // DESC
+    // if(category){
+    //     let cate = `%${category}%`;
+    //     if(first){
+    //         recipes = after
+    //             ? await tools.DB.query('SELECT * , count(*) OVER() AS count FROM cocktails WHERE ingredients like ? && id < ? ORDER BY id DESC LIMIT ?', [cate,after, first])
+    //             : await tools.DB.query('SELECT * , count(*) OVER() AS count FROM cocktails WHERE ingredients like ? ORDER BY id DESC LIMIT ? ', [ cate,first]);
+    //     }
+    //     if(last){
+    //         recipes = await tools.DB.query(` SELECT * FROM (
+    //             SELECT *, count(*) OVER() AS count FROM cocktails WHERE  ingredients like ? && id > ? ORDER BY id DESC LIMIT ?
+    //          ) cocktails ORDER BY id DESC `, [cate,before, last]);
+
+    //     }
+    // }else{
+    //     if(first){
+    //         recipes = after
+    //             ? await tools.DB.query('SELECT * , count(*) OVER() AS count FROM cocktails WHERE id < ? ORDER BY id DESC LIMIT ?', [after, first])
+    //             : await tools.DB.query('SELECT * , count(*) OVER() AS count FROM cocktails  ORDER BY id DESC LIMIT ? ', [ first]);
+    //     }
+    //     if(last){
+    //         recipes = await tools.DB.query(` SELECT * FROM (
+    //             SELECT *, count(*) OVER() AS count FROM cocktails WHERE id > ? ORDER BY id DESC LIMIT ?
+    //          ) cocktails ORDER BY id DESC `, [before, last]);
+    //     }
+    // }
+
     if(category){
         let cate = `%${category}%`;
         if(first){

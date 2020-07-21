@@ -5,7 +5,6 @@ const { AuthenticationError,ForbiddenError, UserInputError,ApolloError} = requir
 
 const resolvers = {
     Query: {
-        hello: () => 'world',
         me : async (parent,args,{tools,me}) => {
             if(me){
                 let myinfo = await tools.DB.query('select * from user where id=?',[me]);
@@ -22,7 +21,9 @@ const resolvers = {
         users :async (parent,args,{tools})=>{
             return  tools.DB.query('select * from user');
         } ,
-        reciepesPaging : async (root,args,{tools,pubsub,req})=>{
+        reciepesPaging : async (root,args,{me,tools,pubsub,req,isAuth})=>{
+            console.log(isAuth);
+            console.log(me);
             pubsub.publish('new_viewer', { newViewer : req.id});
             return tools.getRecipesPaging(args,tools);
         }
@@ -34,9 +35,12 @@ const resolvers = {
         }
     },
     Mutation: {
-        createCocktail:{
-
-        },
+        createCocktail:async(parent,args,context)=>{
+            console.log(args);
+            // console.log(context);
+            return await context.tools.User.createCocktail(args,context);
+        }
+        ,
         createUser:async (parent,args,{tools,pubsub})=>{
             const userdata = await tools.User.signUp(args) ;
             pubsub.publish('NewUser', { newUser: userdata.user });

@@ -45,7 +45,7 @@ function formatMessage(user, message) {
     return {
         user,
         message,
-        time: moment().format('HH:mm')
+        time: moment().format('YYYY/MM/DD HH:mm:ss')
     };
 }
 
