@@ -14,6 +14,7 @@ const isAuth = require('./utils/is-auth');
 app.use(isAuth);
 const socketio = require('socket.io');
 const imageupload = require('./utils/photoUpload');
+const DataLoader = require('dataloader');
 
 
 
@@ -54,7 +55,8 @@ const server = new ApolloServer({
                 startTime: Date.now(),
 
             };}
-    }
+    },
+    tracing: true
 });
 
 server.applyMiddleware({app});

@@ -20,6 +20,7 @@ app.init = function () {
           category
           resource
           link
+          ranking
 
         }
         cursor
@@ -45,6 +46,7 @@ app.init = function () {
             category
             resource
             link
+            ranking
   
           }
           cursor

@@ -9,7 +9,7 @@ const typeDefs = gql`
     cocktails(id:Int) : [Cocktail]
     users : [User]
     recipes : [Cocktail]
-    reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String) : ReciepesConnection!
+    reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String,author :String , ingredient :String, sort :String) : ReciepesConnection!
   }
   type Cocktail{
       "cocktail include recipes and other info"
@@ -24,8 +24,14 @@ const typeDefs = gql`
       ingredients : [String!] 
       steps : [String!]!
       likeGivers : [User]
+      likes : Int
+      views : Int
+      ranking : Float
+      comments : [Comment]
       createdAt : String
+      recommend :[Cocktail]
   }
+
 
 input CocktailInput{
     name : String!
@@ -35,12 +41,44 @@ input CocktailInput{
     ingredients : [String!] 
     steps : [String!]!
 }
+
+input CommentInput{
+    id : ID!
+    name : String!
+    photo : String!
+    img : String
+    comment : String
+    rank : Int!
+
+}
+
+
+type Comment{
+    "user ID"
+    id: ID!
+    "user name"
+    name : String!
+    "user photo"
+    photo : String!
+    img : String
+    comment : String
+    rank : Int! 
+
+}
+
 type User {
     id: ID!
-    email: String!
+    email: String
     password: String
     name : String!
+    photo : String
     friends :[User]
+    post : [Cocktail]
+    comments :  [Comment]
+    subsriptions : [User]
+    followers : [User]
+    likes : [Cocktail]
+
     
 }
 
@@ -60,6 +98,10 @@ input UserInput {
 input Userlogin {
     email: String!
     password: String!
+}
+
+input SubscribeInput{
+    id : ID!
 }
 
 
@@ -95,6 +137,8 @@ type Mutation{
     login(Userlogin:Userlogin! ) : AuthUser
     updateMyInfo(updateMyInfoInput :UpdateMyInfoInput ) :User
     likeCocktail(cocktailId:Int!) : Cocktail
+    commentCocktail(CommentInput : CommentInput) : Comment
+    subscribeAuthor(SubscribeInput:SubscribeInput) : Boolean
 }
 type Subscription {
     newUser: User
