@@ -1,3 +1,5 @@
+@import "preset.css";
+
 *, *:before, *:after {
     box-sizing: border-box;
   }
@@ -7,7 +9,7 @@
   }
   
   body {
-      background: rgba(var(--blue-3),0.4);
+      /* background: rgba(var(--blue-3),0.4); */
       /* radial-gradient(circle, transparent 35%, rgba(var(--dark-blue-3)) 90%) ,
       /* radial-gradient(circle, transparent 35%, rgba(123, 38, 235, 0.808) 75%) , */
       /* url('/imgs/BartenderSpiritsAwardsUS-01022019134400000000-5c2cc0205b957.jpg'); */
@@ -37,14 +39,15 @@
     
   }
   .form_section a:hover {
-    color: rgba(var(--dark-purple-3));
+    color: rgba(var(--dark-blue-3));
   }
   
   .form {
-    background: rgba(var(--dark-blue-3));
+    /* background: rgba(var(--dark-blue-3)); */
+    background: rgba(var(--dark-gray-3),0.8);
     padding: 40px;
     max-width: 600px;
-    margin: 40px auto;
+    margin: 4em auto;
     border-radius: 4px;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
     
@@ -78,7 +81,7 @@
     transition: .5s ease;
   }
   .tab-group li a:hover {
-    background: rgba(var(--dark-purple-3));
+    background: rgba(var(--dark-blue-3));
     color: #ffffff;
   }
   .tab-group .active a {
@@ -136,7 +139,7 @@
     padding: 5px 10px;
     background: none;
     background-image: none;
-    border: 1px solid #a0b3b0;
+    border: 1px solid rgba(255,255,255,0.5);
     color: #ffffff;
     border-radius: 0;
     -webkit-transition: border-color .25s ease, box-shadow .25s ease;
@@ -148,7 +151,7 @@
   }
   
   .form_section textarea {
-    border: 2px solid #a0b3b0;
+    border: 2px solid rgba(var(--blue-3));
     resize: vertical;
   }
   
@@ -187,7 +190,7 @@
     -webkit-appearance: none;
   }
   .button:hover, .button:focus {
-    background: rgba(var(--dark-purple-3));
+    background: rgba(var(--dark-blue-3));
   }
   
   .button-block {

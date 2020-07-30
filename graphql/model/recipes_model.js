@@ -18,7 +18,7 @@ const getRecipesPaging = async(args,tools) =>{
         }
         if(last){
             recipes = await tools.DB.query(` SELECT * FROM (
-                SELECT *, count(*) OVER() AS count FROM cocktails WHERE id > ? ORDER BY id DESC LIMIT ?
+                SELECT *, count(*) OVER() AS count FROM cocktails WHERE id > ? ORDER BY id ASC LIMIT ?
              ) cocktails ORDER BY id DESC `, [before, last]);
         }
     }else{
@@ -29,7 +29,7 @@ const getRecipesPaging = async(args,tools) =>{
         }
         if(last){
             recipes = await tools.DB.query(` SELECT * FROM (
-                SELECT *, count(*) OVER() AS count FROM cocktails WHERE id < ? ORDER BY id ASC LIMIT ?
+                SELECT *, count(*) OVER() AS count FROM cocktails WHERE id < ? ORDER BY id DESC LIMIT ?
              ) cocktails ORDER BY id `, [before, last]);
         }
 
@@ -61,7 +61,7 @@ const getRecipes = async(args,context)=>{
     let {tools,pubsub,req} = context;
     try {
         await tools.DB.transaction();
-        await tools.DB.query('UPDATE cocktails SET views = IFNULL(likes, 0) +1 WHERE id = ? ', id);
+        await tools.DB.query('UPDATE cocktails SET views = IFNULL(views, 0) +1 WHERE id = ? ', id);
         await tools.DB.commit();
     } catch (error) {
         console.log(error);

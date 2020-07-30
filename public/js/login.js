@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+
 if(accessToken&&user_info){
     window.location.replace('/profile.html');
 }
@@ -108,8 +109,6 @@ function sendLogINData(){
                   id
                   accessToken
                   name
-                  gender
-                  photo
               
                 }
               }
@@ -127,17 +126,15 @@ function sendLogINData(){
         .then(res => res.json())
         .then(user_info => {
             if (user_info.data.login) {
-                let {accessToken, name, id ,gender ,photo} = user_info.data.login;
+                let {accessToken, name, id } = user_info.data.login;
 
-                let user = {
-                    id,
-                    name,
-                    gender,
-                    photo
-                };
+                // let user = {
+                //     id,
+                //     name,
+                // };
                 alert(`Welcome come! ${name}`);
                 localStorage.setItem('accessToken', JSON.stringify(accessToken));
-                localStorage.setItem('user_info', JSON.stringify(user));
+                // localStorage.setItem('user_info', JSON.stringify(user));
                 window.location.replace('/profile.html');
 
             } else {

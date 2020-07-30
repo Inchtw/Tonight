@@ -7,9 +7,27 @@
     <title>CreateMyrecipe</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
 
-    <link rel="stylesheet" type="text/css" href="./css/index.css" media="all" />
+    <!-- <link rel="stylesheet" type="text/css" href="./css/pre_index.css" media="all" /> -->
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
     <link rel="stylesheet" type="text/css" href="./css/createMyrecipe.css" media="all" />
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
+        defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
         integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
@@ -21,34 +39,37 @@
 </head>
 
 <body>
-    <header class="bgi">
-        <div class="padding-mobile"></div>
-        <div class="logo"><a href="./"><img src="imgs/Tonight (2).png" /></a></div>
-        <nav>
 
-            <div class="item"><a href="#about">About</a></div>
-            <div class="item"><a href="/tipsy.html">Recipes</a></div>
-            <!-- <div class="item"><a href="#">About</a></div> -->
-            <!-- <div class="item"><a href="/chat">Tonight</a></div> -->
-            <div class="item"><a href="/profile.html">Profile</a></div>
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
 
-        </nav>
-        <div class="feature">
-            <input class="nav-search" type="text" placeholder="Search..." /><button class="fa fa-paper-plane"
-                onclick=""></button>
-            <!-- <div class="item"><a class="headlogin" href="#">Login</a></div> -->
-            <div id="head_login" class="logout "><a href="/login.html">Login</a></div>
-            <div id="logout" class="logout   loghide " onclick="logout()"> Logout</div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mr-auto" href="/">Tonight</a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/">Home </a>
+                </li>
 
-            <!-- </a> -->
-            <a class="item member fa fa-user" href="/profile.html">
+                <li class="nav-item">
+                    <a class="nav-link" href="/tipsy.html">Tipsy</a>
+                </li>
 
-            </a>
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile.html">Profile</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#">Login </a>
+                </li>
 
+                <li class="nav-item  fa fa-user"></li>
+            </ul>
         </div>
-
-
-    </header>
+    </nav>
 
     <form id="createRecipe" enctype="multipart/form-data">
         <!--  General -->
@@ -66,7 +87,7 @@
         </div>
         <div class="form-group">
             <h2 class="heading">upload your image</h2>
-            <div class="grid">
+            <div class="grid position-relative upBcg">
                 <!-- <button class="col-1-4">hi</button> -->
                 <div class="file-upload">
                     <div class="file-select">
@@ -74,14 +95,14 @@
                         <div class="file-select-name" id="noFile">No file chosen...</div>
                         <input type="file" name="chooseFile" id="chooseFile" onchange="readURL(this)" required>
                     </div>
-                    <img class="col-1-2" id="preview" alt="" />
+                    <img class=" pic_center  col-1-2" id="preview" alt="" />
                 </div>
             </div>
         </div>
         <div class=" form-group">
             <h2 class="heading">Details</h2>
-            <div class="grid">
-                <div class="col-1-2">
+            <!-- <div class="grid d-flex ">
+                <div class="col-1-2 flex-column">
                     <div class="controls">
                         <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
                         <label for="Steps">Steps</label>
@@ -99,14 +120,14 @@
                 <div class="col-1-2">
                     <div class="controls">
                         <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps" required>
-                        <!-- <label for="Steps">Steps</label> -->
+                        <label for="Steps">Steps</label>
                     </div>
                 </div>
                 <div class="col-1-2">
                     <div class="controls">
                         <input type="text" id="ingredients" class="floatLabel ingredientsarray" name="ingredients"
                             required>
-                        <!-- <label for="ingredients">ingredients</label> -->
+                        <label for="ingredients">ingredients</label>
                     </div>
                 </div>
             </div>
@@ -114,21 +135,76 @@
                 <div class="col-1-2">
                     <div class="controls">
                         <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps" required>
-                        <!-- <label for="Steps">Steps</label> -->
+                        <label for="Steps">Steps</label>
                     </div>
                 </div>
                 <div class="col-1-2">
                     <div class="controls">
                         <input type="text" id="ingredients" class="floatLabel ingredientsarray" name="ingredients"
                             required>
-                        <!-- <label for="ingredients">ingredients</label> -->
+                        <label for="ingredients">ingredients</label>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <div class=" d-flex w-10">
+                <div class="d-flex flex-column flex-grow-1 pr-2">
 
-            <div class="grid">
-                <p class="info-text">Please describe your awesome cocktail!</p>
-                <br>
+                    <div class="controls">
+                        <input type="text" class="floatLabel stepsarray " name="Steps">
+                        <label for="Steps">Steps</label>
+                    </div>
+
+
+                    <div class="controls">
+                        <input type="text" class="floatLabel stepsarray" name="Steps">
+
+                    </div>
+                    <div class="controls ">
+                        <input type="text" class="floatLabel stepsarray " name="Steps">
+
+                    </div>
+                    <div id="last_step" class="controls position-relative">
+                        <input type="text" class="floatLabel  " name="last_step" disabled>
+                        <i class="l-5"><label id="last_ingredient_label" for="last_step"
+                                class="fa fa-plus "></label></i>
+
+                    </div>
+
+
+
+                </div>
+                <div id="ingredients_col" class="d-flex flex-column flex-grow-1 pl-2">
+
+                    <div class="controls">
+                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
+                        <label for="ingredients">ingredients</label>
+                    </div>
+
+
+                    <div class="controls">
+                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
+
+                    </div>
+                    <div class="controls">
+                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
+                    </div>
+                    <div id="last_ingredient" class="controls position-relative">
+                        <input type="text" class="floatLabel " name="last_ingredients" disabled>
+
+                        <i class="l-5"><label id="last_ingredient_label" for="last_ingredients"
+                                class="fa fa-plus "></label></i>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+            <div class="grid" style="background-color: transparent;">
+                <h2 class="heading">Please describe your awesome cocktail!</h2>
+
                 <div class="controls">
                     <textarea name="description" class="floatLabel" id="description"></textarea>
                     <label for="comments">description</label>
@@ -139,6 +215,89 @@
 
         <button type="button" value="Submit" class="col-1-4" onclick="CreateMyRecipe()">Submit</button>
     </form>
+
+    <!-- <div class=" d-flex w-10">
+        <div class="d-flex flex-column flex-grow-1">
+
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+
+            </div>
+
+
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+
+            </div>
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+
+            </div>
+
+
+        </div>
+        <div class="d-flex flex-column flex-grow-1">
+
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+
+            </div>
+
+
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+
+            </div>
+
+
+        </div> -->
+
+
+
+    <!-- </div>
+    <div class="grid d-flex flex-column">
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps">
+                <label for="Steps">Steps</label>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="ingredients" class="floatLabel ingredientsarray" name="ingredients" required>
+                <label for="ingredients">ingredients</label>
+            </div>
+        </div>
+
+    </div>
+    <div class="grid">
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps" required>
+                <label for="Steps">Steps</label>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="ingredients" class="floatLabel ingredientsarray" name="ingredients" required>
+                <label for="ingredients">ingredients</label>
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="Steps" class="floatLabel stepsarray" name="Steps" required>
+                <label for="Steps">Steps</label>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <div class="controls">
+                <input type="text" id="ingredients" class="floatLabel ingredientsarray" name="ingredients" required>
+                <label for="ingredients">ingredients</label>
+            </div>
+        </div>
+    </div> -->
 
 </body>
 

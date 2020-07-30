@@ -6,8 +6,9 @@ let accessToken = JSON.parse(localStorage.getItem('accessToken'))||'';
 let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 if(accessToken&&user_info){
-    $('#logout').removeClass('loghide');
-    $('#head_login').addClass('loghide');
+    $('#nav_logout').removeClass('d-none');
+    $('#nav_login').addClass('d-none');
+    console.log('what');
 }
 
 function logout(){
@@ -23,9 +24,6 @@ function logout(){
 }
 
 
-
-console.log(user_info);
-console.log(accessToken);
 let app = {
     fb: {},
     state: {
@@ -129,5 +127,19 @@ app.showLoading = function () {
 app.closeLoading = function () {
     app.get('#loading').style.display = 'none';
 };
+
+
+$(window).scroll(function(evt){
+    if($(window).scrollTop()>0)
+    {$('.navbar').removeClass('navbar-top');}
+    else
+
+    {$('.navbar').addClass('navbar-top');}
+});
+
+var s = skrollr.init();
+
+
+
 
 window.addEventListener('DOMContentLoaded', app.fb.load);

@@ -4,163 +4,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="personal project website. updated at 2020." />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    </link>
-    <link rel="stylesheet" type="text/css" href="css/common.css" media="all" />
+    <title>Tonight</title>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/tipsy.css" media="all" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
+        defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+    <!-- <script src="./js/"></script> -->
     <script src="./js/lib.js" defer></script>
 
     <script src="./js/tipsy.js" defer></script>
-
-    <title>Tonight Cocktails</title>
 </head>
 
+
+
+
 <body>
-    <header class="bgi">
-        <div class="padding-mobile"></div>
-        <div class="logo"><a href="./"><img src="imgs/Tonight (2).png" /></a></div>
-        <nav>
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
 
-            <div class="item"><a href="#about">About</a></div>
-            <div class="item"><a href="/tipsy.html">Recipes</a></div>
-            <!-- <div class="item"><a href="#">About</a></div> -->
-            <!-- <div class="item"><a href="/chat">Tonight</a></div> -->
-            <div class="item"><a href="/profile.html">Profile</a></div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mr-auto" href="#">Tonight</a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/">Home </a>
+                </li>
 
-        </nav>
-        <div class="feature">
-            <input class="nav-search" type="text" placeholder="Search..." /><button class="fa fa-paper-plane"
-                onclick=""></button>
-            <!-- <div class="item"><a class="headlogin" href="#">Login</a></div> -->
-            <div id="head_login" class="logout "><a href="/login.html">Login</a></div>
-            <div id="logout" class="logout   loghide " onclick="logout()"> Logout</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tipsy.html">Tipsy</a>
+                </li>
 
-            <!-- </a> -->
-            <a class="item member fa fa-user" href="/profile.html">
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile.html">Profile</a>
+                </li>
+                <li id="nav_login" class="nav-item ">
+                    <a class="nav-link active" href="/login.html">Login </a>
+                </li>
+                <li id="nav_logout" class="nav-item d-none ">
+                    <a class="nav-link active" onclick="logout()">Logout </a>
+                </li>
 
-            </a>
-
+                <li class="nav-item ">
+                    <a class="fa fa-user" href="/login.html"></a>
+                </li>
+            </ul>
         </div>
-    </header>
-    <section class="blank_section">
-    </section>
-    <section id="Tipsy">
-        <form class="search_row ">
-            <div class=" cocktail_search">
-                <!-- <div class="search_items searchtype">2</div> -->
-                <div class="select_items ">
-                    <select class="select_item" name=" search_type" id="selected">
-                        <option value="By Name">By Name</option>
-                        <option value="By Author">By Author</option>
+    </nav>
 
-                    </select>
-                    <!-- <div class="search_item">2</div> -->
-                </div>
-                <input class="search_items name_input " placeholder="type key words"></input>
-                <!-- <input class="search_items ingredient_input" placeholder="type ingredient dive by space"></input> -->
-                <button class="cocktail_search_btn">Search</button>
+    <section id="mianCocktails">
+        <div class=" py-3   ">
+            <div class="container ">
+                <div class="row d-flex mt-3 mb-4">
+                    <div class="btn-group  dropright  position-absolute ">
+                        <button id="categories_btn" type="button" class="btn btn-primary dropdown-toggle mx-3"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            categories
+                        </button>
+                        <div class="catesearch dropdown-menu">
 
-            </div>
-        </form>
-
-        <div class="section_container view spad">
-
-            <div id="cocktail_views" class="views">
-                <div class="catagories">
-                    <a href="/tipsy.html?filter=Views">
-                        <div class="catagory">Most Views</div>
-                    </a>
-                    <a href="/tipsy.html?filter=likes">
-                        <div class="catagory">Top Likes</div>
-                    </a>
-                    <a href="/tipsy.html?category=vodka&&page=1">
-                        <div class="catagory">Vodka</div>
-                    </a>
-                    <a href="/tipsy.html?category=rum&&page=1">
-                        <div class="catagory">Rum</div>
-                    </a>
-                    <a href="/tipsy.html?category=gin&&page=1">
-                        <div class="catagory">Gin</div>
-                    </a>
-                    <a href="/tipsy.html?category=tequila&&page=1">
-                        <div class="catagory">Tequila</div>
-                    </a>
-                    <a href="/tipsy.html?category=brandy&&page=1">
-                        <div class="catagory">Brandy</div>
-                    </a>
-                    <a href="/tipsy.html?category=whiskey&&page=1">
-                        <div class="catagory">Whiskey</div>
-                    </a>
-                    <a href="/tipsy.html?category=specials&&page=1">
-                        <div class="catagory">Specials</div>
-                    </a>
-                </div>
-
-                <div class="cocktails">
-
-                    <!-- <div class="page">
-                        <div class="pagination">
-                            <ul>
-                                <li><a href="/tipsy.html?page=8">8</a></li>
-                                <li><a href="/tipsy.html?page=8">8</a></li>
-                                <li><a href="/tipsy.html?page=9">9</a></li>
-                                <li><a href="/tipsy.html?page=10">10</a></li>
-                                <li><a href="/tipsy.html?page=11">11</a></li>
-                                <li><a href="/tipsy.html?page=12">12</a></li>
-                                <li><a href="/tipsy.html?page=8">8</a></li>
-
-                            </ul>
+                            <a class="dropdown-item" href="/tipsy.html">All</a>
+                            <div class="dropdown-divider"></div>
+                            <!-- ajax js -->
+                            <!-- <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a> -->
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="col-xs-8 col-xs-offset-2 search_bar ">
+                        <div class="input-group search_group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Search By</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu  " role="menu">
+                                    <li><span href="#Author" class=" text-center pl-2">Author</span></li>
+                                    <li><span href="#Ingredient" class="pl-2">Ingredient</span></li>
+                                    <!-- <li><span href="#CateAuthor" class=" text-center pl-2">Author</span></li>
+                                    <li><span href="#CateIngredient" class="pl-2">Ingredient</span></li> -->
+
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input type="text" class="form-control serch_text" name="x" placeholder="Search term...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="search()"><span
+                                        class="fa fa-search"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="btn-toolbar  ">
+                        <button type="button" class="btn btn-primary mr-3 fa fa-bookmark"
+                            onclick="javascript:location.href='/profile.html'">
+
+                        </button>
+                        <button type="button" class="btn btn-primary mr-3 fa fa-plus"
+                            onclick="javascript:location.href='/create.html'"></button>
+                    </div>
                 </div>
+                <div class="row card-group cocktails">
 
+
+
+
+
+                </div>
             </div>
-
-
         </div>
 
 
 
-        <footer>
-            <div class="view">
-                <div class="link link-0">
-                    <div class="item">About</div>
-                    <div class="item">Service</div>
-                    <div class="item">Privacy</div>
-                </div>
-                <div class="link link-1">
-                    <div class="item">Contact</div>
-                    <div class="item">FAQ</div>
-                </div>
-                <div class="social">
-                    <img src="imgs/line.png" />
-                    <img src="imgs/twitter.png" />
-                    <img src="imgs/facebook.png" />
-                </div>
-                <div class="copyright">
-                    &copy; 2020. All rights reserved.
-                </div>
-            </div>
-        </footer>
+
+
+        <ul id="pagnition_ul" class="pagination justify-content-center">
+            <!-- <li class="page-item">
+                <a class="page-link tipsy_pagin" href="#">last</a>
+            </li> -->
+            <!-- <li class="page-item disabled">
+                <a class="page-link tipsy_pagin" href="#" tabindex="-1">
+                    previous </a>
+            </li> -->
+            <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+
+            <!-- <li class="page-item">
+                <a class="page-link tipsy_pagin" href="#">next</a>
+            </li> -->
+            <!-- <li class="page-item">
+                <a class="page-link tipsy_pagin" href="#">last</a>
+            </li> -->
+        </ul>
+    </section>
+
+    <footer>
+
+
+
+    </footer>
+
 
 </body>
+<script>
+
+    $(document).ready(function (e) {
+        $('.search-panel .dropdown-menu').find('span').click(function (e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
+
+</script>
 
 </html>
-
-
-<!-- <a class="cocktail_container" href="/cocktail.html">
-                        <div class="cocktail"
-                            style="background-image: url('https://images.media-allrecipes.com/userphotos/171959.jpg')">
-
-                        </div>
-                        <div class="cocktail-cata"> Vodka</div>
-                        <div class="cocktail-info">
-                            <h3>$3 Hooker Shot</h3>
-                            <h6>From : Tipsybartender</h6>
-                        </div>
-                    </a> -->

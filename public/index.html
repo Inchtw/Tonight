@@ -4,193 +4,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="personal project website. updated at 2020." />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
-    <!-- <link rel="stylesheet" type="text/css" href="css/style.css" media="all" /> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="./js/lib.js" defer></script>
-    <script src="./js/index.js" defer></script>
+    <title>Tonight</title>
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    </link>
-    <title>Tonight-Tipsy Online</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" media="all" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/preset.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
+        defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+
+    <script src="./js/lib.js" defer></script>
+
+    <script src="./js/index.js" defer></script>
 </head>
 
+
+
+
 <body>
-    <header class="bgi">
-        <div class="padding-mobile"></div>
-        <div class="logo"><a href="./"><img src="imgs/Tonight (2).png" /></a></div>
-        <nav>
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
 
-            <div class="item"><a href="#about">About</a></div>
-            <div class="item"><a href="/tipsy.html">Recipes</a></div>
-            <!-- <div class="item"><a href="#">About</a></div> -->
-            <!-- <div class="item"><a href="/chat">Tonight</a></div> -->
-            <div class="item"><a href="/profile.html">Profile</a></div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mr-auto" href="/">Tonight</a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/">Home </a>
+                </li>
 
-        </nav>
-        <div class="feature">
-            <input class="nav-search" type="text" placeholder="Search..." /><button class="fa fa-paper-plane"
-                onclick=""></button>
-            <!-- <div class="item"><a class="headlogin" href="#">Login</a></div> -->
-            <div id="head_login" class="logout "><a href="/login.html">Login</a></div>
-            <div id="logout" class="logout   loghide " onclick="logout()"> Logout</div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tipsy.html">Tipsy</a>
+                </li>
 
-            <!-- </a> -->
-            <a class="item member fa fa-user" href="/profile.html">
+            </ul>
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile.html">Profile</a>
+                </li>
+                <li id="nav_login" class="nav-item ">
+                    <a class="nav-link active" href="/login.html">Login </a>
+                </li>
+                <li id="nav_logout" class="nav-item d-none ">
+                    <a class="nav-link active" onclick="logout()">Logout </a>
+                </li>
 
-            </a>
-
+                <li class="nav-item ">
+                    <a class="fa fa-user" href="/login.html"></a>
+                </li>
+            </ul>
         </div>
+    </nav>
 
 
+    <header class="jumbotron ">
+        <div class="container ">
+            <h1 data-0="transform: translateY(-50px)" data-500="transform: translateY(100px)"> </h1>
+            <!-- <hr /> -->
+            <h4> </h4>
+        </div>
     </header>
-    <section id="main_view">
-        <div class="main_view">
-            <div class="quoteback">
-                <h1 class="quote">“Vodka may not be the answer,<br> but it is worth a shot.”</h1>
-            </div>
-            <!-- <div class="something">
-            </div> -->
-        </div>
-        <a href="#hots" class="scroll-down" address="true"></a>
-
-        </div>
-    </section>
-    <!-- <div class="keyvisual" id="keyvisual">
-        <div class="step">
-        </div>
-    </div> -->
-    <section id="hots" class="hot">
-
-        <div class="section_container view spad">
-
-            <div id="top_3_cocktail" class="views">
-                <h2> Top Cocktails</h2>
-                <div id="hot_cocktail" class="cocktails">
-                    <div class="cocktail_container">
-                        <a class="cocktail" href=""
-                            style="background-image: url('https://tipsyvideo.imgix.net/3-hooker-shot/poster.jpg?w=600')">
-                            <!-- <div class="hot_context"> -->
-                            <!-- <h3>$3 Hooker Shot</h3>
-                                <h6>From: Tipsybartender</h6>
-                            </div> -->
-                        </a>
-                        <div class="cocktail-cata"> Rum</div>
-                        <div class="cocktail-info">
-                            <h3>$3 Hooker Shot</h3>
-                            <h6>From : Tipsybartender</h6>
-                        </div>
-                    </div>
-
-                    <div class="cocktail_container">
-                        <a class="cocktail" href=""
-                            style="background-image: url('https://images.media-allrecipes.com/userphotos/171959.jpg')">
-                            <!-- <div class="hot_context"> -->
-                            <!-- <h3>$3 Hooker Shot</h3>
-                                <h6>From: Tipsybartender</h6>
-                            </div> -->
-                        </a>
-                        <a href="">
-                            <div class="cocktail-cata"> Vodka</div>
-                        </a>
-                        <a href="">
-                            <div class="cocktail-info">
-                                <h3>$3 Hooker Shot</h3>
-                                <h6>From : Tipsybartender</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="cocktail_container">
-                        <a class="cocktail" href=""
-                            style="background-image: url('https://images.media-allrecipes.com/userphotos/1249577.jpg')">
-                            <!-- <div class="hot_context"> -->
-                            <!-- <h3>$3 Hooker Shot</h3>
-                                <h6>From: Tipsybartender</h6>
-                            </div> -->
-                        </a>
-                        <div class="cocktail-cata"> Whiskey</div>
-                        <div class="cocktail-info">
-                            <h3>$3 Hooker Shot</h3>
-                            <h6>From : Tipsybartender</h6>
-                        </div>
-                    </div>
-
-                    <!-- <a class="cocktail" href=""
-                        style="background-image: url('https://images.media-allrecipes.com/userphotos/171959.jpg')">
-                        <div class="hot_context">
-                            <h3>$3 Hooker Shot</h3>
-                            <h6>From : Tipsybartender</h6>
-                        </div>
-                    </a>
-                    <a class="cocktail" href=""
-                        style="background-image: url('https://images.media-allrecipes.com/userphotos/1249577.jpg')">
-                        <div class="hot_context">
-                            <h3>$3 Hooker Shot</h3>
-                            <h6>From : Tipsybartender</h6>
-                        </div>
-                    </a> -->
-
-
+    <section id="section_que" style="overflow: hidden;">
+        <div class=" container">
+            <div class="row">
+                <div class="col-sm-7 text-right" data-200=" opacity: 0" data-450=" opacity: 1">
+                    <h2>Want some?</h2>
+                </div>
+                <div class="col-sm-5 r-0 img" data-300="transform: translateX(300px) "
+                    data-600="transform: translateX(0px)">
 
                 </div>
-                <a href="/create.html" class="call_to_action"> Post my own recipe </a>
-            </div>
-            <div id="top_3_chat" class="hotview">
-                <div id="hot_chat" class="cocktails"></div>
-            </div>
 
+            </div>
+        </div>
+    </section>
+
+    <section id="section_ask">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 img" data-500="transform: translateX(-200px) "
+                    data-600="transform: translateX(0px) ">
+                </div>
+                <div class="col-sm-7" data-600=" opacity: 0" data-850=" opacity: 1">
+                    <h2>How about being your "Hometender"?</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="section_About">
+        <div class="container">
+            <div class="row" style="overflow: hidden;">
+                <div class="col-sm-7" data-800="transform: translateX(-200px) " data-1000="transform: translateX(0px) ">
+                    <h3>About</h3>
+                    <P>A website makes you an awesome night! <br>
+                        There's always a fantastic cocktail fits you!</P>
+                    <h4>Surf it, made it, and share it <strong>Tonight</strong> together! </h4>
+                </div>
+                <div class="col-sm-5 img" data-800="transform: translateX(200px) "
+                    data-1200="transform: translateX(0px) ">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="carouselSection" style="overflow: hidden;">
+
+
+
+
+        <div id="carouselExampleIndicators" class="carousel slide mw-75" data-600="transform: translateX(200px)"
+            data-1100="transform: translateX(0px)" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner justify-content-center mx-auto" style="width: 80%; ">
+                <div class="carousel-item active">
+                    <div class="row card-group Hots">
+
+
+                    </div>
+                    <div class="carousel-caption d-md-block" style="color: black;">
+                        <h5></h5>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row card-group News">
+
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row card-group Tops">
+
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
 
 
     </section>
-    <!-- <section id="about" class="about spad">
 
-        <div class="section_container view">
-            <h2 id="about_title">About</h2>
-            <div class="views">
-                <div id="about_recipes" class="about_view">
-                    <div id="about_recipes_content" class="about_content"></div>
-                    <div class="about_button about_recipe_button"></div>
-                </div>
-                <div id="about_chat" class="about_view">
-                    <div id="about_chat_content" class="about_content"></div>
-                    <div class="about_button about_chat_button"></div>
-                </div>
-
+    <section id="section_story">
+        <div class="container">
+            <div class="row">
+                <!-- <div class="col-sm-5 map" data-bottom-top="background-size: 150%;background-position: 0% 0%;opacity:0"
+                    data-center="background-size: 100%;background-position: 50% 50%;opacity:1">
+                    <div class="cross">x</div>
+                </div> -->
+                <!-- <div class="col-sm-7">
+                    <div class="col-sm-12">
+                        <h2>印刷對知識傳播的影響</h2>
+                        <hr />
+                    </div>
+                    <div class="col-sm-12 features">
+                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
+                            data-center="transform: scale(1);opacity:1"><i class="fa fa-files-o"></i>
+                            <h4>快速複製</h4>
+                        </div>
+                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
+                            data-center="transform: scale(1);opacity:1"><i class="fa fa-paper-plane-o"></i>
+                            <h4>知識傳遞</h4>
+                        </div>
+                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
+                            data-center="transform: scale(1);opacity:1"><i class="fa fa-floppy-o"></i>
+                            <h4>文化保存</h4>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <p>印刷機的開發使知識的傳播發生了革命性的變化：1469年在威尼斯成立第一家印刷社（即出版社），1500年該城就有印刷廠417家。1476年，威廉·卡克斯頓在英格蘭成立第一家印刷社°在1539年，西班牙人Juan
+                            Pablos在墨西哥的墨西哥城。Stephen Day於1628年在美國麻塞諸塞海灣地區建立了北美第一家印刷社，並協助成立了劍橋出版社。</p>
+                    </div>
+                </div> -->
             </div>
-
-
         </div>
+    </section>
 
-
-    </section> -->
-    <!-- <div class="fakebody">
-
-    </div> -->
     <footer>
-        <div class="view">
-            <div class="link link-0">
-                <div class="item">關於 Tonight</div>
-                <div class="item">服務條款</div>
-                <div class="item">隱私政策</div>
-            </div>
-            <div class="link link-1">
-                <div class="item">聯絡我們</div>
-                <div class="item">FAQ</div>
-            </div>
-            <div class="social">
-                <img src="imgs/line.png" />
-                <img src="imgs/twitter.png" />
-                <img src="imgs/facebook.png" />
-            </div>
-            <div class="copyright">
-                &copy; 2020. All rights reserved.
-            </div>
-        </div>
+
+
+
     </footer>
+
 
 </body>
 

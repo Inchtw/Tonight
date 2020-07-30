@@ -7,9 +7,10 @@ const typeDefs = gql`
   type Query {
     me : User
     cocktails(id:Int) : [Cocktail]
-    users : [User]
-    recipes : [Cocktail]
+    users(id:Int) : [User]
     reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String,author :String , ingredient :String, sort :String) : ReciepesConnection!
+    cocktailThree : CocktailThree
+    categories : [String]
   }
   type Cocktail{
       "cocktail include recipes and other info"
@@ -20,18 +21,24 @@ const typeDefs = gql`
       category : String 
       resource : String!
       link :  String 
-      author : String 
+      author : User 
       ingredients : [String!] 
       steps : [String!]!
       likeGivers : [User]
       likes : Int
       views : Int
-      ranking : Float
+      rank : Float
+      comment : Int
       comments : [Comment]
       createdAt : String
       recommend :[Cocktail]
+      author_id : Int
   }
-
+  type CocktailThree{
+    hots:[Cocktail]
+    tops:[Cocktail]
+    news:[Cocktail]
+  }
 
 input CocktailInput{
     name : String!
@@ -40,16 +47,15 @@ input CocktailInput{
     category : String! 
     ingredients : [String!] 
     steps : [String!]!
+
 }
 
 input CommentInput{
-    id : ID!
-    name : String!
-    photo : String!
+    cocktail_id : ID!
     img : String
     comment : String
     rank : Int!
-
+    title : String
 }
 
 
@@ -63,7 +69,7 @@ type Comment{
     img : String
     comment : String
     rank : Int! 
-
+    title : String
 }
 
 type User {
@@ -72,14 +78,14 @@ type User {
     password: String
     name : String!
     photo : String
+    intro : String
     friends :[User]
     post : [Cocktail]
     comments :  [Comment]
-    subsriptions : [User]
+    subscriptions : [User]
     followers : [User]
     likes : [Cocktail]
-
-    
+    recommend : [Cocktail]
 }
 
 type AuthUser {
@@ -109,6 +115,12 @@ input AddFriendInput {
     id : ID!
 }
 
+input LikeInput {
+     id : ID!
+    
+}
+
+
 input UpdateMyInfoInput {
     nickname : String
     password: String
@@ -136,8 +148,8 @@ type Mutation{
     createUser(userInput : UserInput! ) : AuthUser
     login(Userlogin:Userlogin! ) : AuthUser
     updateMyInfo(updateMyInfoInput :UpdateMyInfoInput ) :User
-    likeCocktail(cocktailId:Int!) : Cocktail
-    commentCocktail(CommentInput : CommentInput) : Comment
+    likeCocktail(likeInput:LikeInput!) : Boolean
+    commentCocktail(commentInput : CommentInput) : Comment
     subscribeAuthor(SubscribeInput:SubscribeInput) : Boolean
 }
 type Subscription {
@@ -150,3 +162,12 @@ module.exports ={
     typeDefs
 
 };
+
+
+// input SubscribeInput {
+//     id : ID!
+// }
+
+// input LikeInput {
+//     id : ID!
+// }

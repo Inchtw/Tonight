@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/index.css" media="all" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/details.css" media="all" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
+        defer></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"
+        defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+    <script src="./js/lib.js" defer></script>
+    <script src="./js/detail.js" defer></script>
+</head>
+
+
+
+
+<body>
+    <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mr-auto" href="#">Navbar</a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+            <div class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="#">Home </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item  fa fa-star"></li>
+            </ul>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
+
+        <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand mr-auto" href="/">Tonight</a>
+                <ul class="navbar-nav ">
+                    <li class="nav-item ">
+                        <a class="nav-link active" href="/">Home </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tipsy.html">Tipsy</a>
+                    </li>
+
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/profile.html">Profile</a>
+                    </li>
+                    <li id="nav_login" class="nav-item ">
+                        <a class="nav-link active" href="/login.html">Login </a>
+                    </li>
+                    <li id="nav_logout" class="nav-item d-none ">
+                        <a class="nav-link active" onclick="logout()">Logout </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="fa fa-user" href="/login.html"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </nav>
+    <section id="detail_section" class="d-none">
+        <div class="container">
+            <div class="card pb-0">
+                <div class="container-fliud">
+                    <div class="wrapper row ">
+
+                        <div class="preview col-md-6">
+
+
+                            <div class="preview-pic tab-content">
+
+                                <div class="tab-pane active big_detail_pic" id="pic-1">
+                                    <div id="Like_btn_bk" class="position-absolute like_btn_bk">
+
+                                        <div id="Like_btn" class=" fa fa-thumbs-up like_btn " onclick="likeCocktail()">
+                                        </div>
+                                    </div>
+                                    <!-- <div class=" detail_photo"
+                                        style=" background-image: url(https://images.media-allrecipes.com/userphotos/1032139.jpg) ;">
+                                    </div> -->
+
+                                    <!-- <img src="https://tipsyvideo.imgix.net/151-ways-to-die/poster.jpg?" /> -->
+                                </div>
+
+                                <!-- <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                                <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> -->
+                            </div>
+                            <!-- <ul class="preview-thumbnail nav nav-tabs">
+                                <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-2" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-3" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-4" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                                <li><a data-target="#pic-5" data-toggle="tab"><img
+                                            src="http://placekitten.com/200/126" /></a></li>
+                            </ul> -->
+
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title"></h3>
+
+
+                            <div class="rating mb-1">
+
+                                <div id="detailStars" class="stars">
+
+                                </div>
+
+
+                                <div class="d-flex px1 v_c_l">
+                                    <small class="fa fa-eye w-20 text-center pr-3"> <span
+                                            class="text-muted detail_view"></span></small>
+                                    <small class="fa fa-comments-o w-20 text-center pr-3"> <span
+                                            class="text-muted detail_comment"></span></small>
+                                    <small class="fa fa-thumbs-o-up w-20 text-center "> <span
+                                            class="text-muted detail_likes"></span></small>
+                                </div>
+
+                                <!-- <span class="text-muted">41 comments</span>
+                                <span></span>
+                                <span></span> -->
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <hr class="mt-1">
+                                    <div class="pull-left d-flex align-items-center author_detail_pic_div">
+                                        <!-- <a href="#">
+                                            <div class="media-object overflow-hidden author_detail_pic"
+                                                style=" width: 50px; height: 50px; background-image: url('http://images.contactmusic.com/newsimages/david_beckham_1133321.jpg');background-repeat: no-repeat; background-size: cover; background-position: center center;">
+                                            </div>
+                                        </a>
+                                        <h4><a href="#" class="a_t"><strong id="detail_author" class=" author_name">John
+                                                    Doe</strong></a> -->
+                                    </div>
+
+                                    <div class="pull-right btn-group-xs sub_scribe_bk">
+                                        <button id="Sub_btn" class="btn btn-default btn-xs sub_scribe "
+                                            onclick="subAuthor()"><i class="fa fa-heart" aria-hidden="true"></i>
+                                            Subscribe</button>
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                </div>
+                                <hr class="mt-1">
+
+                            </div>
+                            <p class="product-description mb-auto">
+                                <!-- These simple, sweet mimosas are great for brunch. For
+                                a
+                                virgin version, substitute club soda or citrus-flavored sparkling water for the
+                                prosecco, and use grenadine instead of Campari. -->
+
+                            </p>
+
+
+                            <h5 class="price ml-auto mb-0 resource_link">resource: </h5>
+                        </div>
+
+
+                    </div>
+                    <div class="card-body px-0">
+                        <div class="d-flex justify-content-between ">
+                            <ul class="list-group list-group-flush w-100 mr-2 ingredients_lists">
+                                <li class="list-group-item list-group-item-action active  text-center">
+                                    Ingredients </li>
+                                <!-- <li class="list-group-item list-group-item-action">Dapibus ac
+                                    facilisis
+                                    in</li>
+                                <li class="list-group-item list-group-item-action">Morbi leo
+                                    risus</li>
+                                <li class="list-group-item list-group-item-action">Porta ac
+                                    consectetur
+                                    ac</li>
+                                <li class="list-group-item list-group-item-action">Vestibulum
+                                    at
+                                    eros</li> -->
+                            </ul>
+                            <div class="list-group list-group-flush w-100 ml-3 steps_lists">
+                                <li class="list-group-item list-group-item-action active text-center">
+                                    Steps
+                                </li>
+                                <!-- <li class="list-group-item list-group-item-action tsss">Dapibus ac
+                                    facilisis
+                                    in</li>
+                                <li class="list-group-item list-group-item-action">Morbi leo
+                                    risus</li>
+                                <li class="list-group-item list-group-item-action">Porta ac
+                                    consectetur
+                                    ac</li>
+                                <li class="list-group-item list-group-item-action">Vestibulum
+                                    at
+                                    eros</li> -->
+                                <span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <h4 class="text-muted">comments</h4>
+
+
+
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+
+                    </div>
+                    <a class="carousel-control-prev " href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div class="card gedf-card mt-4">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                    aria-controls="posts" aria-selected="true">Make
+                                    your review</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
+                                    aria-selected="false" href="#images">Images</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="Comment_form" class="card-body">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                                aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <!-- <h5> title</h5> -->
+                                    <input class="form-control mb-1" id="title" type="text" name="title"
+                                        id="comment_title" placeholder=" How you describe this " required="required">
+                                    <!-- <label class="sr-only" for="message">post</label> -->
+
+                                    <textarea class="form-control" id="comment" rows="3" name="comment"
+                                        placeholder="What are you thinking?" required="required"></textarea>
+                                </div>
+
+
+                            </div>
+                            <form class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab"
+                                enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input id="author_id" type="text" name="author_id" hidden>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="customFile" id="customFile"
+                                            placeholder="" required>
+                                        <label class="custom-file-label" for="customFile"
+                                            placeholder=" upload your image"></label>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="py-4"></div>
+                            </form>
+                        </div>
+                        <div>
+
+                            <div class='rating-stars text-center'>
+                                <ul id='stars'>
+                                    <li class='star' title='Poor' data-value='1'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Fair' data-value='2'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Good' data-value='3'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='Excellent' data-value='4'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                    <li class='star' title='WOW!!!' data-value='5'>
+                                        <i class='fa fa-star fa-fw'></i>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="success-box">
+                                <div class='text-message'></div>
+                            </div>
+                        </div>
+                        <div class="btn-toolbar">
+                            <div class="btn-group mr-auto">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-globe"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item"><i class="fa fa-globe"></i> Public</a>
+
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-primary " onclick=" CreateMyComment()">share</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class=" card col-sm-12 text-center createMy ">
+                <a href="/create.html"> <button class="btn btn-primary px-5">
+                        <h3>Create my own Recipe!</h3>
+                    </button></a>
+
+            </div>
+
+            <div class="text-center youmaylike my-2">
+
+                <h3 class="py-3">You May Like</h3>
+
+            </div>
+            <div class="row card-group detail_recom">
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <footer>
+
+
+
+    </footer>
+
+
+</body>
+
+</html>

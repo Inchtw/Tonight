@@ -1,0 +1,111 @@
+/* Color Theme Swatches in Hex */
+.party酒吧派对-1-hex { color: #C82EF2; }
+.party酒吧派对-2-hex { color: #570FF2; }
+.party酒吧派对-3-hex { color: #1E0773; }
+.party酒吧派对-4-hex { color: #0B0340; }
+.party酒吧派对-5-hex { color: #070226; }
+
+/* Color Theme Swatches in RGBA */
+.party酒吧派对-1-rgba { color: rgba(199, 46, 242, 1); }
+.party酒吧派对-2-rgba { color: rgba(86, 14, 242, 1); }
+.party酒吧派对-3-rgba { color: rgba(30, 6, 114, 1); }
+.party酒吧派对-4-rgba { color: rgba(11, 3, 63, 1); }
+.party酒吧派对-5-rgba { color: rgba(6, 1, 38, 1); }
+
+/* Color Theme Swatches in HSLA */
+.party酒吧派对-1-hsla { color: hsla(286, 88, 56, 1); }
+.party酒吧派对-2-hsla { color: hsla(258, 89, 50, 1); }
+.party酒吧派对-3-hsla { color: hsla(253, 88, 23, 1); }
+.party酒吧派对-4-hsla { color: hsla(247, 90, 13, 1); }
+.party酒吧派对-5-hsla { color: hsla(247, 90, 7, 1); }
+
+body{
+    background-color: rgba(0, 0, 0);
+    height: 1vh;
+}
+.cocktail_img{
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: inherit center;
+    height: 250px;
+   }
+
+   .cate_btn{
+    left: 50%; top:calc(1.25em - 20px); transform: translateX(-50%) translateY(-50%) ;
+   }
+
+   .cocktail_ranking{
+    position: absolute; right: 1em; bottom:  1em;  margin-bottom:4px;
+   }
+
+
+
+   .cocktail_authorimg{
+    width: 50px;
+    height: 50px;
+    right: 0; margin: 10px; border-radius: 50%; z-index: 10;
+
+   }
+
+   .likes_color{
+       color: red;
+   }
+
+
+/* for nav */
+
+a{
+    color: inherit;
+}
+
+
+  .navbar {
+    color: white;
+    /* background-color: rgba(255, 255, 255, 1); */
+    background-color: rgba(0, 0, 0,0.8);
+    transition: 0.5s;
+
+  }
+.collapse li{
+    /* color: black; */
+    padding-left: 1em;
+}
+ .navbar-top {
+    background-color: transparent;;
+   
+  }
+.navbar-top li{
+    color: white;
+    
+}
+.navbar-top  a ,.collapse ul li a {
+    color: white;
+    transition-duration: 0.5s;
+  }
+  .collapse ul li a:hover {
+    color: rgba(86, 14, 242, 1);
+  }
+.navbar-top .collapse ul li a:hover {
+    color: rgba(86, 14, 242, 1);
+  }
+
+
+nav.navbar  {
+    transition: 0.5s;
+  }
+
+
+  .card{
+    border:none;
+
+  }
+  .btn-primary{
+      background-color: #570FF2!important ;
+      border: none!important;
+  }
+
+  #nav_logout a:hover{
+    
+    border: rgba(86, 14, 242, 1) 1px solid;
+
+  }

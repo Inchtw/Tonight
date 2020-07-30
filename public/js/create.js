@@ -25,11 +25,14 @@ async function CreateMyRecipe(){
     let formData = new FormData(form);
 
     let uri = '/imageload';
-    console.log(formData);
+
 
     await fetch(uri, {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers :{
+            'Authorization' : 'Bearer '+ accessToken
+        }
     })
         .then(res => res.json())
         .then(async result => {
@@ -43,20 +46,14 @@ async function CreateMyRecipe(){
                         createCocktail(cocktailInput: {name: $name , ori_image:$ori_image , description: $description,ingredients:$ingredients,steps:$steps,category:$category}) {
                           id
                           name
-                          category
-                          createdAt
-                          resource
-                          author
-                          description
-                          ingredients
-                          steps
-                          link
+                          
                         }}`,
                     variables
                 }),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Authorization' : 'Bearer '+ accessToken
                 }
             })
                 .then(res => res.json())
@@ -64,7 +61,7 @@ async function CreateMyRecipe(){
                     let {id} = result.data.createCocktail;
                     if(result.data.createCocktail.name){
                         alert(`Your awesome cocktail --${name} recipe has been created`);
-                        window.location.replace(`/cocktail.html?id=${id}`);
+                        window.location.replace(`/detail.html?id=${id}`);
                     } else {
                         alert(result.error);
                         // location.reload();
@@ -128,3 +125,22 @@ function readURL(input) {
     }
 }
 
+$(document).ready(function () {
+    $('#last_step').on('click', function(e){
+
+        $('#last_step').before(`<div class="controls ">
+        <input type="text" class="floatLabel stepsarray " name="Steps">
+    </div>`);
+
+    });
+});
+
+$(document).ready(function () {
+    $('#last_ingredient').on('click', function(e){
+
+        $('#last_ingredient').before(` <div class="controls">
+        <input type="text" class="floatLabel stepsarray" name="ingredients">
+    </div>`);
+
+    });
+});
