@@ -3,7 +3,6 @@
 
 
 
-
 body{
     background-color: rgba(0, 0, 0);
     height: 1vh;
@@ -11,6 +10,7 @@ body{
 
 a{
     color: inherit;
+   
 }
 
 
@@ -25,7 +25,8 @@ header.jumbotron {
     background-size: cover;
     background-attachment: fixed;
     margin-top: 0px;
-    height: 720px;
+    position: relative;
+    height: 100vh;
     
 
 }
@@ -37,6 +38,7 @@ header.jumbotron::before{
 header.jumbotron .container {
     color: white;
     padding: 200px 0px;
+   
   }
 
   header.jumbotron hr {
@@ -154,3 +156,65 @@ section#section_About .col-sm-5.img {
       background-color: #570FF2!important ;
       border: none!important;
   }
+  div { -webkit-transform: translateZ(0);-webkit-backface-visibility: hidden;-webkit-perspective: 1000; }
+
+
+  .scroll-down {
+    opacity: 1;
+    -webkit-transition: all .5s ease-in 3s;
+    transition: all .5s ease-in 3s;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin-left: -16px; */
+    display: block;
+    width: 2em;
+    height: 2em;
+    border: 2px solid #FFF;
+    background-size: 14px auto;
+    border-radius: 50%;
+    z-index: 2;
+    -webkit-animation: bounce 2s infinite 2s;
+    animation: bounce 2s infinite 2s;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+    transform: scale(1) ,translateX(-50%);
+    }
+    
+    .scroll-down:before {
+    transform: translateX(-50%);
+      position: relative;
+      top: 0.5em;
+      left: 0.65em;
+  
+      transform: rotate(-45deg);
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+      content: "";
+      border: 2px solid white;
+      border-width: 0px 0 2px 2px;
+    }
+    
+    @keyframes bounce {
+    0%,
+    100%,
+    20%,
+    50%,
+    80% {
+      -webkit-transform: translateX(-50%)  translateY(0);
+      -ms-transform:  translateX(-50%) translateY(0);
+      transform:  translateX(-50%)  translateY(0);
+    }
+    40% {
+      -webkit-transform:translateX(-50%)  translateY(-10px);
+      -ms-transform: translateX(-50%)  translateY(-10px);
+      transform:  translateX(-50%) translateY(-10px);
+    }
+    60% {
+      -webkit-transform:  translateX(-50%) translateY(-5px);
+      -ms-transform:  translateX(-50%) translateY(-5px);
+      transform:  translateX(-50%) translateY(-5px);
+    }
+    }
