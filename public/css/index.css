@@ -10,6 +10,7 @@ body{
 
 a{
     color: inherit;
+    transition: all 0.2s linear;
    
 }
 
@@ -54,10 +55,14 @@ header.jumbotron .container {
 
   section {
     padding: 40px 0px;
+    scroll-behavior: smooth;  
+    
   }
 
-  section#section_que {
+  section#section_que ,
+  section#section_ask {
     /* background-color: rgba(255, 255, 255); */
+    height: 50vh;
     
   }
   section#section_que .col-sm-5.img {
@@ -81,6 +86,7 @@ section#section_About .col-sm-5.img {
 }
   
   section#section_About h3 {
+    
     /* background-color: rgba(255, 255, 255); */
     color: white;
   }
