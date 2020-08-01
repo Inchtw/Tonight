@@ -110,7 +110,8 @@ body{
     color: #fff;
   cursor:pointer;
 }
-#follow {
+#follow,
+#create_recipe {
 	position: absolute ;
     right: 5em;
     top: 2em;

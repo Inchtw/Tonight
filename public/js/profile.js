@@ -299,6 +299,8 @@ app.init = function () {
     }else{
         Query = myPostquery;
         $('#follow').attr('disabled', true);
+        $('#follow').addClass('d-none');
+        $('#create_recipe').removeClass('d-none');
     }
 
 
@@ -352,6 +354,10 @@ app.init = function () {
                 let {me} = data;
                 localStorage.setItem('user_info', JSON.stringify(me));
                 update(me);
+
+
+
+
             }else if(data.users[0]){
                 let user = data.users[0];
                 update(user);
