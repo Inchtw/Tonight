@@ -317,7 +317,7 @@ app.init = function () {
         .then(res => res.json())
         .catch(async (error) =>{
             await Swal.fire({
-                title: 'Unvalid status!',
+                title: 'Invalid status!',
                 text: 'Please Login again',
                 icon: 'warning',
                 confirmButtonText: 'OK',
@@ -333,7 +333,7 @@ app.init = function () {
         .then( async (info) =>{
             if(info.errors){
                 await Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: info.errors[0].message,
                     icon: 'warning',
                     confirmButtonText: 'OK',
@@ -365,7 +365,7 @@ app.init = function () {
             }else{
 
                 Swal.fire({
-                    title: 'Unvalid!',
+                    title: 'Invalid!',
                     text: 'Wrong User id',
                     icon: 'error',
                     confirmButtonText: 'OK',
@@ -599,7 +599,7 @@ function graphMeFetch(query){
         .then(res => res.json())
         .catch(error =>{
             Swal.fire({
-                title: 'Unvalid status!',
+                title: 'Invalid status!',
                 text: 'Please Login again',
                 icon: 'warning',
                 confirmButtonText: 'OK',
@@ -615,7 +615,7 @@ function graphMeFetch(query){
         .then(info =>{
             if(info.errors){
                 Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: 'Please Login again',
                     icon: 'warning',
                     confirmButtonText: 'OK',
@@ -804,7 +804,7 @@ function subAuthor(){
             let {data} = res;
             if(res.errors){
                 Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: 'Please Login again',
                     icon: 'warning',
                     confirmButtonText: 'OK',

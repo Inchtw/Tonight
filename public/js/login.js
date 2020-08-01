@@ -87,7 +87,7 @@ function sendSignUpData() {
         }
     })
         .then(res => res.json())
-        .then(result => {
+        .then(async(result) => {
             if(result.errors){
 
 
@@ -103,21 +103,21 @@ function sendSignUpData() {
             console.log(result);
             if(result.data.createUser){
 
-                Swal.fire({
+                await  Swal.fire({
                     title: `Welcome come! ${name}! `,
                     text: 'Enjoy tonight!',
                     icon: 'success',
                     showConfirmButton: false,
                     timer: 2000,
                     timerProgressBar: true,
+                }).then(()=>{
+                    let {accessToken,id} = result.data.createUser;
+                    let user = {accessToken,id , photo :'', gender:'' };
+                    localStorage.setItem('accessToken', JSON.stringify(accessToken));
+                    localStorage.setItem('user_info', JSON.stringify(user));
+                    window.location.replace('/profile.html');
                 });
-                let {accessToken,id} = result.data.createUser;
-                let user = {accessToken,id , photo :'', gender:'' };
-                localStorage.setItem('accessToken', JSON.stringify(accessToken));
-                localStorage.setItem('user_info', JSON.stringify(user));
-                window.location.replace('/profile.html');
-                // localStorage.setItem('user_info', JSON.stringify(result.data.user));
-                // location.reload();
+
             } else {
 
                 Swal.fire({

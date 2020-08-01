@@ -85,6 +85,7 @@ const createCocktail = async (args,context) =>{
             ori_image,
             description,
             resource : 'Tonight',
+            link: 'https://tonight-drink.website/',
             author_id ,
             author : author.name,
             ingredients : JSON.stringify(ingredients),

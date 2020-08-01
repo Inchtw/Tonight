@@ -7,21 +7,17 @@
     <title>CreateMyrecipe</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
-
+    <link rel="stylesheet" type="text/css" href="./css/createMyrecipe.css" media="all" />
 
     <!-- <link rel="stylesheet" type="text/css" href="./css/pre_index.css" media="all" /> -->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="./css/createMyrecipe.css" media="all" />
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
-        defer></script>
-
+    <link rel="stylesheet" type="text/css" href="css/details.css" media="all" />
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
+    defer></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
         defer></script>
@@ -30,11 +26,6 @@
         defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css"
-        integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
-    </link>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="./js/lib.js" defer></script>
     <script src="./js/create.js" defer></script>
 
@@ -103,8 +94,8 @@
 
                     <!-- ajax js -->
 
-                    <option class="dropdown-item">Another action</option>
-                    <option class="dropdown-item">Something else here</option>
+                    <!-- <option class="dropdown-item">Another action</option> -->
+                    <!-- <option class="dropdown-item">Something else here</option> -->
                 </select>
             </div>
         </div>
@@ -170,24 +161,7 @@
                 </div>
             </div> -->
             <div class=" d-flex w-10">
-                <div class="d-flex flex-column flex-grow-1 pr-2">
-
-                    <div class="controls">
-                        <input type="text" class="floatLabel stepsarray " name="Steps" required>
-                        <label for="Steps">Steps</label>
-                    </div>
-
-                    <div id="last_step" class="controls position-relative">
-                        <input type="text" class="floatLabel  " name="last_step" disabled>
-                        <i class="l-5"><label id="last_ingredient_label" for="last_step"
-                                class="fa fa-plus "></label></i>
-
-                    </div>
-
-
-
-                </div>
-                <div id="ingredients_col" class="d-flex flex-column flex-grow-1 pl-2">
+                <div id="ingredients_col" class="d-flex flex-column flex-grow-1 pr-2">
 
                     <div class="controls">
                         <input type="text" class="floatLabel ingredientsarray" name="ingredients" required>
@@ -205,6 +179,24 @@
 
 
                 </div>
+                <div class="d-flex flex-column flex-grow-1 pl-2">
+
+                    <div class="controls">
+                        <input type="text" class="floatLabel stepsarray " name="Steps" required>
+                        <label for="Steps">Steps</label>
+                    </div>
+
+                    <div id="last_step" class="controls position-relative">
+                        <input type="text" class="floatLabel  " name="last_step" disabled>
+                        <i class="l-5"><label id="last_ingredient_label" for="last_step"
+                                class="fa fa-plus "></label></i>
+
+                    </div>
+
+
+
+                </div>
+
 
 
 

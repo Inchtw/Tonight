@@ -77,7 +77,7 @@ app.init = function () {
 
             if(res.errors){
                 Swal.fire({
-                    title: 'Unvalid!',
+                    title: 'Invalid!',
                     text: res.errors[0].message,
                     icon: 'error',
                     confirmButtonText: 'OK',
@@ -188,8 +188,11 @@ app.init = function () {
                     console.log('hi');
                     // $('.sub_scribe_bk').css('background-color', 'white');
                     $('#Sub_btn').addClass('subClick');
-                    $('#Sub_btn').text('Subscribed');
-                    console.log('what happen');
+
+                    $('#subtext').addClass('fa-heart');
+                    $('#subtext').removeClass('fa-heart-o');
+                    $('#subtext').text('Subscribed');
+
 
                 }
 
@@ -446,7 +449,7 @@ async function likeCocktail(){
             if(res.errors){
 
                 Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: res.errors[0].message,
                     icon: 'warning',
                     confirmButtonText: 'OK',
@@ -522,7 +525,7 @@ async function subAuthor(){
             let {data} = res;
             if(res.errors){
                 Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: res.errors[0].message,
                     icon: 'warning',
                     confirmButtonText: 'OK',
@@ -538,6 +541,9 @@ async function subAuthor(){
 
             if(!data.subscribeAuthor){
                 $('#Sub_btn').removeClass('subClick');
+                $('#subtext').removeClass('fa-heart');
+                $('#subtext').addClass('fa-heart-o');
+                $('#subtext').text('Subscribe');
                 let newSub = user_info.subscriptions.filter(function(el) { return el.id != a_href[1]; });
                 user_info.subscriptions =  newSub;
 
@@ -567,9 +573,22 @@ if(accessToken&&user_info){
             // $('.sub_scribe_bk').css('background-color', 'white');
 
             $('#Sub_btn').addClass('subClick');
+            $('#subtext').addClass('fa-heart');
+            $('#subtext').removeClass('fa-heart-o');
+            $('#subtext').text('Subscribed');
         });
     });
 
+
+}else{
+
+    // $('#comment_btn').attr('disabled', true);
+    $('#comment_photo').attr('disabled', true);
+    $('.custom-file-label').text('Need login to comment');
+    $('#title').attr('placeholder','Need login to comment');
+    $('#title').attr('disabled', true);
+    $('#comment').attr('placeholder','Need login to comment');
+    $('#comment').attr('disabled', true);
 
 }
 
@@ -585,9 +604,8 @@ async function CreateMyComment(){
             title: 'NEED LOGIN!',
             text: 'Only member can leave a comment !',
             icon: 'warning',
-            confirmButtonText: 'OK',
+            confirmButtonText: '<a href="/login.html">Join in Tonight!!<a>',
             timer: 3000,
-            footer : '<a href="/login.html">Join in Tonight!!<a>'
         });
         return;
     }
@@ -645,7 +663,7 @@ async function CreateMyComment(){
             if(result.errors){
 
                 await Swal.fire({
-                    title: 'Unvalid status!',
+                    title: 'Invalid status!',
                     text: res.errors[0].message,
                     icon: 'warning',
                     confirmButtonText: 'OK',

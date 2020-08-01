@@ -11,6 +11,7 @@ if(accessToken&&user_info){
 
 }
 
+
 function logout(){
     Swal.fire({
         title: 'Time to say goodbye?',

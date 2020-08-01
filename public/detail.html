@@ -148,8 +148,9 @@
 
                                     <div class="pull-right btn-group-xs sub_scribe_bk">
                                         <button id="Sub_btn" class="btn btn-default btn-xs sub_scribe "
-                                            onclick="subAuthor()"><i class="fa fa-heart" aria-hidden="true"></i>
-                                            Subscribe</button>
+                                            onclick="subAuthor()"><i id="subtext" class="fa fa-heart-o"
+                                                aria-hidden="true">Subscribe</i>
+                                        </button>
                                     </div>
 
                                     <br>
@@ -265,8 +266,9 @@
                                 <div class="form-group position-relative">
                                     <input id="author_id" type="text" name="author_id" hidden>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="customFile" id="customFile"
-                                            placeholder="upload your image" onchange="readURL(this)" required>
+                                        <input id="comment_photo" type="file" class="custom-file-input"
+                                            name="customFile" id="customFile" placeholder="upload your image"
+                                            onchange="readURL(this)" required>
                                         <label class=" custom-file-label text-muted" for="customFile"
                                             id="customFile_label" placeholder=" upload your image">upload your
                                             image</label>
@@ -316,7 +318,8 @@
                                 </div>
                             </div>
                             <div class="btn-group">
-                                <button class="btn btn-primary " onclick=" CreateMyComment()">share</button>
+                                <button id="comment_btn" class="btn btn-primary "
+                                    onclick=" CreateMyComment()">Comment</button>
                             </div>
 
                         </div>

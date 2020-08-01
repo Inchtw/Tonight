@@ -1,3 +1,8 @@
+
+/* * { touch-action: pan-y; }  */
+body, html {
+  overflow: visible !important;
+}
 /* Color Theme Swatches in Hex */
 .party酒吧派对-1-hex { color: #C82EF2; }
 .party酒吧派对-2-hex { color: #570FF2; }
