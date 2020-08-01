@@ -3,12 +3,19 @@
 
 // if(accessToken&&user_info){
 
+// Swal.fire({
+//     title: 'stars! ',
+//     text: 'Enjoy tonight!',
+//     icon: 'success',
+//     onBeforeOpen: () => {
+//         Swal.showLoading();
+//     },
+// });
+
 let id = app.getParameter('id');
 if (id===user_info.id) {
     window.location = '/profile.html';
 }
-
-
 
 
 let myPostquery = ` {
@@ -306,17 +313,30 @@ app.init = function () {
         }
     })
         .then(res => res.json())
-        .catch(error =>{
-            alert('登入逾時 請重新登入');
+        .catch(async (error) =>{
+            await Swal.fire({
+                title: 'Unvalid status!',
+                text: 'Please Login again',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+                timer: 2000
+
+            });
 
             console.error(error);
             localStorage.removeItem('accessToken');
             localStorage.removeItem('user_info');
             window.location.replace('/login.html');
         })
-        .then(info =>{
+        .then( async (info) =>{
             if(info.errors){
-                alert('登入逾時 請重新登入');
+                await Swal.fire({
+                    title: 'Unvalid status!',
+                    text: info.errors[0].message,
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 2000,
+                });
                 // console.error(error);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('user_info');
@@ -324,6 +344,9 @@ app.init = function () {
             }
 
             let {data} = info;
+
+
+
             // console.log(data.users[0]);
             if(data.me){
                 let {me} = data;
@@ -332,6 +355,19 @@ app.init = function () {
             }else if(data.users[0]){
                 let user = data.users[0];
                 update(user);
+
+            }else{
+
+                Swal.fire({
+                    title: 'Unvalid!',
+                    text: 'Wrong User id',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    timer: 2000,
+                }).then(()=>{
+                    window.location.replace('/profile.html');
+
+                });
 
             }
 
@@ -403,7 +439,7 @@ function getPost(post){
 </div>`);
         let cardbody = $(`<div class=" card-body position-relative ">
   <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
-      <button class="btn btn-sm float-right "><i id="cocktail_${recipe.id}" class="fa fa-heart"></i>
+      <button class="btn btn-sm float-right "><i id="cocktail_${recipe.id}" class="fa fa-heart-o"></i>
       </button>
   </h5>
   <button class="btn btn-sm btn-primary position-absolute cate_btn ">
@@ -462,7 +498,10 @@ function getPost(post){
     let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.likes.forEach(e=>{
+            $(`#cocktail_${e.id}`).addClass('fa-heart');
+            $(`#cocktail_${e.id}`).removeClass('fa-heart-o');
             $(`#cocktail_${e.id}`).addClass('likes_color');
+
         });
 
 
@@ -553,7 +592,14 @@ function graphMeFetch(query){
     })
         .then(res => res.json())
         .catch(error =>{
-            alert('登入逾時 請重新登入');
+            Swal.fire({
+                title: 'Unvalid status!',
+                text: 'Please Login again',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+                timer: 2000
+
+            });
 
             console.error(error);
             localStorage.removeItem('accessToken');
@@ -562,7 +608,15 @@ function graphMeFetch(query){
         })
         .then(info =>{
             if(info.errors){
-                alert('登入逾時 請重新登入');
+                Swal.fire({
+                    title: 'Unvalid status!',
+                    text: 'Please Login again',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 2000,
+                    footer : 'Overtime'
+
+                });
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('user_info');
                 window.location.replace('/login.html');
@@ -580,12 +634,20 @@ function graphMeFetch(query){
 
 async function GetmyPost(){
 
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
     let id = app.getParameter('id');
     if(id){
         let data =await graphMeFetch(userPostquery);
         console.log(data.users[0]);
         $('.profile_card').html('');
         getPost(data.users[0].post);
+        Swal.close();
 
 
     }else{
@@ -593,6 +655,7 @@ async function GetmyPost(){
         console.log(data.me);
         $('.profile_card').html('');
         getPost(data.me.post);
+        Swal.close();
 
 
     }
@@ -604,20 +667,27 @@ async function GetmyPost(){
 
 
 async function getMyLikes(){
+
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
     let id = app.getParameter('id');
     if(id){
         let data =await graphMeFetch(userLikeQuery);
         console.log(data);
         $('.profile_card').html('');
         getPost(data.users[0].likes);
-
+        Swal.close();
 
     }else{
         let data =await graphMeFetch(myLikeQuery);
         console.log(data.me);
         $('.profile_card').html('');
         getPost(data.me.likes);
-
+        Swal.close();
 
     }
 
@@ -633,6 +703,12 @@ async function getMyLikes(){
 
 
 async function getMyFollowing(){
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
 
     let id = app.getParameter('id');
     if(id){
@@ -640,6 +716,7 @@ async function getMyFollowing(){
         console.log(data.users[0]);
         $('.profile_card').html('');
         getUsers(data.users[0].subscriptions);
+        Swal.close();
 
 
     }else{
@@ -647,6 +724,7 @@ async function getMyFollowing(){
         console.log(data.me);
         $('.profile_card').html('');
         getUsers(data.me.subscriptions);
+        Swal.close();
 
 
     }
@@ -662,19 +740,25 @@ async function getMyFollowing(){
 
 async function getMyFollower() {
     let id = app.getParameter('id');
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
     if(id){
         let data =await graphMeFetch(userFollowerQuery);
         console.log(data.users[0]);
         $('.profile_card').html('');
         getUsers(data.users[0].followers);
-
+        Swal.close();
 
     }else{
         let data =await graphMeFetch(myFollowerQuery);
         console.log(data.me);
         $('.profile_card').html('');
         getUsers(data.me.followers);
-
+        Swal.close();
 
     }
 
@@ -713,7 +797,14 @@ function subAuthor(){
         .then(res=>{
             let {data} = res;
             if(res.errors){
-                alert('token expired or need login to do that');
+                Swal.fire({
+                    title: 'Unvalid status!',
+                    text: 'Please Login again',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 2000
+
+                });
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('user_info');
                 window.location.replace('/login.html');
@@ -760,7 +851,7 @@ $('#change_headpic').change ( async function() {
     reader.onload = function( e ) {
         $( '#myphoto' ).css('background', 'url(' + e.target.result + ')');
         $( '#myphoto' ).css('background-size', 'cover');
-        // $( '#myphoto' ).css('background-position', 'center center');
+        $( '#myphoto' ).css('background-position', 'center center');
     };
     reader.readAsDataURL( file );
 
@@ -768,20 +859,61 @@ $('#change_headpic').change ( async function() {
 
     formData.append( 'change_headpic', file );
 
+    await Swal.fire({
+        title: 'Sure to upload photo?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#570FF2',
+        cancelButtonColor: '#C82EF2',
+        confirmButtonText: 'Yes!'
+    }).then(async (res)=>{
 
-    await fetch( '/headimageload', {
-        method: 'POST',
-        body: formData,
-        headers:{
-            'Authorization' : 'Bearer '+ accessToken
+        if(res.value){
+            Swal.fire({
+                title: 'Uploading your picture',
+                text: 'Connecting to server',
+                allowOutsideClick: false,
+                timer: 6000,
+                timerProgressBar: true,
+                onBeforeOpen: () => {
+                    Swal.showLoading();
+                },
+            });
+            fetch( '/headimageload', {
+                method: 'POST',
+                body: formData,
+                headers:{
+                    'Authorization' : 'Bearer '+ accessToken
+                }
+            })
+                .then(res => res.json())
+                .then(async result => {
+                    Swal.close();
+                    await Swal.fire({
+                        title: 'Upload Successed!! ',
+                        text: 'Enjoy tonight!',
+                        icon: 'success',
+                        timer: 2000,
+                        timerProgressBar: true,
+                    }).then(()=>{
+
+                        location.reload();
+
+                    });
+
+
+                })
+            ;
+
+        }else{
+            location.reload();
+            return;
         }
-    })
-        .then(res => res.json())
-        .then(async result => {
-            console.log(result);
 
-        })
-    ;
+    });
+
+
+
 });
 
 $(document).ready(function () {

@@ -36,7 +36,7 @@ app.init = function () {
               ingredient: ""
               category: "${category}"
               author: ""
-              sort: ""
+              sort: "DESC"
             ) {
               edges {
                 cursor
@@ -71,7 +71,7 @@ app.init = function () {
               ingredient: ""
               category: "${category}"
               author: ""
-              sort: ""
+              sort: "DESC"
             ) {
               edges {
                 cursor
@@ -105,7 +105,7 @@ app.init = function () {
               ingredient: ""
               category: ""
               author: ""
-              sort: ""
+              sort: "DESC"
             ) {
               edges {
                 cursor
@@ -139,7 +139,7 @@ app.init = function () {
               ingredient: ""
               category: ""
               author: ""
-              sort: ""
+              sort: "DESC"
             ) {
               edges {
                 cursor
@@ -174,7 +174,7 @@ app.init = function () {
               ingredient: ""
               category: ""
               author: ""
-              sort: ""
+              sort: "DESC"
             ) {
               edges {
                 cursor
@@ -200,6 +200,12 @@ app.init = function () {
           }`;
 
     }
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
 
     // app.getRecipes(query);
     fetch(url, {
@@ -215,6 +221,7 @@ app.init = function () {
     } ).then(res => res.json())
         .then(res=>{
         // $('cocktails').innerHtml('');
+            Swal.close();
             let {data} = res;
             getRecipes(data);
 
@@ -360,7 +367,7 @@ function getRecipes(data){
     </div>`);
         let cardbody = $(`<div class=" card-body position-relative ">
         <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
-            <button class="btn btn-sm float-right "><i id=cocktail_${recipe.id} class="fa fa-heart "></i>
+            <button class="btn btn-sm float-right "><i id=cocktail_${recipe.id} class="fa fa-heart-o "></i>
             </button>
         </h5>
         <button class="btn btn-sm btn-primary position-absolute cate_btn ">
@@ -420,6 +427,8 @@ function getRecipes(data){
     let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.likes.forEach(e=>{
+            $(`#cocktail_${e.id}`).addClass('fa-heart');
+            $(`#cocktail_${e.id}`).removeClass('fa-heart-o');
             $(`#cocktail_${e.id}`).addClass('likes_color');
         });
 
@@ -448,7 +457,7 @@ function search() {
                   ingredient: ""
                   category: ""
                   author: "${input_text}"
-                  sort: ""
+                  sort: "DESC"
                 ) {
                   edges {
                     cursor
@@ -481,7 +490,7 @@ function search() {
                   ingredient: "${input_text}"
                   category: ""
                   author: ""
-                  sort: ""
+                  sort: "DESC"
                 ) {
                   edges {
                     cursor
@@ -519,7 +528,7 @@ function search() {
     //       ingredient: ""
     //       category: ""
     //       author: ""
-    //       sort: ""
+    //       sort: "DESC"
     //     ) {
     //       edges {
     //         cursor
@@ -545,6 +554,15 @@ function search() {
     //     }
     //   }`;
 
+    Swal.fire({
+        title: 'Searching',
+        allowOutsideClick: false,
+        timer: 800,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
 
     fetch(url, {
         method: 'POST',
@@ -561,14 +579,18 @@ function search() {
             try {
                 let {data} = res;
                 getRecipes(data);
+                Swal.close();
 
             } catch{
-                console.log('no');
-                alert('no result');
-                let add_none_result = document.createElement('h2');
-                add_none_result.innerHTML = '沒有搜尋到任何產品哦';
-                add_none_result.classList.add('no-result');
 
+                Swal.fire({
+                    title: 'No result!',
+                    text: 'Maybe try another one',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 3000
+
+                });
             }
 
         })

@@ -69,6 +69,9 @@ const getRecipes = async(args,context)=>{
     }
     if(id){
         let cocktail = await tools.DB.query('select * from cocktails where id=?',id);
+        if(cocktail.length===0){
+            return new UserInputError('Wrong cocktial id!');
+        }
         cocktail[0].ingredients = JSON.parse(cocktail[0]['ingredients']);
         cocktail[0].steps = JSON.parse(cocktail[0]['steps']);
         //comment function

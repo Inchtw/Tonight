@@ -8,18 +8,30 @@ let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 if(accessToken&&user_info){
     $('#nav_logout').removeClass('d-none');
     $('#nav_login').addClass('d-none');
-    console.log('what');
+
 }
 
 function logout(){
-    let ans = confirm('確定登出嗎？');
-    if(ans === true){
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('user_info');
-        location.reload();
-    }else{
-        location.reload();
-    }
+    Swal.fire({
+        title: 'Time to say goodbye?',
+        text: 'We will miss you !',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#570FF2',
+        cancelButtonColor: '##C82EF2',
+        confirmButtonText: 'See you Tonight!'
+    }).then((res)=>{
+
+        if(res.value){
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('user_info');
+            location.reload();
+        }else{
+            location.reload();
+            return;
+        }
+
+    });
 
 }
 

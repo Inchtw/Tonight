@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Details</title>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!-- <link rel="stylesheet" type="text/css" href="css/index.css" media="all" /> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="css/details.css" media="all" />
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
-        defer></script>
+        defer></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"
         defer></script>
@@ -31,71 +31,41 @@
 
 
 <body>
-    <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <a class="navbar-brand mr-auto" href="#">Navbar</a>
-            <ul class="navbar-nav ">
-                <li class="nav-item ">
-                    <a class="nav-link active" href="#">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
-            <div class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            <ul class="navbar-nav align-items-center">
-                <li class="nav-item ">
-                    <a class="nav-link active" href="#">Home </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item  fa fa-star"></li>
-            </ul>
-        </div>
-    </nav> -->
+
     <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
 
-        <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="navbar-brand mr-auto" href="/">Tonight</a>
+            <ul class="navbar-nav ">
+                <li class="nav-item ">
+                    <a class="nav-link active" href="/">Home </a>
+                </li>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a class="navbar-brand mr-auto" href="/">Tonight</a>
-                <ul class="navbar-nav ">
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="/">Home </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/tipsy.html">Tipsy</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/tipsy.html">Tipsy</a>
-                    </li>
+            </ul>
 
-                </ul>
-                <!-- <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form> -->
-                <ul class="navbar-nav align-items-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile.html">Profile</a>
-                    </li>
-                    <li id="nav_login" class="nav-item ">
-                        <a class="nav-link active" href="/login.html">Login </a>
-                    </li>
-                    <li id="nav_logout" class="nav-item d-none ">
-                        <a class="nav-link active" onclick="logout()">Logout </a>
-                    </li>
+            <ul class="navbar-nav align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile.html">Profile</a>
+                </li>
+                <li id="nav_login" class="nav-item ">
+                    <a class="nav-link active" href="/login.html">Login </a>
+                </li>
+                <li id="nav_logout" class="nav-item d-none ">
+                    <a class="nav-link active" onclick="logout()">Logout </a>
+                </li>
 
-                    <li class="nav-item ">
-                        <a class="fa fa-user" href="/profile.html"></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <li class="nav-item ">
+                    <a class="fa fa-user" href="/profile.html"></a>
+                </li>
+            </ul>
+        </div>
     </nav>
+
     <section id="detail_section" class="d-none">
         <div class="container">
             <div class="card pb-0">
@@ -289,20 +259,23 @@
 
 
                             </div>
+
                             <form class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab"
                                 enctype="multipart/form-data">
-                                <div class="form-group">
+                                <div class="form-group position-relative">
                                     <input id="author_id" type="text" name="author_id" hidden>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="customFile" id="customFile"
-                                            placeholder="" required>
-                                        <label class="custom-file-label" for="customFile"
-                                            placeholder=" upload your image"></label>
+                                            placeholder="upload your image" onchange="readURL(this)" required>
+                                        <label class=" custom-file-label text-muted" for="customFile"
+                                            id="customFile_label" placeholder=" upload your image">upload your
+                                            image</label>
 
                                     </div>
 
-
+                                    <img class=" pic_center  col-1-2" id="preview" alt="" />
                                 </div>
+
                                 <div class="py-4"></div>
                             </form>
                         </div>

@@ -2,6 +2,7 @@
 
 app.init = function () {
 
+
     let carouselQuery = ` {
         cocktailThree{
           hots{
@@ -79,6 +80,8 @@ app.init = function () {
 };
 
 
+
+
 function getCarousel(cocktailArray,version){
 
 
@@ -94,7 +97,7 @@ function getCarousel(cocktailArray,version){
     </div>`);
         let cardbody = $(`<div class=" card-body position-relative ">
         <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
-            <button class="btn btn-sm float-right "><i id="${version}_${recipe.id}" class="fa fa-heart"></i>
+            <button class="btn btn-sm float-right "><i id="${version}_${recipe.id}" class="fa fa-heart-o"></i>
             </button>
         </h5>
         <button class="btn btn-sm btn-primary position-absolute cate_btn ">
@@ -154,6 +157,8 @@ function getCarousel(cocktailArray,version){
     if(user_info){
         user_info.likes.forEach(e=>{
             $(`#${version}_${e.id}`).addClass('likes_color');
+            $(`#${version}_${e.id}`).removeClass('fa-heart-o');
+            $(`#${version}_${e.id}`).addClass('fa-heart');
         });
     }
 

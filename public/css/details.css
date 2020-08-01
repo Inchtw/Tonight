@@ -3,7 +3,7 @@
 
 @import "preset.css";
 body {
-    font-family: 'open sans';
+   
     overflow-x: hidden; 
     
   }
@@ -299,7 +299,7 @@ body {
     
   }
 
-  sub_scribe_bk{
+  .sub_scribe_bk{
     background-color: transparent!important;
   }
   
@@ -320,3 +320,15 @@ body {
     padding: 1em;
     border-radius: 0 0 5px 5px  ;
   }
+  .pic_center{
+    position: relative;
+  
+    left: 50%;
+    transform: translateX(-50%);
+      width: auto!important;
+      max-height: 300px;
+
+      /* width: 50px ; */
+  
+  }
+  

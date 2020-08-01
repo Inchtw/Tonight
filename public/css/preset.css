@@ -113,7 +113,9 @@ nav.navbar  {
 
   /* main scroll down bounce */
 
-
+  .swal2-icon.swal2-error {
+    border-color: #f27474 !important;
+  }
 
     @-webkit-keyframes jello-horizontal {
       0% {
@@ -182,7 +184,7 @@ nav.navbar  {
             animation: jello-horizontal 0.9s both;
       }
       
-      .navbar-nav .nav-item a:hover 
+      .navbar-nav .nav-item .fa-user:hover 
       {
       -webkit-animation: jello-horizontal 0.9s both;
             animation: jello-horizontal 0.9s both;
@@ -191,3 +193,9 @@ nav.navbar  {
       /* .navbar-nav .nav-item a .fa-user{
         width: 20px;
       } */
+
+
+      .swal2-confirm{
+        border-left-color: rgba(86, 14, 242, 1)!important;
+        border-right-color: rgba(86, 14, 242, 1)!important;
+      }

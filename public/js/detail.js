@@ -1,4 +1,11 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 app.init = function () {
+
+    if(!accessToken&&!user_info){
+
+
+    }
 
 
     let id = app.getParameter('id');
@@ -67,12 +74,29 @@ app.init = function () {
         }
     } ).then(res => res.json())
         .then(res=>{
+
+            if(res.errors){
+                Swal.fire({
+                    title: 'Unvalid!',
+                    text: res.errors[0].message,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    timer: 3000,
+                })
+                    .then(()=>{
+                        window.location.replace('/tipsy.html');
+                    });
+
+                return;
+
+            }
+
             let {data} = res;
             let cocktail ={};
             if(data.cocktails[0]){
                 cocktail = data.cocktails[0];
             }
-            console.log(cocktail);
+
             let {author} = cocktail;
             $('#author_id').val(author.id);
 
@@ -232,7 +256,7 @@ app.init = function () {
             </div>`);
                 let cardbody = $(`<div class=" card-body position-relative ">
                 <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
-                    <button class="btn btn-sm float-right "><i class="fa fa-heart"></i>
+                    <button class="btn btn-sm float-right "><i id=cocktail_${recipe.id} class="fa fa-heart-o"></i>
                     </button>
                 </h5>
                 <button class="btn btn-sm btn-primary position-absolute cate_btn ">
@@ -286,7 +310,13 @@ app.init = function () {
                 let a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
 
                 $('.detail_recom').append(a);
-
+                if(user_info){
+                    user_info.likes.forEach(e=>{
+                        $(`#cocktail_${e.id}`).addClass('fa-heart');
+                        $(`#cocktail_${e.id}`).removeClass('fa-heart-o');
+                        $(`#cocktail_${e.id}`).addClass('likes_color');
+                    });
+                }
 
                 // let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
                 // if(user_info){
@@ -375,17 +405,30 @@ function responseMessage(msg) {
 }
 
 
-function likeCocktail(){
+async function likeCocktail(){
     let id = app.getParameter('id');
     let variables = {
         'id': id
     };
 
+    if(!accessToken&&!user_info){
+        await Swal.fire({
+            title: 'NEED LOGIN!',
+            text: 'Only member can Like !',
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            timer: 3000,
+            footer : '<a href="/login.html">Join in Tonight!!<a>'
+        });
+        return;
+    }
+
+
     let likeQuery = `mutation like($id: ID!) {
         likeCocktail(likeInput: { id: $id }) 
       }
        `;
-    fetch(url, {
+    await fetch(url, {
         method: 'POST',
         body: JSON.stringify({
             query :likeQuery,
@@ -398,8 +441,21 @@ function likeCocktail(){
         }
     } ).then(res => res.json())
         .then(res=>{
+
             let {data} = res;
-            console.log(data);
+            if(res.errors){
+
+                Swal.fire({
+                    title: 'Unvalid status!',
+                    text: res.errors[0].message,
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 2000,
+                });
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('user_info');
+                return;
+            }
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
             if(data.likeCocktail){
@@ -429,13 +485,23 @@ function likeCocktail(){
 
 
 }
-function subAuthor(){
+async function subAuthor(){
     let a_href = $('.a_t').attr('href').split('=');
-    console.log(a_href[1]);
 
     let variables = {
         'id': a_href[1]
     };
+    if(!accessToken&&!user_info){
+        await Swal.fire({
+            title: 'NEED LOGIN!',
+            text: 'Only member can Subscribe !',
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            timer: 3000,
+            footer : '<a href="/login.html">Join in Tonight!!<a>'
+        });
+        return;
+    }
 
     let subQuery = `mutation subscribe($id: ID!) {
         subscribeAuthor(SubscribeInput: {id: $id}) 
@@ -455,10 +521,16 @@ function subAuthor(){
         .then(res=>{
             let {data} = res;
             if(res.errors){
-                alert('token expired or need login to do that');
+                Swal.fire({
+                    title: 'Unvalid status!',
+                    text: res.errors[0].message,
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 2000,
+                });
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('user_info');
-                window.location.replace('/login.html');
+                return;
             }
             console.log(data.subscribeAuthor);
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
@@ -482,56 +554,43 @@ function subAuthor(){
 
 }
 
-$(document).ready( function () {
-    $('.like_btn').on('click', function(e){
-        $('#Like_btn_bk').addClass('liked_btn_bk');
-        $('#Like_btn').addClass('liked_btn');
+if(accessToken&&user_info){
+    $(document).ready( function () {
+        $('.like_btn').on('click', function(e){
+            $('#Like_btn_bk').addClass('liked_btn_bk');
+            $('#Like_btn').addClass('liked_btn');
+        });
     });
-});
 
-$(document).ready( function () {
-    $('.sub_scribe').on('click', function(e){
-        // $('.sub_scribe_bk').css('background-color', 'white');
+    $(document).ready( function () {
+        $('.sub_scribe').on('click', function(e){
+            // $('.sub_scribe_bk').css('background-color', 'white');
 
-        $('#Sub_btn').addClass('subClick');
+            $('#Sub_btn').addClass('subClick');
+        });
     });
-});
 
 
-console.log($('#comment').val());
-
-
-
-
-async function test(){
-    // console.log($('#comment').val());
-    // console.log($('#title').val());
-    // console.log($('#stars li.selected').last().data('value'));
-    // // console.log($('#customFile'));
-    // // let form = $('#images');
-    // let form = document.getElementById('images');
-    // let formData = new FormData(form);
-    // console.log($('#author_id').val());
-    // let uri = '/commentimageload';
-    // await fetch('/commentimageload', {
-    //     method: 'POST',
-    //     body: formData,
-    //     headers:{
-    //         'Authorization' : 'Bearer '+ accessToken
-    //     }
-    // })
-
-    //     .then(res => res.json())
-    //     .then(async result => {
-    //         console.log(result.url);
-    //     });
-
-
-    console.log(cocktail_id);
 }
 
 
+
+
+
+
 async function CreateMyComment(){
+
+    if(!accessToken&&!user_info){
+        await Swal.fire({
+            title: 'NEED LOGIN!',
+            text: 'Only member can leave a comment !',
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            timer: 3000,
+            footer : '<a href="/login.html">Join in Tonight!!<a>'
+        });
+        return;
+    }
 
 
     let cocktail_id = app.getParameter('id');
@@ -543,7 +602,13 @@ async function CreateMyComment(){
     let img_check = $('#customFile').val();
 
     if(!comment||!title||!rank||!img_check){
-        alert('should fill all forms');
+        Swal.fire({
+            title: 'Please input all correctly !',
+            text: 'Do you want to continue?',
+            icon: 'warning',
+            confirmButtonText: 'OK',
+            footer:' remember to upload a photo!'
+        });
         return;
     }
 
@@ -552,8 +617,21 @@ async function CreateMyComment(){
     let form = document.getElementById('images');
     let formData = new FormData(form);
 
+
+    Swal.fire({
+        title: 'Uploading your comment',
+        text: 'Connecting to server',
+        allowOutsideClick: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
+
     let uri = '/commentimageload';
-    await fetch('/commentimageload', {
+    fetch('/commentimageload', {
         method: 'POST',
         body: formData,
         headers:{
@@ -563,11 +641,24 @@ async function CreateMyComment(){
 
         .then(res => res.json())
         .then(async result => {
-            console.log(result.url);
+
+            if(result.errors){
+
+                await Swal.fire({
+                    title: 'Unvalid status!',
+                    text: res.errors[0].message,
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    timer: 5000,
+                });
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('user_info');
+                return;
+            }
 
             variables.img = result.url;
 
-            fetch(url, {
+            await fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({
                     query : `mutation comment(
@@ -600,15 +691,35 @@ async function CreateMyComment(){
                 }
             })
                 .then(res => res.json())
-                .then(result => {
+                .then(async (result) => {
+                    Swal.close();
                     console.log(result);
                     let {rank} = result.data.commentCocktail;
                     if(result.data.commentCocktail.rank){
-                        alert(`You gave ${rank} score to this cocktail!`);
+                        await  Swal.fire({
+                            title: `${rank} stars! `,
+                            text: 'Enjoy tonight!',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            timerProgressBar: true,
+
+                        }).then(()=>{
+                            window.location.reload();
+                        });
+
                         window.location.reload();
                     } else {
-                        alert(result.error);
-                    // location.reload();
+
+                        Swal.fire({
+                            title: 'Error!',
+                            text: `${result.error}`,
+                            icon: 'error',
+                            confirmButtonText: 'Try again!'
+                        }).then(()=>{
+                            return;
+
+                        });
                     }
 
 
@@ -621,47 +732,24 @@ async function CreateMyComment(){
 
 
 
-
-
-
 }
 
-// var check_status = false;
-// var like_cnt = $('#like-cnt');
-// var like_parent = $('.like-container');
+$('#customFile').bind('change', function () {
+    var filename = $('#customFile').val();
 
-// var burst = new mojs.Burst({
-//     parent: like_parent,
-//     radius:   { 20: 60 },
-//     count: 15,
-//     angle:{0:30},
-//     children: {
-//         delay: 250,
-//         duration: 700,
-//         radius:{10: 0},
-//         fill:   [ '#ddca7e' ],
-//         easing: 		mojs.easing.bezier(.08,.69,.39,.97)
-//     }
-// });
+    $('#customFile_label').text(filename.replace('C:\\fakepath\\', ''));
 
-// $('#like-cnt').click(function(){
-//     var t1 = new TimelineLite();
-//     var t2 = new TimelineLite();
-//     if(!check_status){
-//         t1.set(like_cnt, {scale:0});
-//         t1.set('.like-btn', {scale: 0});
-//         t1.to(like_cnt, 0.6, {scale:1, background: '#ddca7e',ease: Expo.easeOut});
-//         t2.to('.like-btn', 0.65, {scale: 1, ease: Elastic.easeOut.config(1, 0.3)}, '+=0.2');
-//         //    t1.timeScale(5);
-//         check_status=true;
-//         //circleShape.replay();
-//         burst.replay();
-//     }
-//     else{
-//         t1.to(like_cnt, 1, {scale:1})
-//             .to(like_cnt, 1, {scale:1, background: 'rgba(255,255,255,0.3)', ease: Power4.easeOut});
-//         t1.timeScale(7);
-//         check_status=false;
-//     }
+});
 
-// });
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview')
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}

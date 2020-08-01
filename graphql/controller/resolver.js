@@ -13,7 +13,7 @@ const resolvers = {
                 return myinfo[0];
             }
             else{
-                throw new AuthenticationError('need login');
+                throw new AuthenticationError('Need login!');
             }
         },
         cocktails : async (parent,args,context) =>{
@@ -175,7 +175,7 @@ const resolvers = {
             FROM comments
             inner Join  user
             ON user.id=comments.user_id
-            where cocktail_id =?`;
+            where cocktail_id =? order by comments.id Desc`;
             return context.tools.DB.query(CocktailComment_sql,[id]);
         },
         // ranking :  async (parent,args,context) =>{
@@ -271,10 +271,10 @@ const resolvers = {
                         return {error};
                     }
                 }
-                throw new ApolloError('wrong cocktail id');
+                throw new ApolloError('Wrong Cocktail id!');
 
             }
-            throw new ApolloError('need login');
+            throw new ApolloError('Need Login to like!');
         },
         subscribeAuthor:async (parent,{SubscribeInput},{me,tools})=>{
             if(me){
@@ -303,10 +303,10 @@ const resolvers = {
                         return {error};
                     }
                 }
-                throw new ApolloError('wrong author id');
+                throw new ApolloError('Wrong author id!');
 
             }
-            throw new ApolloError('need login');
+            throw new ApolloError('Need Login to subscribe!');
         }
     },
     Subscription :{

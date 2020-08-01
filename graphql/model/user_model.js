@@ -12,14 +12,20 @@ const SecrectKEY = process.env.SecrectKEY;
 const signUp = async (args) => {
 
     let {name, email,password} = args.userInput;
+    if(!name||!email||!password){
+
+        throw new UserInputError('Wrong format');
+
+    }
 
     try {
         await transaction();
 
-        const emails = await query('SELECT email FROM user WHERE email = ? FOR UPDATE', [email]);
+        const emails = await query('SELECT email FROM user WHERE email = ?', [email]);
         if (emails.length > 0) {
+            console.log('hi');
             await commit();
-            return { error: 'Email Already Exists' };
+            throw new UserInputError('Email Already Existed!');
         }
         let hash = crypto.createHash('sha256');
         const user = {
@@ -39,7 +45,7 @@ const signUp = async (args) => {
         return { user };
     } catch (error) {
         await rollback();
-        return { error };
+        throw  error ;
     }
 };
 
@@ -80,7 +86,7 @@ const createCocktail = async (args,context) =>{
             description,
             resource : 'Tonight',
             author_id ,
-            author : author.author,
+            author : author.name,
             ingredients : JSON.stringify(ingredients),
             category ,
             steps: JSON.stringify(steps),

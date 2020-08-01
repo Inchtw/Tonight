@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CreateMyrecipe</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <link rel="stylesheet" type="text/css" href="./css/style.css" media="all" />
+
 
     <!-- <link rel="stylesheet" type="text/css" href="./css/pre_index.css" media="all" /> -->
 
@@ -36,9 +38,12 @@
     <script src="./js/lib.js" defer></script>
     <script src="./js/create.js" defer></script>
 
+
+
 </head>
 
 <body>
+
 
     <nav class="navbar navbar-expand-lg fixed-top  navbar-top ">
 
@@ -50,28 +55,31 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile.html">Tipsy</a>
+                    <a class="nav-link" href="/tipsy.html">Tipsy</a>
                 </li>
 
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+
             <ul class="navbar-nav align-items-center">
                 <li class="nav-item">
                     <a class="nav-link" href="/profile.html">Profile</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link active" href="#">Login </a>
+                <li id="nav_login" class="nav-item ">
+                    <a class="nav-link active" href="/login.html">Login </a>
+                </li>
+                <li id="nav_logout" class="nav-item d-none ">
+                    <a class="nav-link active" onclick="logout()">Logout </a>
                 </li>
 
-                <li class="nav-item  fa fa-user"></li>
+                <li class="nav-item ">
+                    <a class="fa fa-user" href="/profile.html"></a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <form id="createRecipe" enctype="multipart/form-data">
+
+    <form id="createRecipe" class="d-none" enctype="multipart/form-data">
         <!--  General -->
         <div class="form-group">
             <h2 class="heading">Create my Own recipes</h2>
@@ -80,9 +88,24 @@
                 <label for="name">Name</label>
             </div>
 
-            <div class="controls">
+            <!-- <div class="controls">
                 <input type="tel" id="category" class="floatLabel" name="category" required>
                 <label for="category">category</label>
+            </div> -->
+            <h2 class="heading">Category</h2>
+            <div class=" controls   ">
+                <!-- <button id="categories_btn" type="text" class=" dropdown-toggle float-left text-left dropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">category
+                </button> -->
+                <!-- <input id="category" type="text" name="category" hidden> -->
+                <select id="Category" class="cateshow ">
+
+
+                    <!-- ajax js -->
+
+                    <option class="dropdown-item">Another action</option>
+                    <option class="dropdown-item">Something else here</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
@@ -150,19 +173,10 @@
                 <div class="d-flex flex-column flex-grow-1 pr-2">
 
                     <div class="controls">
-                        <input type="text" class="floatLabel stepsarray " name="Steps">
+                        <input type="text" class="floatLabel stepsarray " name="Steps" required>
                         <label for="Steps">Steps</label>
                     </div>
 
-
-                    <div class="controls">
-                        <input type="text" class="floatLabel stepsarray" name="Steps">
-
-                    </div>
-                    <div class="controls ">
-                        <input type="text" class="floatLabel stepsarray " name="Steps">
-
-                    </div>
                     <div id="last_step" class="controls position-relative">
                         <input type="text" class="floatLabel  " name="last_step" disabled>
                         <i class="l-5"><label id="last_ingredient_label" for="last_step"
@@ -176,18 +190,11 @@
                 <div id="ingredients_col" class="d-flex flex-column flex-grow-1 pl-2">
 
                     <div class="controls">
-                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
-                        <label for="ingredients">ingredients</label>
+                        <input type="text" class="floatLabel ingredientsarray" name="ingredients" required>
+                        <label for="ingredients">Ingredients</label>
                     </div>
 
 
-                    <div class="controls">
-                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
-
-                    </div>
-                    <div class="controls">
-                        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
-                    </div>
                     <div id="last_ingredient" class="controls position-relative">
                         <input type="text" class="floatLabel " name="last_ingredients" disabled>
 
@@ -207,13 +214,13 @@
 
                 <div class="controls">
                     <textarea name="description" class="floatLabel" id="description"></textarea>
-                    <label for="comments">description</label>
+                    <label for="comments">Description</label>
                 </div>
 
             </div>
         </div> <!-- /.form-group -->
 
-        <button type="button" value="Submit" class="col-1-4" onclick="CreateMyRecipe()">Submit</button>
+        <button id="create_sub" type="button" value="Submit" class="col-1-4" onclick="CreateMyRecipe()">Submit</button>
     </form>
 
     <!-- <div class=" d-flex w-10">
