@@ -127,33 +127,7 @@ section#section_About .col-sm-5.img {
   }
   
 
-  section#section_story {
-    /* background-color: #222; */
-    color: white;
-    padding: 0;
-  }
-  section#section_story .col-sm-5 {
-    background-image: url(https://stutzfamily.com/mrstutz/Maps/USHistory/europe1938.gif);
-    background-size: 100% auto;
-    height: 400px;
-  }
-  section#section_story .col-sm-5 .cross {
-    position: absolute;
-    left: 23%;
-    top: 40%;
-    color: red;
-    font-size: 30px;
-    font-weight: bold;
-  }
-  section#section_story .col-sm-7 {
-    text-align: center;
-  }
-  section#section_story .col-sm-7 i {
-    font-size: 40px;
-  }
-  section#section_story .features {
-    margin: 40px 0px;
-  }
+  
 
 
   /* card test */

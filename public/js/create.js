@@ -256,7 +256,7 @@ $(document).ready(function () {
     $('#last_ingredient').on('click', function(e){
 
         $('#last_ingredient').before(` <div class="controls">
-        <input type="text" class="floatLabel stepsarray" name="ingredients">
+        <input type="text" class="floatLabel ingredientsarray" name="ingredients">
     </div>`);
 
     });
