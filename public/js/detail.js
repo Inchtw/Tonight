@@ -2,10 +2,7 @@
 /* eslint-disable no-unused-vars */
 app.init = function () {
 
-    if(!accessToken&&!user_info){
 
-
-    }
 
 
     let id = app.getParameter('id');
@@ -580,10 +577,12 @@ if(accessToken&&user_info){
     });
 
 
+
+
 }else{
 
     // $('#comment_btn').attr('disabled', true);
-    $('#comment_photo').attr('disabled', true);
+    $('#customFile').attr('disabled', true);
     $('.custom-file-label').text('Need login to comment');
     $('#title').attr('placeholder','Need login to comment');
     $('#title').attr('disabled', true);
@@ -752,11 +751,23 @@ async function CreateMyComment(){
 
 }
 
-$('#customFile').bind('change', function () {
-    var filename = $('#customFile').val();
+// $('#customFile').bind('change', function () {
+//     var filename = $('#customFile').val();
+//     console.log(hi);
 
-    $('#customFile_label').text(filename.replace('C:\\fakepath\\', ''));
+//     $('#customFile_label').text(filename.replace('C:\\fakepath\\', ''));
 
+// });
+
+console.log($('#customFile').val());
+
+$(document).ready( function () {
+    $('#customFile').bind('change', function () {
+        var filename = $('#customFile').val();
+
+        $('#customFile_label').text(filename.replace('C:\\fakepath\\', ''));
+
+    });
 });
 
 function readURL(input) {
