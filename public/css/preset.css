@@ -64,6 +64,10 @@ a{
     color: inherit;
 }
 
+a:hover{
+  text-decoration: none;
+  color: #570FF2;
+}
 
   .navbar {
     color: white;
