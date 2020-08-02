@@ -37,18 +37,21 @@ header.jumbotron::before{
 
 }
 header.jumbotron .container {
-    color: white;
+    color: white!important;
     padding: 200px 0px;
    
   }
 
   header.jumbotron hr {
-    max-width: 50px;
-    border: solid 2px #ff6e3a;
+    max-width: 80px;
+    border: solid 2px #570FF2;
   }
-  header.jumbotron h4 {
-    color: rgba(255, 255, 255, 0.8);
-    font-weight: normal;
+  header.jumbotron h5 {
+    display: block;
+    z-index: 50;
+    color: white!important;
+    opacity: 1 !important;
+    /* font-weight: normal; */
   }
 
   /* header container break */
@@ -94,19 +97,24 @@ section#section_About .col-sm-5.img {
 
   section#section_About p, 
   section#section_About h4,
-  section#section_About h5 {
+  section#section_About h5,
+  section#section_About h2{
     /* margin-top: 130px; */
     padding: 0px 20px;
+    padding-top: 20px;
     color: white;
   }
 
-
+  section#section_About h2{
+    padding-top: 2.5em;
+    padding-left: 2.5em;
+  }
 
   section#section_ask {
     /* background-color: rgba(255, 255, 255); */
     
   }
-  section#section_ask .col-sm-5.img {
+  section#section_ask .img {
     background-image: url('/imgs/w10.jpg');
     background-size: cover; background-position: center center;
     height: 300px;
@@ -224,3 +232,167 @@ section#section_About .col-sm-5.img {
       transform:  translateX(-50%) translateY(-5px);
     }
     }
+
+
+
+
+
+#range {
+  margin-top: 5px;
+  color: #eee;
+  font-size: 10pt;
+  margin-left: 10px;
+  position: relative;
+}
+
+#specks {
+  position: absolute;
+  z-index: 999;
+  height: 100vh;
+  width: 100vw;
+}
+/* 
+.speck {
+  opacity: 0;
+  height: 4px;
+  width: 4px;
+  background: url('http://i1272.photobucket.com/albums/y391/matthew_williams10/speck_zpsu9xym9zl.png');
+  background-size: cover;
+  position: absolute;
+  border-radius: 10px;
+  z-index: 99;
+} */
+
+.img-dot {
+  position: absolute;
+  height: 100000px;
+  width: 100000px;
+  top: -8500px;
+  left: -8000px;
+  animation-timing-function: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+  animation-name: float;
+  animation-iteration-count: infinite;
+}
+
+/* #img-1 {
+  opacity: 0.1;
+  background: url('https://image.ibb.co/jcTvpv/dust1.jpg');
+  background-repeat: repeat;
+  animation-duration: 600s;
+  background-blend-mode: multiply;
+  
+
+
+} */
+
+#img-2 {
+  opacity: 0.15;
+  background: url('/imgs/dust2.jpg');
+  background-repeat: repeat;
+  animation-duration: 450s;
+ 
+}
+
+#img-3 {
+  opacity: 0.1;
+  background: url('/imgs/dust3.jpg');
+  background-repeat: repeat;
+  animation-duration: 350s;
+
+}
+/*ANIMATIONS*/
+
+@keyframes twinkle {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  30% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: translate(175px, 100px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  100% {
+      transform:translate(8000px, 4000px);
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+
+#carouselSection .container{
+  
+
+  text-align: center;
+  color: white;
+  margin-bottom: 3em;
+}
+
+#carouselSection{
+  margin-left: auto;
+  margin-right: auto;
+  height: 80vh;
+  max-width: 1280px;
+
+}
+
+/* .carousel-indicators{
+
+  bottom: -15px;
+} */
+
+
+.carousel-caption{
+top: 0;
+/* left: 1em; */
+/* text-align: left; */
+color: white;
+/* z-index: 10; */
+bottom: initial;
+
+
+
+
+/* width: 200px; */
+}
+
+
+.carousel-caption h1{
+  
+  padding: 0 1.5em;
+  display: inline-block;
+ background-color: #C82EF2;
+ border-radius: 5px;
+
+
+  }
+
+.col-sm-7{
+  position: relative;
+}
+a:hover,
+a:focus{
+  text-decoration: none!important;
+}
+  
+.tip_btn{
+
+ font-size: 2em;
+ display: block;
+ margin: 2em auto;
+
+}

@@ -16,6 +16,7 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="css/preset.css" media="all" /> -->
     <link rel="stylesheet" type="text/css" href="css/index.css" media="all" />
+
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"
         defer></script> -->
@@ -27,6 +28,7 @@
         defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+
 
     <script src="./js/lib.js" defer></script>
 
@@ -44,6 +46,9 @@
             <ul class="navbar-nav ">
                 <li class="nav-item ">
                     <a class="nav-link active" href="/">Home </a>
+                </li>
+                <li class="nav-item ">
+                    <a id="toAbout" class="nav-link active" href="#section_About">About </a>
                 </li>
 
                 <li class="nav-item">
@@ -74,21 +79,39 @@
     </nav>
 
 
-    <header class="jumbotron ">
+    <header class="jumbotron " style="overflow: hidden;">
         <div class="container ">
-            <!-- <h1 data-0="transform: translateY(-50px)" data-500="transform: translateY(100px)"> </h1> -->
-            <!-- <hr /> -->
-            <h4> </h4>
+
+
+            <ul id="scene" data-friction-x="0.03" data-friction-y="0.05">
+
+                <li class="layer" id="layer-1" data-depth="0.15">
+                    <div class="img-dot" id="img-1"></div>
+                </li>
+                <li class="layer" id="layer-2" data-depth="0.25">
+                    <div class="img-dot" id="img-2"></div>
+                </li>
+                <li class="layer" id="layer-3" data-depth="0.45">
+                    <div class="img-dot" id="img-3"></div>
+                </li>
+            </ul>
+            <h1 data-0="transform: translateY(-50px)" data-500="transform: translateY(100px)">Be awesome, Be
+                Chill.<br>Tonight
+            </h1>
+            <hr />
+            <h5 style="color: white;"> Finds your own magic Drinks.
+            </h5>
 
         </div>
-        <a href="#section_que" class="scroll-down" data-0=" opacity: 1" data-center-top=" opacity: 0"
+        <a id="toabout" href="#section_que" class="scroll-down" data-0=" opacity: 1" data-center-top=" opacity: 0"
             address="true"></a>
     </header>
     <section id="section_que" style="overflow: hidden;">
         <div class=" container">
             <div class="row">
                 <div class="col-sm-7 text-right" data-200=" opacity: 0" data-450=" opacity: 1">
-                    <h2>Want some?</h2>
+                    <h2>Reasons stop chill Tonight?
+                    </h2>
                 </div>
                 <div class="col-sm-5 r-0 img" data-300="transform: translateX(300px) "
                     data-600="transform: translateX(0px)">
@@ -102,64 +125,60 @@
     <section id="section_ask">
         <div class="container">
             <div class="row">
-                <div class="col-sm-5 img" data-bottom-top="transform: translateX(-200px) "
-                    data-center-top="transform: translateX(0px) ">
-                </div>
-                <div class="col-sm-7" data-bottom-top=" opacity: 0" data-center=" opacity: 1">
-                    <h2>How about being your "Hometender"?</h2>
+                <a class="col-sm-5" href="/tipsy.html">
+                    <div class=" img" data-bottom-top="transform: translateX(-200px) "
+                        data-500-top="transform: translateX(0px) ">
+                    </div>
+                </a>
+                <div class="col-sm-7" data-bottom-top=" opacity: 0" data-500-top=" opacity: 1">
+                    <h2>How about being your own Hometender?</h2>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="section_About">
-        <div class="container">
-            <div class="row" style="overflow: hidden;">
-                <div class="col-sm-7" data-bottom-top="transform: translateX(-200px) "
-                    data-center-top="transform: translateX(0px) ">
-                    <h3>About</h3>
-                    <P>A website makes you an awesome night! <br>
-                        There's always a fantastic cocktail fits you!</P>
-                    <h4>Surf it, made it, and share it <strong>Tonight</strong> together! </h4>
-                </div>
-                <div class="col-sm-5 img" data-bottom-top="transform: translateX(200px) "
-                    data-center-top="transform: translateX(0px) ">
-                </div>
 
-            </div>
-        </div>
-    </section>
+
 
     <section id="carouselSection" style="overflow: hidden;">
+        <div class="container ">
+            <h1> Tonight's TOP Selections</h1>
+        </div>
 
 
-
-
-        <div id="carouselExampleIndicators" class="carousel slide mw-75" data-bottom-top="transform: translateX(-200px)"
+        <div id="carouselExampleIndicators" class="carousel slide mw-75" data-bottom-top="transform: translateX(200px)"
             data-center-top="transform: translateX(0px)" data-ride="carousel">
-            <ol class="carousel-indicators">
+            <!-- <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
+            </ol> -->
             <div class="carousel-inner justify-content-center mx-auto" style="width: 80%; ">
                 <div class="carousel-item active">
                     <div class="row card-group Hots">
 
 
                     </div>
-                    <div class="carousel-caption d-md-block" style="color: black;">
-                        <h5></h5>
-                        <p></p>
+                    <div class="carousel-caption d-md-block " style="">
+                        <h1>HOTS</h1>
+
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="row card-group News">
 
                     </div>
+                    <div class="carousel-caption d-md-block " style="">
+                        <h1>NEWEST</h1>
+
+                    </div>
                 </div>
                 <div class="carousel-item">
                     <div class="row card-group Tops">
+
+                    </div>
+                    <div class="carousel-caption d-md-block " style="">
+                        <h1>TOPS</h1>
 
                     </div>
                 </div>
@@ -177,40 +196,29 @@
 
     </section>
 
-    <section id="section_story">
+    <section id="section_About">
         <div class="container">
-            <div class="row">
-                <!-- <div class="col-sm-5 map" data-bottom-top="background-size: 150%;background-position: 0% 0%;opacity:0"
-                    data-center="background-size: 100%;background-position: 50% 50%;opacity:1">
-                    <div class="cross">x</div>
-                </div> -->
-                <!-- <div class="col-sm-7">
-                    <div class="col-sm-12">
-                        <h2>印刷對知識傳播的影響</h2>
-                        <hr />
-                    </div>
-                    <div class="col-sm-12 features">
-                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
-                            data-center="transform: scale(1);opacity:1"><i class="fa fa-files-o"></i>
-                            <h4>快速複製</h4>
-                        </div>
-                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
-                            data-center="transform: scale(1);opacity:1"><i class="fa fa-paper-plane-o"></i>
-                            <h4>知識傳遞</h4>
-                        </div>
-                        <div class="col-sm-4" data-bottom-top="transform: scale(1.5);opacity:0"
-                            data-center="transform: scale(1);opacity:1"><i class="fa fa-floppy-o"></i>
-                            <h4>文化保存</h4>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <p>印刷機的開發使知識的傳播發生了革命性的變化：1469年在威尼斯成立第一家印刷社（即出版社），1500年該城就有印刷廠417家。1476年，威廉·卡克斯頓在英格蘭成立第一家印刷社°在1539年，西班牙人Juan
-                            Pablos在墨西哥的墨西哥城。Stephen Day於1628年在美國麻塞諸塞海灣地區建立了北美第一家印刷社，並協助成立了劍橋出版社。</p>
-                    </div>
-                </div> -->
+            <div class="row" style="overflow: hidden;">
+                <div class="col-sm-7  " data-bottom-top="transform: translateX(-200px) "
+                    data-center-top="transform: translateX(0px) ">
+                    <h3>About</h3>
+                    <h4>Gather all night magic drink recipes!</h4>
+
+
+                    <h4> There's always a fantastic cocktail fits you!</h4>
+                    <h2>Surf it,<br> Made it,<br> Share it <strong>Tonight</strong> together! </h2>
+                    <a class="position-relative" href="/tipsy.html"><button class="btn tip_btn btn-primary">Tipsy
+                            Tonight!</button></a>
+                </div>
+                <div class="col-sm-5 img" data-bottom-top="transform: translateX(200px) "
+                    data-center-top="transform: translateX(0px) ">
+                </div>
+
             </div>
         </div>
     </section>
+
+
 
     <footer>
 

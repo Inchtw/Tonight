@@ -115,3 +115,8 @@ a{
 .dropdown-menu li:hover {
   cursor: pointer;
 }
+.nextP,
+.preP
+{
+  color: #570FF2!important ;
+}

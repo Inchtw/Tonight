@@ -301,6 +301,9 @@ app.init = function () {
         $('#follow').attr('disabled', true);
         $('#follow').addClass('d-none');
         $('#create_recipe').removeClass('d-none');
+        $('#nav_logout').removeClass('d-none');
+        $('#nav_login').addClass('d-none');
+
     }
 
 

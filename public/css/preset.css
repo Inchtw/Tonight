@@ -1,3 +1,4 @@
+ 
 
 /* * { touch-action: pan-y; }  */
 body, html {
@@ -110,8 +111,10 @@ nav.navbar  {
   }
 
   #nav_logout a:hover{
+    cursor: pointer;
+    color: #570FF2;
     
-    border: rgba(86, 14, 242, 1) 1px solid;
+    /* border: rgba(86, 14, 242, 1) 1px solid; */
 
   }
 
