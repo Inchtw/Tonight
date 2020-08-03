@@ -288,7 +288,7 @@ body {
     color: white;
   }
   .like_btn:hover{
-    
+    cursor: pointer;
     padding: 20px;
     /* line-height: 50px; */
     color: pink
