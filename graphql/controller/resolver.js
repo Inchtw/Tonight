@@ -1,6 +1,6 @@
 
 const { AuthenticationError,ForbiddenError, UserInputError,ApolloError} = require('apollo-server-express');
-const { KnownTypeNamesRule } = require('graphql');
+// const { KnownTypeNamesRule } = require('graphql');
 
 
 
@@ -78,61 +78,98 @@ const resolvers = {
         },
     },
     User : {
-        friends : (_,__,___)=>{
-            return [ {id:1,email:'123',name:'qs'}, {id:1,email:'123',name:'qs'}, {id:1,email:'123',name:'qs'}];
-        },
         comments : async (parent,args,context)=>{
-            let {id,name,photo } = parent;
-            let myComment_sql = 'SELECT * FROM tonight.comments where user_id =? order by id DESC';
 
-            let myComments = await context.tools.DB.query(myComment_sql,[id]);
-            myComments.forEach(comment=> {
-                comment.id = id;
-                comment.name = name;
-                comment.photo = photo;
-            });
+            // console.log(parent);
+            let myComments = await context.dataloaders.userCommentsDataLoader.load(parent.id);
+            if(myComments){
+                myComments.forEach(comment=> {
+                    comment.id = parent.id;
+                    comment.name = parent.name;
+                    comment.photo = parent.photo;
+                });
+                return myComments;
+            }
             return myComments;
+            // let {id,name,photo } = parent;
+            // let myComment_sql = 'SELECT * FROM tonight.comments where user_id =? order by id DESC';
+
+            // let myComments = await context.tools.DB.query(myComment_sql,[id]);
+            // myComments.forEach(comment=> {
+            //     comment.id = id;
+            //     comment.name = name;
+            //     comment.photo = photo;
+            // });
+            // return myComments;
         },
-        subscriptions :(parent,args,context)=>{
-            let {id } = parent;
-            let mySub_sql = `SELECT  id, name ,photo  FROM user
-            where id in   (select author_id from user_subscribe_join where user_subscribe_join.user_id= ? order by id DESC) `;
-            return context.tools.DB.query(mySub_sql,[id]);
+        subscriptions :async (parent,args,context)=>{
+            return await context.dataloaders.userSubscriptionsDataLoader.load(parent.id)||[];
+            // console.log(mySubscriptions);
+            // let {id } = parent;
+            // let mySub_sql = `SELECT  id, name ,photo  FROM user
+            // where id in   (select author_id from user_subscribe_join where user_subscribe_join.user_id= ? order by id DESC) `;
+            // return context.tools.DB.query(mySub_sql,[id]);
         },
-        followers : (parent,args,context)=>{
-            let {id } = parent;
-            let mySub_sql = `SELECT  id, name ,photo  FROM user
-            where id in   (select user_id from user_subscribe_join where user_subscribe_join.author_id=  ? order by id DESC) `;
-            return context.tools.DB.query(mySub_sql,[id]);
+        followers : async (parent,args,context)=>{
+            return await context.dataloaders.userFollowersDataLoader.load(parent.id)||[];
+            // if(userFollowers){
+            //     return userFollowers;
+            // }
+            // return [];
+
+            // let {id } = parent;
+            // let myFollowers_sql = `SELECT  id, name ,photo  FROM user
+            // where id in   (select user_id from user_subscribe_join where user_subscribe_join.author_id=  ? order by id DESC) `;
+            // return context.tools.DB.query(myFollowers_sql,[id]);
 
         },
         likes :async (parent,args,context) =>{
-            let {id } = parent;
-            let mylikes_sql = `SELECT * , cocktails.id as LIKE_ID
-            FROM cocktails
-            INNER JOIN  user_like_join
-            ON user_like_join.cocktail_id=cocktails.id
-            where user_like_join.user_id= ? order by LIKE_ID DESC `;
-            let a = await context.tools.DB.query(mylikes_sql,[id]);
-            // console.log(id);
-            a.forEach(e=>{
-                e.id = e.LIKE_ID;
-            });
-            // console.log(a);
-            return a;
+            return await context.dataloaders.userLikesDataLoader.load(parent.id)||[];
+            // if(userLikes){
+            //     return userLikes;
+            // }
+            // return[];
+            // console.log(a.length);
+            // userLikes.forEach(e=>{
+            //     if(e){
+            //         // e.id = e.LIKE_ID;
+            //         console.log('E:',e);
+            //         // console.log('hi');
+            //     }
+            // });
+            // console.log(userLikes);
+            // return userLikes;
+
+
+
+            // let {id } = parent;
+            // let mylikes_sql = `SELECT * , cocktails.id as LIKE_ID
+            // FROM cocktails
+            // INNER JOIN  user_like_join
+            // ON user_like_join.cocktail_id=cocktails.id
+            // where user_like_join.user_id= ? order by LIKE_ID DESC `;
+            // let userLikes = await context.tools.DB.query(mylikes_sql,[id]);
+            // // console.log(id);
+            // userLikes.forEach(e=>{
+            //     e.id = e.LIKE_ID;
+            // });
+            // // console.log(a);
+
 
         },
         post :async (parent,args,context) =>{
-            let {id } = parent;
-            let mepost_sql = `SELECT *
-            FROM cocktails
-           where author_id =? order by id DESC `;
-            let myrecipes = await context.tools.DB.query(mepost_sql,[id]);
-            myrecipes.forEach(cocktail=> {
-                cocktail.ingredients = JSON.parse(cocktail['ingredients']);
-                cocktail.steps = JSON.parse(cocktail['steps']);
-            });
-            return myrecipes;
+            return await context.dataloaders.userPostsDataLoader.load(parent.id)||[];
+            // console.log(a);
+        //     let {id } = parent;
+        //     let mepost_sql = `SELECT *
+        //     FROM cocktails
+        //    where author_id =? order by id DESC `;
+        //     let myrecipes = await context.tools.DB.query(mepost_sql,[id]);
+        //     myrecipes.forEach(cocktail=> {
+        //         cocktail.ingredients = JSON.parse(cocktail['ingredients']);
+        //         cocktail.steps = JSON.parse(cocktail['steps']);
+        //     });
+        //     return myrecipes;
         },
         recommend : async (parent,args,context) =>{
             let {id } = parent;
@@ -163,20 +200,29 @@ const resolvers = {
     },
     Cocktail:{
         likeGivers : async (parent,args,context) =>{
-            let {id } = parent;
-            let like_giver_sql = `SELECT id,name,photo
-            FROM user
-           where id in  (select user_id from user_like_join where user_like_join.cocktail_id=  ?) `;
-            return context.tools.DB.query(like_giver_sql,[id]);
+
+            return await context.dataloaders.cocktailLikersDataLoader.load(parent.id)||[];
+
+
+        //     let {id } = parent;
+        //     let like_giver_sql = `SELECT id,name,photo
+        //     FROM user
+        //    where id in  (select user_id from user_like_join where user_like_join.cocktail_id=  ?) `;
+        //     return context.tools.DB.query(like_giver_sql,[id]);
         },
         comments : async (parent,args,context) =>{
-            let {id } = parent;
-            let CocktailComment_sql = `SELECT user.id , user.name , user.photo , comments.img ,comments.comment ,comments.rank ,comments.title
-            FROM comments
-            inner Join  user
-            ON user.id=comments.user_id
-            where cocktail_id =? order by comments.id Desc`;
-            return context.tools.DB.query(CocktailComment_sql,[id]);
+            // let {id } = parent;
+            // let CocktailComment_sql = `SELECT user.id , user.name , user.photo , comments.img ,comments.comment ,comments.rank ,comments.title
+            // FROM comments
+            // inner Join  user
+            // ON user.id=comments.user_id
+            // where cocktail_id =? order by comments.id Desc`;
+            // return context.tools.DB.query(CocktailComment_sql,[id]);
+            // console.log(context.dataloaders.commentsDataLoader);
+
+            return await context.dataloaders.cocktailCommentsDataLoader.load(parent.id)||[];
+
+
         },
         // ranking :  async (parent,args,context) =>{
         //     let {id } = parent;
@@ -202,10 +248,12 @@ const resolvers = {
             // }
         },
         author : async (parent,args,context) =>{
-            let {author_id } = parent;
-            let Cocktail_Author_sql = 'SELECT id, name, photo,intro From user where id = ? ';
-            let author_info = await context.tools.DB.query(Cocktail_Author_sql,[author_id]);
+            // let {author_id } = parent;
+            // let Cocktail_Author_sql = 'SELECT id, name, photo,intro From user where id = ? ';
+            // let author_info = await context.tools.DB.query(Cocktail_Author_sql,[author_id]);
             // console.log(args.author);
+            let author_info = await context.dataloaders.authorDataLoader.load(parent.author_id);
+            // console.log(author_info);
             return author_info[0];
 
             // if(cate.length<3){
@@ -219,10 +267,6 @@ const resolvers = {
     },
     Mutation: {
         createCocktail:async(parent,args,context)=>{
-            // console.log(args);
-
-            // need to rewrite
-            // console.log(context);
             return await context.tools.User.createCocktail(args,context);
         }
         ,

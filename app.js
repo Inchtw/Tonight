@@ -12,14 +12,16 @@ app.use(express.json());
 app.use(express.static('public'));
 const isAuth = require('./utils/is-auth');
 app.use(isAuth.isAuth);
-const socketio = require('socket.io');
 const Upload = require('./utils/photoUpload');
-const DataLoader = require('dataloader');
+
+const dataloaders = require('./graphql/route/dataloders');
+
 
 
 
 app.post('/headimageload',isAuth.uploadAuth,Upload.myHeadUpload.fields([{ name: 'change_headpic' }]), async(req,res)=>{
-    console.log(req.files.change_headpic[0].location);
+
+
     let updateHeadsql = `UPDATE user SET user.photo = "${req.files.change_headpic[0].location}" where user.id = ?`;
     await tools.DB.query(updateHeadsql,req.id);
     res.status(200).json({ url : req.files.change_headpic[0].location });
@@ -60,6 +62,7 @@ const server = new ApolloServer({
                 req,
                 tools,
                 startTime: Date.now(),
+                dataloaders
             };
         }else{
             return {
@@ -68,10 +71,14 @@ const server = new ApolloServer({
                 tools,
                 startTime: Date.now(),
 
+
             };}
     },
     tracing: true
 });
+
+
+
 
 server.applyMiddleware({app});
 
@@ -82,7 +89,4 @@ httpServer.listen(PORT,() => {
     console.log(`🚀 Subscriptions ready at ws://localhost:${PORT}${server.subscriptionsPath}`);
 });
 
-// const io = socketio(httpServer);
-// io.on('connection',(socket)=>{
-//     console.log('connected to socket');
-// });
+
