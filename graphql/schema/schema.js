@@ -4,14 +4,7 @@ const typeDefs = gql`
 """
 之後要刪掉的
 """
-  type Query {
-    me : User
-    cocktails(id:Int) : [Cocktail]
-    users(id:Int) : [User]
-    reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String,author :String , ingredient :String, sort :String) : ReciepesConnection!
-    cocktailThree : CocktailThree
-    categories : [String]
-  }
+ 
   type Cocktail{
       "cocktail include recipes and other info"
       id: ID!
@@ -143,6 +136,15 @@ type PageInfo {
     totalPageCount: Int
 }
 
+type Query {
+    me : User
+    cocktails(id:Int) : [Cocktail]
+    users(id:Int) : [User]
+    reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String,author :String , ingredient :String, sort :String) : ReciepesConnection!
+    cocktailThree : CocktailThree
+    categories : [String]
+  }
+
 type Mutation{
     createCocktail( cocktailInput :CocktailInput!) : Cocktail
     createUser(userInput : UserInput! ) : AuthUser
@@ -160,7 +162,6 @@ type Subscription {
 `;
 module.exports ={
     typeDefs
-
 };
 
 

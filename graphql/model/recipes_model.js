@@ -59,22 +59,23 @@ const getRecipesPaging = async(args,tools) =>{
 const getRecipes = async(args,context)=>{
     let {id} = args;
     let {tools,pubsub,req} = context;
-    try {
-        await tools.DB.transaction();
-        await tools.DB.query('UPDATE cocktails SET views = IFNULL(views, 0) +1 WHERE id = ? ', id);
-        await tools.DB.commit();
-    } catch (error) {
-        console.log(error);
-        await tools.DB.rollback();
-    }
+
     if(id){
+
         let cocktail = await tools.DB.query('select * from cocktails where id=?',id);
         if(cocktail.length===0){
             return new UserInputError('Wrong cocktial id!');
         }
+        try {
+            await tools.DB.transaction();
+            await tools.DB.query('UPDATE cocktails SET views = IFNULL(views, 0) +1 WHERE id = ? ', id);
+            await tools.DB.commit();
+        } catch (error) {
+            console.log(error);
+            await tools.DB.rollback();
+        }
         cocktail[0].ingredients = JSON.parse(cocktail[0]['ingredients']);
         cocktail[0].steps = JSON.parse(cocktail[0]['steps']);
-        //comment function
         return cocktail;
     }
     let cocktailssql = 'select * from cocktails';

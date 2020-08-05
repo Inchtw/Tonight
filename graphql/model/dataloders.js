@@ -1,10 +1,10 @@
 
 const {groupBy, map } = require('ramda');
 
-const tools = require('./context');
+
 
 const DataLoader = require('dataloader');
-
+const DB = require('../../utils/mysqlcon');
 
 function cocktailCommentsDataLoader(){
     return new DataLoader(commentsByCocktailIds);
@@ -15,8 +15,7 @@ async function commentsByCocktailIds(cocktailIds){
     inner Join  user
     ON user.id=comments.user_id
     where cocktail_id in (?) order by comments.id Desc`;
-
-    let comments = await tools.DB.query(commentsSql,[cocktailIds]);
+    let comments = await DB.query(commentsSql,[cocktailIds]);
     const groupById = groupBy(comment=>comment.cocktail_id , comments);
     return await map(cocktail_id=>groupById[cocktail_id], cocktailIds);
 
@@ -32,13 +31,8 @@ async function likersByCocktailIds(cocktailIds){
     left Join user_like_join
     on user.id = user_like_join.user_id
     where user_like_join.cocktail_id in(?) order by id DESC;;`;
-    let likers = await tools.DB.query(cocktailLikers_sql,[cocktailIds]);
-    // console.log(userSubscriptions);
+    let likers = await DB.query(cocktailLikers_sql,[cocktailIds]);
     const groupById = groupBy(likers=>likers.cocktail_id , likers);
-    console.log(groupById);
-    let a = await map(cocktail_id=>groupById[cocktail_id], cocktailIds);
-    console.log(a);
-
     return await map(cocktail_id=>groupById[cocktail_id], cocktailIds);
 }
 
@@ -48,7 +42,7 @@ function authorDataLoader(){
 }
 async function authorByAuthorIds(author_ids){
     let Cocktail_Author_sql = 'SELECT id, name, photo,intro From user where id in (?) ';
-    let author_infos = await tools.DB.query(Cocktail_Author_sql,[author_ids]);
+    let author_infos = await DB.query(Cocktail_Author_sql,[author_ids]);
     const groupById = groupBy(author=>author.id , author_infos);
     return await map(id=>groupById[id], author_ids);
 }
@@ -57,7 +51,7 @@ function userCommentsDataLoader(){
 }
 async function commentsByUserIds(userIds){
     let myComment_sql = 'SELECT * FROM tonight.comments where user_id in (?) order by id DESC';
-    let userComments = await tools.DB.query(myComment_sql,[userIds]);
+    let userComments = await DB.query(myComment_sql,[userIds]);
     const groupById = groupBy(comment=>comment.user_id , userComments);
     return await map(user_id=>groupById[user_id], userIds);
 
@@ -72,8 +66,7 @@ async function likesByUserIds(userIds){
             INNER JOIN  user_like_join
             ON user_like_join.cocktail_id=cocktails.id
             where user_like_join.user_id in (?) order by LIKE_ID DESC `;
-    let userLikes = await tools.DB.query(mylikes_sql,[userIds]);
-    // console.log(userLikes);
+    let userLikes = await DB.query(mylikes_sql,[userIds]);
     userLikes.forEach(e=>{
         if(e){
             e.id = e.LIKE_ID;
@@ -95,10 +88,8 @@ async function subscriptionsByUserIds(userIds){
     where user_subscribe_join.user_id in(?) order by id DESC
     
     ;`;
-    let userSubscriptions = await tools.DB.query(userSub_sql,[userIds]);
-    // console.log(userSubscriptions);
+    let userSubscriptions = await DB.query(userSub_sql,[userIds]);
     const groupById = groupBy(subscribed=>subscribed.me_id , userSubscriptions);
-    let a = await map(me_id=>groupById[me_id], userIds);
 
     return await map(me_id=>groupById[me_id], userIds);
 }
@@ -112,7 +103,7 @@ async function userFollowersByUserIds(userIds){
     left Join user_subscribe_join
     on user.id = user_subscribe_join.user_id
     where user_subscribe_join.author_id in(?) order by id DESC;`;
-    let userFollowers = await tools.DB.query(userFollowers_sql,[userIds]);
+    let userFollowers = await DB.query(userFollowers_sql,[userIds]);
     const groupById = groupBy(follower=>follower.me_id , userFollowers);
 
     return await map(me_id=>groupById[me_id], userIds);
@@ -125,20 +116,14 @@ async function userPostsByUserIds(userIds){
     let userPost_sql = `SELECT *
     FROM cocktails
    where author_id in (?) order by id DESC ;`;
-    let myposts = await tools.DB.query(userPost_sql,[userIds]);
-    // console.log(userSubscriptions);
+    let myposts = await DB.query(userPost_sql,[userIds]);
     myposts.forEach(cocktail=> {
         cocktail.ingredients = JSON.parse(cocktail['ingredients']);
         cocktail.steps = JSON.parse(cocktail['steps']);
     });
     const groupById = groupBy(post=>post.author_id , myposts);
-    // console.log(groupById);
-    let a = await map(author_id=>groupById[author_id], userIds);
-    // console.log(a);
-
     return await map(author_id=>groupById[author_id], userIds);
 }
-
 
 
 

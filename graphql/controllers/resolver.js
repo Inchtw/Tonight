@@ -6,9 +6,9 @@ const { AuthenticationError,ForbiddenError, UserInputError,ApolloError} = requir
 
 const resolvers = {
     Query: {
-        me : async (parent,args,{tools,me}) => {
-            if(me){
-                let myinfo = await tools.DB.query('select * from user where id=?',[me]);
+        me : async (parent,args,context) => {
+            if(context.me){
+                let myinfo = await context.tools.DB.query('select * from user where id=?',[context.me]);
 
                 return myinfo[0];
             }
