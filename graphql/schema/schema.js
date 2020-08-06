@@ -68,7 +68,7 @@ type Comment{
 type User {
     id: ID!
     email: String
-    password: String
+    password: String @deprecated (reason: "It's secret")
     name : String!
     photo : String
     intro : String

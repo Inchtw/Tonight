@@ -4,7 +4,6 @@ const express = require('express');
 require('dotenv').config();
 const { PORT} = process.env;
 const {typeDefs} = require ('./graphql/schema/schema');
-// const { resolvers} = require ('./graphql/controllers/resolver');
 const {resolvers} = require('./graphql/resolvers/resolvers');
 const app = express();
 app.use(express.json());
@@ -15,10 +14,9 @@ const Upload = require('./utils/photoUpload');
 const context = require('./graphql/context/context');
 const subscriptions = require('./graphql/subscriptions/subscriptions');
 const DB = require('./utils/mysqlcon');
+const depthLimit = require('graphql-depth-limit');
 
 app.post('/headimageload',isAuth.uploadAuth,Upload.myHeadUpload.fields([{ name: 'change_headpic' }]), async(req,res)=>{
-
-
     let updateHeadsql = `UPDATE user SET user.photo = "${req.files.change_headpic[0].location}" where user.id = ?`;
     await DB.query(updateHeadsql,req.id);
     res.status(200).json({ url : req.files.change_headpic[0].location });
@@ -44,6 +42,7 @@ const server = new ApolloServer({
     resolvers,
     context,
     subscriptions,
+    validationRules: [depthLimit(5)],
     tracing: true
 });
 
