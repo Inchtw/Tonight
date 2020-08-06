@@ -11,7 +11,7 @@ module.exports = {
         return userdata.user;
     },
     login: async (parent,args,context)=>{
-        return await context.Mutation.userMutation.User.signIn(args,context) ;
+        return await context.Mutation.userMutation.signIn(args,context) ;
     },
     commentCocktail : async (parent,args,context)=>{
 
@@ -21,6 +21,9 @@ module.exports = {
     likeCocktail:async (parent,args,context)=>{
         return await context.Mutation.cocktailMutaion.likeCocktail(args,context);
 
-    }
+    },
+    subscribeAuthor:async (parent,args,context)=>{
 
+        return await context.Mutation.userMutation.subscribeAuthor(args,context);
+    }
 };

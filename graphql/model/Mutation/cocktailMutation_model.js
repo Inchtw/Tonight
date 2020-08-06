@@ -3,7 +3,8 @@ const { ApolloError} = require('apollo-server-express');
 
 
 
-const likeCocktail = async ({likeInput},context) =>{
+const likeCocktail = async (args,context) =>{
+    let {likeInput} = args;
     if(context.me){
         let cocktails = await context.tools.DB.query('select * from cocktails where id =? ',likeInput.id);
         let check = await context.tools.DB.query('select * from user_like_join where user_id =? and cocktail_id=? ',[context.me, likeInput.id]);
@@ -13,6 +14,7 @@ const likeCocktail = async ({likeInput},context) =>{
                 await context.tools.DB.query('UPDATE cocktails SET likes = IFNULL(likes, 0) +1 WHERE id = ? ', likeInput.id);
                 await context.tools.DB.query('INSERT INTO user_like_join SET ?', [ {user_id:context.me,cocktail_id:likeInput.id}]);
                 await context.tools.DB.commit();
+                await context.dataloaders.userLoaders.userLikesDataLoader.clear(context.me);
                 return true;
             } catch (error) {
                 console.log(error);
@@ -25,6 +27,8 @@ const likeCocktail = async ({likeInput},context) =>{
                 await context.tools.DB.query('UPDATE cocktails SET likes = likes -1 WHERE id = ? ', likeInput.id);
                 await context.tools.DB.query('delete from user_like_join where user_id =? and cocktail_id=?',[context.me, likeInput.id]);
                 await context.tools.DB.commit();
+                await context.dataloaders.userLoaders.userLikesDataLoader.clear(context.me);
+
                 return false;
             } catch (error) {
                 console.log(error);
@@ -73,6 +77,7 @@ const createCocktail = async (args,context) =>{
         cocktail_info.id = cockinsert.insertId;
         // need to update link
         await context.tools.DB.commit();
+        await context.dataloaders.userLoaders.userPostsDataLoader.clear(context.me);
         console.log(cocktail_info);
         return cocktail_info ;
     } catch (error) {
@@ -99,6 +104,8 @@ const commentCocktail = async (args,context) =>{
             FROM comments where comments.cocktail_id = ?
             ) WHERE id = ? `, [cocktail_id,cocktail_id]);
             await context.tools.DB.commit();
+            await context.dataloaders.cocktailLoaders.cocktailCommentsDataLoader.clear(+cocktail_id);
+            await context.dataloaders.userLoaders.userCommentsDataLoader.clear(context.me);
             console.log(commentInfo);
             return commentInfos;
         } catch (error) {

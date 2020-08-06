@@ -1,4 +1,4 @@
-const { ApolloServer, PubSub } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const http = require('http');
 const express = require('express');
 require('dotenv').config();

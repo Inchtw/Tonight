@@ -1,4 +1,4 @@
-const { AuthenticationError,ForbiddenError, UserInputError,ApolloError} = require('apollo-server-express');
+const { UserInputError,ApolloError} = require('apollo-server-express');
 
 require('dotenv').config();
 // const bcrypt = require('bcrypt');
@@ -71,9 +71,53 @@ const signIn = async (args,context) => {
 };
 
 
+const subscribeAuthor =  async (args,context) =>{
+    let {me,tools} = context;
+    let {SubscribeInput}= args;
+
+    if(me){
+        let users = await tools.DB.query('select * from user where id =? ',SubscribeInput.id);
+        let check = await tools.DB.query('select * from user_subscribe_join where user_id =? and author_id=? ',[me, SubscribeInput.id]);
+        if(check.length===0&&users.length){
+            try {
+                await tools.DB.transaction();
+                await tools.DB.query('INSERT INTO user_subscribe_join SET ?', [ {user_id:me,author_id:SubscribeInput.id}]);
+                await tools.DB.commit();
+                await context.dataloaders.userLoaders.userSubscriptionsDataLoader.clear(context.me);
+                await context.dataloaders.userLoaders.userFollowersDataLoader.clear(+SubscribeInput.id);
+                return true;
+            } catch (error) {
+                console.log(error);
+                await tools.DB.rollback();
+                return {error};
+            }
+        }else if(check.length>0){
+            try {
+                await tools.DB.transaction();
+                await tools.DB.query('delete from user_subscribe_join where user_id =? and author_id=?',[me, SubscribeInput.id]);
+                await tools.DB.commit();
+                await context.dataloaders.userLoaders.userSubscriptionsDataLoader.clear(context.me);
+                await context.dataloaders.userLoaders.userFollowersDataLoader.clear(+SubscribeInput.id);
+                return false;
+            } catch (error) {
+                console.log(error);
+                await tools.DB.rollback();
+                return {error};
+            }
+        }
+        throw new ApolloError('Wrong author id!');
+
+    }
+    throw new ApolloError('Need Login to subscribe!');
+
+
+
+};
+
 
 module.exports = {
     signUp,
     signIn,
+    subscribeAuthor
 
 };
