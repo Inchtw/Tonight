@@ -41,6 +41,7 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context,
+    mocks: false,
     subscriptions,
     validationRules: [depthLimit(5)],
     tracing: true

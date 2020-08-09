@@ -23,7 +23,6 @@ let myPostquery = ` {
     id
     name
     photo
-    intro
     post{
       id
       name
@@ -59,7 +58,7 @@ let myLikeQuery = ` {
   me{
     name
     photo
-    intro
+    
     post{
       id
       
@@ -155,7 +154,7 @@ let userPostquery = ` {
       id
       name
       photo
-      intro
+      
       post{
         id
         name
@@ -193,7 +192,7 @@ let userLikeQuery = ` {
       id
       name
       photo
-      intro
+      
       post{
         id
         
@@ -383,11 +382,11 @@ app.init = function () {
             // let {me} = data;
             // // console.log(data);
             // console.log(me);
-            // let {followers , intro , likes, name, photo , post , subscriptions ,} = me;
+            // let {followers ,  , likes, name, photo , post , subscriptions ,} = me;
 
             // localStorage.setItem('user_info', JSON.stringify(me));
             function update(user){
-                let {followers , intro , likes, name, photo , post , subscriptions ,} = user;
+                let {followers ,  likes, name, photo , post , subscriptions ,} = user;
                 $('#myposts').text(post.length);
                 $('#mylikes').text(likes.length);
                 $('#myfollowers').text(followers.length);
@@ -409,7 +408,7 @@ app.init = function () {
 
                     });
                 }
-                // $('#myintro').text(intro);
+                // $('#myintro').text();
                 $('.profile_card').html('');
                 getPost (post);
                 $('#profileContainer').removeClass('d-none');
@@ -423,7 +422,7 @@ app.init = function () {
             //     style="background: url(${photo}) ;background-size: cover; background-position: center center;">
 
             // </div>`));
-            //     // $('#myintro').text(intro);
+            //     // $('#myintro').text();
             //     $('.profile_card').html('');
             //     getPost (post);
 

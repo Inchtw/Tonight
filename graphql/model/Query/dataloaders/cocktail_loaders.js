@@ -38,7 +38,7 @@ function authorDataLoader(){
     return new DataLoader(authorByAuthorIds);
 }
 async function authorByAuthorIds(author_ids){
-    let Cocktail_Author_sql = 'SELECT id, name, photo,intro From user where id in (?) ';
+    let Cocktail_Author_sql = 'SELECT id, name, photo From user where id in (?) ';
     let author_infos = await DB.query(Cocktail_Author_sql,[author_ids]);
     const groupById = groupBy(author=>author.id , author_infos);
     return await map(id=>groupById[id], author_ids);

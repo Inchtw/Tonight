@@ -1,12 +1,8 @@
 const { gql} = require('apollo-server-express');
 const typeDefs = gql`
-
-"""
-之後要刪掉的
-"""
- 
+"Cocktail include recipes and other info"
   type Cocktail{
-      "cocktail include recipes and other info"
+     "Cocktail's ID"
       id: ID!
       name : String!
       ori_image : String 
@@ -28,11 +24,15 @@ const typeDefs = gql`
       author_id : Int
   }
   type CocktailThree{
+      " base on viewers "
     hots:[Cocktail]
+    " base on likes "
     tops:[Cocktail]
+    " latest "
     news:[Cocktail]
   }
 
+"For create cocktail"
 input CocktailInput{
     name : String!
     ori_image : String! 
@@ -71,7 +71,6 @@ type User {
     password: String @deprecated (reason: "It's secret")
     name : String!
     photo : String
-    intro : String
     friends :[User]
     post : [Cocktail]
     comments :  [Comment]

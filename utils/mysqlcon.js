@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const { promisify } = require('util'); // util from native nodejs library
 const env = process.env.NODE_ENV || 'production';
 const multipleStatements = (process.env.NODE_ENV === 'test');
-const { HOST, USERNAME, PASSWORD, DATABASE, DATABASE_TEST ,AWS_HOST, AWS_USERNAME, AWS_PASSWORD, AWS_DATABASE} = process.env;
+const { HOST, USERNAME, PASSWORD, DATABASE, AWS_DATABASE_TEST ,AWS_HOST, AWS_USERNAME, AWS_PASSWORD, AWS_DATABASE} = process.env;
 
 const mysqlConfig = {
     production: { // for EC2 machine
@@ -26,10 +26,10 @@ const mysqlConfig = {
         database: DATABASE
     },
     test: { // for automation testing (command: npm run test)
-        host: HOST,
-        user: USERNAME,
-        password: PASSWORD,
-        database: DATABASE_TEST
+        host: AWS_HOST,
+        user: AWS_USERNAME,
+        password: AWS_PASSWORD,
+        database: AWS_DATABASE_TEST
     }
 };
 
