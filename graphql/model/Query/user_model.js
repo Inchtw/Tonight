@@ -16,7 +16,7 @@ const getMyInfo = async (context)=>{
 
 const getUserInfo = async(args,context)=>{
 
-    return await context.tools.DB.query('select id, name ,photo  from user where id =?', [args.id]);
+    return await context.tools.DB.query('select id, name ,photo ,email from user where id =?', [args.id]);
 
 
 };

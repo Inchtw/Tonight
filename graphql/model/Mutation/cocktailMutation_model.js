@@ -68,7 +68,6 @@ const createCocktail = async (args,context) =>{
         };
         const createQuery = 'INSERT INTO cocktails SET ?';
 
-        console.log(cocktail_info);
 
         let cockinsert =  await context.tools.DB.query(createQuery,cocktail_info);
         cocktail_info.link = `detail.html?id=${cockinsert.insertId}`;
@@ -78,7 +77,6 @@ const createCocktail = async (args,context) =>{
         // need to update link
         await context.tools.DB.commit();
         await context.dataloaders.userLoaders.userPostsDataLoader.clear(context.me);
-        console.log(cocktail_info);
         return cocktail_info ;
     } catch (error) {
         await context.tools.DB.rollback();
@@ -97,8 +95,7 @@ const commentCocktail = async (args,context) =>{
             let commentInfos = {  user_id,cocktail_id,rank,comment,img,title};
             await context.tools.DB.transaction();
             const commentQuery = 'INSERT INTO comments SET ?';
-
-            let commentInfo =  await context.tools.DB.query(commentQuery,commentInfos);
+            await context.tools.DB.query(commentQuery,commentInfos);
             await context.tools.DB.query('UPDATE cocktails SET comment = IFNULL(comment, 0) +1 WHERE id = ? ', cocktail_id);
             await context.tools.DB.query(`UPDATE cocktails SET cocktails.rank = (SELECT AVG(comments.rank) 
             FROM comments where comments.cocktail_id = ?
@@ -106,7 +103,6 @@ const commentCocktail = async (args,context) =>{
             await context.tools.DB.commit();
             await context.dataloaders.cocktailLoaders.cocktailCommentsDataLoader.clear(+cocktail_id);
             await context.dataloaders.userLoaders.userCommentsDataLoader.clear(context.me);
-            console.log(commentInfo);
             return commentInfos;
         } catch (error) {
             await context.tools.DB.rollback();

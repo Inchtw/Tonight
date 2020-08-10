@@ -40,18 +40,9 @@ const getThreeSelections = async(context)=>{
     let hots_sql = 'select * from cocktails order by views DESC limit 3 ';
     let tops_sql = 'select * from cocktails order by likes DESC limit 3 ';
     let news_sql = 'select * from cocktails order by id DESC limit 3 ';
-    // let rank_sql = 'select cocktails.* ,comments.rank from cocktails  left join comments on comments.cocktail_id = cocktails.id order by comments.rank DESC limit 3;';
     let hots = await context.tools.DB.query(hots_sql);
     let tops = await context.tools.DB.query(tops_sql);
     let news = await context.tools.DB.query(news_sql);
-    // let ranks = await context.tools.DB.query(rank_sql);
-    //may need to update rank in database each time
-    // let Array = [...hots,...tops,...news];
-    // Array.forEach(cocktail=> {
-    //     cocktail.ingredients = JSON.parse(cocktail['ingredients']);
-    //     cocktail.steps = JSON.parse(cocktail['steps']);
-    // });
-    // console.log({hots,tops,news});
     return {hots,tops,news};
 
 

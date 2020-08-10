@@ -12,7 +12,7 @@ const mysqlConfig = {
         password: AWS_PASSWORD,
         database: AWS_DATABASE
     },
-    developmentV1: { // for localhost development
+    developmentV1: { // for Demo development
         host: AWS_HOST,
         user: AWS_USERNAME,
         password: AWS_PASSWORD,

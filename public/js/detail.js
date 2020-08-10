@@ -115,7 +115,6 @@ app.init = function () {
                 }
 
 
-                console.log(5-Math.floor(cocktail.rank));
 
             }else{
                 rank_stars.append($(` <span class="text-warning fa fa-star-o "></span>
@@ -168,7 +167,6 @@ app.init = function () {
             $('.ingredients_lists').append($(ingredient_lis));
 
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
-            console.log(user_info);
             if(user_info){
                 if (user_info.likes.filter(e => e.id === cocktail.id).length > 0) {
                     $('#Like_btn_bk').addClass('liked_btn_bk');
@@ -176,13 +174,11 @@ app.init = function () {
 
                 }
                 if(user_info.id ===author.id){
-                    console.log('bbbbb');
                     $('#Sub_btn').attr('disabled', true);
 
                 }
 
                 if (user_info.subscriptions.filter(e => e.id === author.id).length > 0) {
-                    console.log('hi');
                     // $('.sub_scribe_bk').css('background-color', 'white');
                     $('#Sub_btn').addClass('subClick');
 
@@ -204,10 +200,6 @@ app.init = function () {
                 for(let i=0;i< 5-Math.floor(comment.rank);i++){
                     commet_stars+= '<span class="fa fa-star-o text-warning"></span>';
                 }
-
-
-
-                console.log(commet_stars);
                 let carouselItem = $(`
              <div class="carousel-item">
             <div class=" card position-relative  active comments_cards">
@@ -277,7 +269,6 @@ app.init = function () {
                     for(let i=0;i<Math.floor(recipe.rank);i++){
                         rank_stars.append($('<span class="float-right"><i class="text-warning fa fa-star"></i></span>'));
                     }
-                    console.log(5-Math.floor(recipe.rank));
 
                 }else{
                     rank_stars.append($(`<span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
@@ -317,19 +308,6 @@ app.init = function () {
                         $(`#cocktail_${e.id}`).addClass('likes_color');
                     });
                 }
-
-                // let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
-                // if(user_info){
-                //     if (user_info.likes.filter(e => e.id === recipe.id).length > 0) {
-                //         $('#Like_btn_bk').addClass('liked_btn_bk');
-                //         $('#Like_btn').addClass('liked_btn');
-                //     }
-                //     console.log(recipe);
-                //     if (user_info.subscriptions.filter(e => e.id === recipe.author_id).length > 0) {
-                //         $('.sub_scribe_bk').css('background-color', 'white');
-                //         $('#Sub_btn').addClass('subClick');
-                //     }
-                // }
 
             });
 
@@ -391,14 +369,12 @@ $(document).ready(function(){
             msg = 'Seems you don\'t like it. You rated this cocktail ' + ratingValue + ' stars.';
         }
         responseMessage(msg);
-        // console.log($('.selected').length);
     });
 
 
 
 });
 function responseMessage(msg) {
-    // $('.success-box').fadeIn(200);
     $('#success-box').removeClass('success-box');
     $('#success-box').addClass('success-box');
     $('.success-box div.text-message').html(  msg );
@@ -532,7 +508,6 @@ async function subAuthor(){
                 localStorage.removeItem('user_info');
                 return;
             }
-            console.log(data.subscribeAuthor);
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 
@@ -710,7 +685,6 @@ async function CreateMyComment(){
                 .then(res => res.json())
                 .then(async (result) => {
                     Swal.close();
-                    console.log(result);
                     let {rank} = result.data.commentCocktail;
                     if(result.data.commentCocktail.rank){
                         await  Swal.fire({
@@ -750,16 +724,6 @@ async function CreateMyComment(){
 
 
 }
-
-// $('#customFile').bind('change', function () {
-//     var filename = $('#customFile').val();
-//     console.log(hi);
-
-//     $('#customFile_label').text(filename.replace('C:\\fakepath\\', ''));
-
-// });
-
-console.log($('#customFile').val());
 
 $(document).ready( function () {
     $('#customFile').bind('change', function () {

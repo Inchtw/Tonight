@@ -3,8 +3,6 @@
 module.exports = {
 
     comments : async (parent,args,context)=>{
-
-        // console.log(parent);
         let myComments = await context.dataloaders.userLoaders.userCommentsDataLoader.load(parent.id);
         if(myComments){
             myComments.forEach(comment=> {

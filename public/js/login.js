@@ -99,8 +99,6 @@ function sendSignUpData() {
                 });
                 return;
             }
-
-            console.log(result);
             if(result.data.createUser){
 
                 await  Swal.fire({

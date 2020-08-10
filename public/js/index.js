@@ -56,23 +56,11 @@ app.init = function () {
         }
     } ).then(res => res.json())
         .then(res=>{
-        // $('cocktails').innerHtml('');
             let {data} = res;
 
-            console.log(data);
-            // getRecipes(data);
             getCarousel(data.cocktailThree.hots,'Hots');
             getCarousel(data.cocktailThree.news,'News');
             getCarousel(data.cocktailThree.tops,'Tops');
-            // let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
-            // if(user_info){
-            //     user_info.likes.forEach(e=>{
-            //         $(`#cocktail_${e.id}`).addClass('likes_color');
-            //     });
-
-            //     console.log(user_info);
-            // }
-
         });
 
 
@@ -118,7 +106,6 @@ function getCarousel(cocktailArray,version){
             for(i=0;i<Math.floor(recipe.rank);i++){
                 rank_stars.append($('<span class="float-right"><i class="text-warning fa fa-star"></i></span>'));
             }
-            console.log(5-Math.floor(recipe.rank));
 
         }else{
             rank_stars.append($(`<span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
@@ -170,14 +157,12 @@ function getCarousel(cocktailArray,version){
 window.addEventListener('DOMContentLoaded', app.init);
 
 $(document).on('click', '#toabout', function(event){
-    console.log('hi');
     event.preventDefault();
     $('html, body').animate({
         scrollTop: $( $.attr(this, 'href') ).offset().top
     }, 500);
 });
 $(document).on('click', '#toAbout', function(event){
-    console.log('hi');
     event.preventDefault();
     $('html, body').animate({
         scrollTop: $( $.attr(this, 'href') ).offset().top

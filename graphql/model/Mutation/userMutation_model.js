@@ -22,7 +22,6 @@ const signUp = async (args,context) => {
 
         const emails = await context.tools.DB.query('SELECT email FROM user WHERE email = ?', [email]);
         if (emails.length > 0) {
-            console.log('hi');
             await context.tools.DB.commit();
             throw new UserInputError('Email Already Existed!');
         }
@@ -56,7 +55,7 @@ const signIn = async (args,context) => {
         const users = await context.tools.DB.query('select * from user where email = ? AND password = ?', [email , hash.update(password + SecrectKEY).digest('hex') ]);
         if (users.length === 0) {
             await context.tools.DB.commit();
-            return new UserInputError( 'Email or password incorrect!');
+            throw new UserInputError( 'Email or password incorrect!');
         }
         const loginAt = new Date();
         let user = users[0];
@@ -66,7 +65,7 @@ const signIn = async (args,context) => {
         return user ;
     } catch (error) {
         await context.tools.DB.rollback();
-        return { error };
+        throw  error ;
     }
 };
 

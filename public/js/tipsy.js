@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
 
@@ -5,8 +6,6 @@ app.init = function () {
     let category = app.getParameter('category')||'';
     let aftercursor = app.getParameter('aftercursor')||'';
     let precursor = app.getParameter('precursor')||'';
-    // console.log( 'Bearer '+accessToken.replace(/['"]+/g, ''));
-    console.log(accessToken);
     let page = app.getParameter('page');
 
     let callAfter = 'first:9';
@@ -242,7 +241,6 @@ app.init = function () {
             let categoryEvent = '';
             if(category){
                 categoryEvent = `&category=${category}`;
-                console.log(categoryEvent);
             }
             let preVious = $(`<li class="page-item disabled">
             <a class="page-link tipsy_pagin" href="#" tabindex="-1">
@@ -274,72 +272,6 @@ app.init = function () {
             paginations.append(preVious,nextP);
 
             $('#mianCocktails').append(paginations);
-
-            console.log($('.nextP').val());
-
-            // if(category){
-            //     category_url = `&&category=${category}`;
-            //     console.log('this is ' +category_url);
-            // }
-            // let lists =`<li><a href="/tipsy.html?page=1${category_url}">first</a></li>`;
-
-            // if(hasPreviousPage){
-            //     lists+=`<li><a href="/tipsy.html?page=${+page-1}${category_url}"><</a></li>`;
-            // }
-
-            // if(page){
-            //     if(totalpages<=5 ){
-            //         for(let i= 1; i<=totalpages;i++){
-            //             lists+=`<li><a href="/tipsy.html?page=${i}${category_url}">${i}</a></li>`;
-            //         }
-            //     }else if(totalpages-page>5){
-            //         for(let i= 0; i<5;i++){
-            //             lists+=`<li><a href="/tipsy.html?page=${+page+i}${category_url}">${+page+i}</a></li>`;
-            //         }
-            //     }else if(totalpages-page === 5){
-            //         if(page+-1>0){
-            //             for(let i= -2; i<3;i++){
-            //                 lists+=`<li><a href="/tipsy.html?page=${+page+i}${category_url}">${+page+i}</a></li>`;
-            //             }
-            //         }else{
-            //             for(let i= 0; i<5;i++){
-            //                 lists+=`<li><a href="/tipsy.html?page=${+page+i}${category_url}">${+page+i}</a></li>`;
-            //             }
-            //         }
-
-            //     }else {
-            //         if(totalpages-page>1){
-            //             for(let i= -1; i<4;i++){
-            //                 lists+=`<li><a href="/tipsy.html?page=${+page+i}${category_url}">${+page+i}</a></li>`;
-            //             }
-            //         }else{
-            //             for(let i= 1; i<=5;i++){
-            //                 lists+=`<li><a href="/tipsy.html?page=${+totalpages-5+i}${category_url}">${+totalpages-5+i}</a></li>`;
-            //             }
-
-            //         }
-
-            //     }
-            // }
-            // if(hasNextPage){
-            //     lists+=`<li><a href="/tipsy.html?page=${+page+1}${category_url}">></a></li>`;
-            // }
-            // lists+=`<li><a href="/tipsy.html?page=${+totalpages}${category_url}">last</a></li>`;
-
-            // // let pages = $('<div class="page"></div>').append($('<div class="pagination"></div>').append($('<ul></ul>').append($(`${lists}`))));
-            // let pages = $(`<div class="page"><div class="pagination"><ul>${lists}</ul></div></div>`);
-            // $('.cocktails').append(pages);
-            // let isActive = $('a');
-
-            // for(let a of isActive){
-            //     if ($(a).text().trim() == page) {
-            //         console.log(a);
-            //         $(a).parent().addClass('active');
-            //     }
-            // }
-
-
-
         }
         );
 
@@ -388,8 +320,6 @@ function getRecipes(data){
             for(i=0;i<Math.floor(recipe.rank);i++){
                 rank_stars.append($('<span class="float-right"><i class="text-warning fa fa-star"></i></span>'));
             }
-            console.log(5-Math.floor(recipe.rank));
-
         }else{
             rank_stars.append($(`<span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
             <span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
@@ -431,8 +361,6 @@ function getRecipes(data){
             $(`#cocktail_${e.id}`).removeClass('fa-heart-o');
             $(`#cocktail_${e.id}`).addClass('likes_color');
         });
-
-        console.log(user_info);
     }
 
 
@@ -450,7 +378,6 @@ function search() {
 
     if(input_text){
         if(way==='Author'){
-            console.log('hi');
             search_q = `{
                 reciepesPaging(
                   first: 10000000

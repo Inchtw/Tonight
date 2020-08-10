@@ -305,6 +305,13 @@ app.init = function () {
 
     }
 
+    Swal.fire({
+        background: 'none',
+        onBeforeOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
 
     fetch(url, {
         method:'post',
@@ -348,10 +355,8 @@ app.init = function () {
             }
 
             let {data} = info;
+            Swal.close();
 
-
-
-            // console.log(data.users[0]);
             if(data.me){
                 let {me} = data;
                 localStorage.setItem('user_info', JSON.stringify(me));
@@ -378,13 +383,6 @@ app.init = function () {
                 });
 
             }
-
-            // let {me} = data;
-            // // console.log(data);
-            // console.log(me);
-            // let {followers ,  , likes, name, photo , post , subscriptions ,} = me;
-
-            // localStorage.setItem('user_info', JSON.stringify(me));
             function update(user){
                 let {followers ,  likes, name, photo , post , subscriptions ,} = user;
                 $('#myposts').text(post.length);
@@ -468,7 +466,6 @@ function getPost(post){
             for(i=0;i<Math.floor(recipe.rank);i++){
                 rank_stars.append($('<span class="float-right"><i class="text-warning fa fa-star"></i></span>'));
             }
-            console.log(5-Math.floor(recipe.rank));
 
         }else{
             rank_stars.append($(`<span class="float-right"><i class="text-warning fa fa-star-o"></i></span>
@@ -652,7 +649,6 @@ async function GetmyPost(){
     let id = app.getParameter('id');
     if(id){
         let data =await graphMeFetch(userPostquery);
-        console.log(data.users[0]);
         $('.profile_card').html('');
         getPost(data.users[0].post);
         Swal.close();
@@ -660,7 +656,6 @@ async function GetmyPost(){
 
     }else{
         let data =await graphMeFetch(myPostquery);
-        console.log(data.me);
         $('.profile_card').html('');
         getPost(data.me.post);
         Swal.close();
@@ -685,26 +680,17 @@ async function getMyLikes(){
     let id = app.getParameter('id');
     if(id){
         let data =await graphMeFetch(userLikeQuery);
-        console.log(data);
         $('.profile_card').html('');
         getPost(data.users[0].likes);
         Swal.close();
 
     }else{
         let data =await graphMeFetch(myLikeQuery);
-        console.log(data.me);
         $('.profile_card').html('');
         getPost(data.me.likes);
         Swal.close();
 
     }
-
-
-    // let me =await graphMeFetch(myLikeQuery);
-    // console.log(me);
-    // $('.profile_card').html('');
-    // getPost(me.likes);
-
 }
 
 
@@ -721,7 +707,6 @@ async function getMyFollowing(){
     let id = app.getParameter('id');
     if(id){
         let data =await graphMeFetch(userSubQuery);
-        console.log(data.users[0]);
         $('.profile_card').html('');
         getUsers(data.users[0].subscriptions);
         Swal.close();
@@ -729,19 +714,12 @@ async function getMyFollowing(){
 
     }else{
         let data =await graphMeFetch(mySubQuery);
-        console.log(data.me);
         $('.profile_card').html('');
         getUsers(data.me.subscriptions);
         Swal.close();
 
 
     }
-
-    // let me =await graphMeFetch(mySubQuery);
-    // console.log(me);
-    // $('.profile_card').html('');
-    // getUsers(me.subscriptions);
-
 }
 
 
@@ -756,23 +734,17 @@ async function getMyFollower() {
     });
     if(id){
         let data =await graphMeFetch(userFollowerQuery);
-        console.log(data.users[0]);
         $('.profile_card').html('');
         getUsers(data.users[0].followers);
         Swal.close();
 
     }else{
         let data =await graphMeFetch(myFollowerQuery);
-        console.log(data.me);
         $('.profile_card').html('');
         getUsers(data.me.followers);
         Swal.close();
 
     }
-
-    // let me = await graphMeFetch(myFollowerQuery);
-    // $('.profile_card').html('');
-    // getUsers(me.followers);
 }
 
 function subAuthor(){
@@ -780,9 +752,6 @@ function subAuthor(){
     if(!id){
         return;
     }
-
-    console.log(id);
-
     let variables = {
         'id': id
     };

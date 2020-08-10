@@ -4,7 +4,7 @@
   "description": "Inch's web project",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test mocha ./test --exit",
     "start": "node app.js",
     "devstart": "nodemon",
     "lint": "eslint ./*.js"
@@ -42,8 +42,11 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^7.4.0",
+    "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
-    "puppeteer": "^5.0.0"
+    "puppeteer": "^5.0.0",
+    "supertest": "^4.0.2"
   }
 }

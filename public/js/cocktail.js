@@ -38,7 +38,7 @@ app.init = function () {
             let cocktail = data.cocktails[0];
 
             let authorlink = 'profile.html';
-            // console.log(cocktail);
+
             $(document).ready(function() {
                 document.title = cocktail.name;
             });
