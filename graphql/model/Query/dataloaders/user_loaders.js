@@ -72,7 +72,7 @@ function userPostsDataLoader(){
 async function userPostsByUserIds(userIds){
     let userPost_sql = `SELECT *
     FROM cocktails
-   where author_id in (?) order by id DESC ;`;
+   where author_id in (?) order by id DESC limit 300 ;`;
     let myposts = await DB.query(userPost_sql,[userIds]);
     myposts.forEach(cocktail=> {
         cocktail.ingredients = JSON.parse(cocktail['ingredients']);

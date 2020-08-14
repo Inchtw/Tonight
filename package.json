@@ -46,7 +46,6 @@
     "eslint": "^7.4.0",
     "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
-    "puppeteer": "^5.0.0",
     "supertest": "^4.0.2"
   }
 }
