@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+let likes = 0;
 app.init = function () {
 
 
@@ -101,7 +102,7 @@ app.init = function () {
                 document.title = cocktail.name;
             });
             let category = cocktail['category'].split(' ',1).join('').split('-',1);
-            let likes = 0;
+
             let views= 0;
             let comment = 0;
             let rank_stars = $('#detailStars');
@@ -435,17 +436,17 @@ async function likeCocktail(){
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
             if(data.likeCocktail){
+                likes+=1;
+                let new_like = +likes;
 
-                let now = data.likeCocktail.likes||0;
-                let new_like = +now+1;
                 user_info.likes.push(variables);
                 localStorage.setItem('user_info', JSON.stringify(user_info));
                 $('.detail_likes').text(new_like);
             }else{
                 $('#Like_btn_bk').removeClass('liked_btn_bk');
                 $('#Like_btn').removeClass('liked_btn');
-                let now = data.likeCocktail.likes ||0;
-                let new_like = +now-1;
+                likes-=1;
+                let new_like = +likes;
                 let newLike = user_info.likes.filter(function(el) { return el.id != id; });
                 user_info.likes =  newLike;
                 localStorage.setItem('user_info', JSON.stringify(user_info));
