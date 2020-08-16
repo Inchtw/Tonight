@@ -786,7 +786,6 @@ function subAuthor(){
                 localStorage.removeItem('user_info');
                 window.location.replace('/login.html');
             }
-            console.log(data.subscribeAuthor);
             let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 
@@ -824,7 +823,6 @@ $('#change_headpic').change ( async function() {
 
     var file = $('#change_headpic')[0].files[0];
     var reader = new FileReader;
-    // console.log(file);
     reader.onload = function( e ) {
         $( '#myphoto' ).css('background', 'url(' + e.target.result + ')');
         $( '#myphoto' ).css('background-size', 'cover');

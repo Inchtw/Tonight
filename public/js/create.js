@@ -43,7 +43,6 @@ if(!accessToken&&!user_info){
         }
     } ).then(res => res.json())
         .then(res =>{
-            console.log( {categories} = res.data);
             let categories_select = $('.cateshow');
             categories.forEach(cate=>{
                 categories_select.append($(`<option class="dropdown-item">${cate}</option>`));
@@ -127,7 +126,6 @@ async function CreateMyRecipe(){
                 throw new Error(response.statusText);
 
             }
-            console.log('in here');
             return response.json();
         })
         .catch(error => {
@@ -141,7 +139,6 @@ async function CreateMyRecipe(){
 
             variables.ori_image = result.url;
 
-            console.log(result.url);
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({

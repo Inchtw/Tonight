@@ -1,6 +1,6 @@
+/* eslint-disable no-undef */
 require('dotenv').config();
 const {request,expect} = require('./setting.js');
-const {cocktails} = require('./fake_data');
 const {users} = require('./fake_data');
 const user1 = users[0];
 const user = {
