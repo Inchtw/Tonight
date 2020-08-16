@@ -23,7 +23,7 @@ Pina colada
 * Recommendation
     * Show top three selection on home page(likes,views,newest)
 
-![Homepage](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/home.gif)
+![Homepage](https://reurl.cc/A81QoQ)
 
 
 * Cocktails search
@@ -33,31 +33,31 @@ Pina colada
     * Recommend three cock related to the same category.  
     
 
-![Search](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/search.gif)
+![Search](https://reurl.cc/5qg6Yn)
 
 
 * Membership system
     * Users could sign up and upload a personal photo. The profile page would show what users posted, liked and what they following and their followers. 
 
-![Login](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/Login.gif)
+![Login](https://reurl.cc/7o2g5N)
 
 * Cocktail likes
     * Members could like the recipes.
 * Subscription system
     * Members could follow recipes author.
 
-![subLike](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/subLike.gif)
+![subLike](https://reurl.cc/k05RD3)
 
 * Cocktail comment 
     * Members could rank the recipes and upload the cocktail they made.
 
-![Comment](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/comment.gif)
+![Comment](https://reurl.cc/m9dVE7)
 
 
 * Create recipe
     * Members could create their recipes.
 
-![Create](https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/createCocktail.gif) 
+![Create](https://reurl.cc/WL45lD) 
 
 
 ## Technologies
