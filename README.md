@@ -1,9 +1,10 @@
-# Tonight
+# [Tonight](https://tonight-drink.website/)
 
 Tonight is a night-chill web platform for users to grab a cocktail recipe with recommendations and search function. People could like, comment, subscribe to posters, and share their awesome cocktail recipes as a social system.
 
-* test account : tonight@demo.com
-* password : tonightTestPasswords
+* Link : https://tonight-drink.website
+* [Test account](https://tonight-drink.website/login.html) : tonight@demo.com
+* Password : tonightTestPasswords
 
 
 ## Table of Contents
@@ -138,7 +139,6 @@ Pina colada
 Project inspired by [TipsyBartender](https://tipsybartender.com/) and [Instagram](https://www.instagram.com/), recipes based on [TipsyBartender](https://tipsybartender.com/) and [allrecipes](https://www.allrecipes.com/)
 
 # Contact
-## Author
 Ying Chi (Inch) Chen [@Inchtw](https://github.com/Inchtw)
 
 Email : ashin1207@gmail.com
