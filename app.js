@@ -31,7 +31,16 @@ const server = new ApolloServer({
 });
 
 
+
+app.get('*', function(req, res){
+    if (req.accepts('html')) {
+        res.status(400).send('<script>location.href = "/404.html";</script>');
+        return;
+    }
+});
+
 server.applyMiddleware({app});
+
 
 
 const httpServer = http.createServer(app);

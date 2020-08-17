@@ -1,6 +1,6 @@
 # [Tonight](https://tonight-drink.website/)
 
-Tonight is a night-chill web platform for users to grab a cocktail recipe with recommendations and search function. People could like, comment, subscribe to posters, and share their awesome cocktail recipes as a social system.
+Tonight is a cocktail community where you can search cocktail recipe and get recommendations. Tonight, a wonderland where you can share your unique cocktails.
 
 * Link : https://tonight-drink.website
 * [Test account](https://tonight-drink.website/login.html) : tonight@demo.com
