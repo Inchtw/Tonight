@@ -56,15 +56,28 @@ function sendSignUpData() {
     let name = document.getElementById('signup_name').value;
     let email = document.getElementById('signup_email').value;
     let password = document.getElementById('signup_password').value;
+    let emailRegxp = /^([\w]+)(.[\w]+)*@([\w]+)(.[\w]{2,3}){1,2}$/;
 
     if(!name||!email||!password){
         Swal.fire({
-            title: 'Please input all correctly !',
+            title: 'Please input all correctly!',
             text: 'Do you want to continue?',
             icon: 'warning',
             confirmButtonText: 'OK'
         });
         return;
+    }
+    if (emailRegxp.test(email) != true){
+        Swal.fire({
+            title: 'Please provide correct e-mail!',
+            text: 'Do you want to continue?',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+
+        document.getElementById('signup_email').focus();
+        document.getElementById('signup_email').select();
+        return false;
     }
     {fetch(url, {
         method: 'POST',
