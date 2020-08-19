@@ -16,8 +16,6 @@ Tonight is a cocktail community where you can search cocktail recipe and get rec
 * [Contact](#Contact)
 
 
-Pina colada
-
 
 ## Main Features
 
