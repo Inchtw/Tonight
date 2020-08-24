@@ -12,7 +12,7 @@ async function commentsByCocktailIds(cocktailIds){
     inner Join  user
     ON user.id=comments.user_id
     where cocktail_id in (?) order by comments.id Desc`;
-    let comments = await DB.query(commentsSql,[cocktailIds]);
+    const comments = await DB.query(commentsSql,[cocktailIds]);
     const groupById = groupBy(comment=>comment.cocktail_id , comments);
     return await map(cocktail_id=>groupById[cocktail_id], cocktailIds);
 
@@ -23,12 +23,12 @@ function cocktailLikersDataLoader(){
     return new DataLoader(likersByCocktailIds);
 }
 async function likersByCocktailIds(cocktailIds){
-    let cocktailLikers_sql = `SELECT  user.id  , user.name ,user.photo , user_like_join.cocktail_id   
+    const cocktailLikers_sql = `SELECT  user.id  , user.name ,user.photo , user_like_join.cocktail_id   
     FROM user 
     left Join user_like_join
     on user.id = user_like_join.user_id
     where user_like_join.cocktail_id in(?) order by id DESC;;`;
-    let likers = await DB.query(cocktailLikers_sql,[cocktailIds]);
+    const likers = await DB.query(cocktailLikers_sql,[cocktailIds]);
     const groupById = groupBy(likers=>likers.cocktail_id , likers);
     return await map(cocktail_id=>groupById[cocktail_id], cocktailIds);
 }
@@ -38,8 +38,8 @@ function authorDataLoader(){
     return new DataLoader(authorByAuthorIds);
 }
 async function authorByAuthorIds(author_ids){
-    let Cocktail_Author_sql = 'SELECT id, name, photo From user where id in (?) ';
-    let author_infos = await DB.query(Cocktail_Author_sql,[author_ids]);
+    const Cocktail_Author_sql = 'SELECT id, name, photo From user where id in (?) ';
+    const author_infos = await DB.query(Cocktail_Author_sql,[author_ids]);
     const groupById = groupBy(author=>author.id , author_infos);
     return await map(id=>groupById[id], author_ids);
 }

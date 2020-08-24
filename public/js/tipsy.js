@@ -3,10 +3,10 @@
 
 
 app.init = function () {
-    let category = app.getParameter('category')||'';
-    let aftercursor = app.getParameter('aftercursor')||'';
-    let precursor = app.getParameter('precursor')||'';
-    let page = app.getParameter('page');
+    const category = app.getParameter('category')||'';
+    const aftercursor = app.getParameter('aftercursor')||'';
+    const precursor = app.getParameter('precursor')||'';
+    const page = app.getParameter('page');
 
     let callAfter = 'first:9';
     if(aftercursor){
@@ -221,17 +221,17 @@ app.init = function () {
         .then(res=>{
         // $('cocktails').innerHtml('');
             Swal.close();
-            let {data} = res;
+            const {data} = res;
             getRecipes(data);
 
-            let {categories} = data;
-            let categories_select = $('.catesearch');
+            const {categories} = data;
+            const categories_select = $('.catesearch');
 
             categories.forEach(cate=>{
                 categories_select.append($(`<a class="dropdown-item" href="/tipsy.html?category=${cate}">${cate}</a>`));
             });
-            let hasNextPage =data.reciepesPaging.pageInfo.hasNextPage;
-            let hasPreviousPage =data.reciepesPaging.pageInfo.hasPreviousPage;
+            const hasNextPage =data.reciepesPaging.pageInfo.hasNextPage;
+            const hasPreviousPage =data.reciepesPaging.pageInfo.hasPreviousPage;
             // if(hasNextPage){
             //     let next_cursor = data.reciepesPaging.edges[8].cursor;
             // }
@@ -250,7 +250,7 @@ app.init = function () {
             <a class="page-link tipsy_pagin" >next</a>
         </li>`);
             if(hasNextPage) {
-                let next_cursor = data.reciepesPaging.edges[8].cursor;
+                const next_cursor = data.reciepesPaging.edges[8].cursor;
 
                 nextP = $(`<li class="page-item   ">
             <a class="page-link tipsy_pagin nextP"  href="/tipsy.html?aftercursor=${next_cursor}${categoryEvent}" >next</a>
@@ -258,7 +258,7 @@ app.init = function () {
 
             }
             if(hasPreviousPage){
-                let pre_cursor = data.reciepesPaging.edges[0].cursor;
+                const pre_cursor = data.reciepesPaging.edges[0].cursor;
                 preVious= $(`<li class="page-item   ">
                 <a class="page-link tipsy_pagin preP" href="/tipsy.html?precursor=${pre_cursor}${categoryEvent}" tabindex="-1">
                     previous </a>
@@ -266,7 +266,7 @@ app.init = function () {
 
             }
 
-            let paginations = $('#pagnition_ul');
+            const paginations = $('#pagnition_ul');
 
 
             paginations.append(preVious,nextP);
@@ -282,22 +282,22 @@ app.init = function () {
 
 
 function getRecipes(data){
-    let recipes = data.reciepesPaging.edges.map(edge=>{
+    const recipes = data.reciepesPaging.edges.map(edge=>{
         return edge.node;
     } );
     $('.cocktails').html('');
     $('.pagination').html('');
     recipes.forEach(recipe => {
-        let category = recipe['category'].split(' ',1).join('').split('-',1);
+        const category = recipe['category'].split(' ',1).join('').split('-',1);
         let likes = 0;
         let views= 0;
         let comment = 0;
 
-        let card = $('<div class="card mb-4 shadow-sm"></div>');
-        let img = $(`<div class="card-img-top overflow-hidden "
+        const card = $('<div class="card mb-4 shadow-sm"></div>');
+        const img = $(`<div class="card-img-top overflow-hidden "
         style=" height: 250px; background-image: url('${recipe.ori_image}'); background-repeat: no-repeat; background-size: cover; background-position: inherit center;">
     </div>`);
-        let cardbody = $(`<div class=" card-body position-relative ">
+        const cardbody = $(`<div class=" card-body position-relative ">
         <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
             <button class="btn btn-sm float-right "><i id=cocktail_${recipe.id} class="fa fa-heart-o "></i>
             </button>
@@ -310,7 +310,7 @@ function getRecipes(data){
     </div>`);
 
 
-        let rank_stars = $('<div class="cocktail_ranking"></div>');
+        const rank_stars = $('<div class="cocktail_ranking"></div>');
 
         if(recipe.rank){
             for(i=0;i< 5-Math.floor(recipe.rank);i++){
@@ -338,7 +338,7 @@ function getRecipes(data){
             likes=    recipe.likes;
         }
 
-        let cardfooter = $(` <div class="card-footer d-flex justify-content-between">
+        const cardfooter = $(` <div class="card-footer d-flex justify-content-between">
         <small class="fa fa-eye w-25 text-center "> <span
                 class="text-muted ">${views}</span></small>
         <small class="fa fa-comments-o w-25 text-center"> <span
@@ -348,13 +348,13 @@ function getRecipes(data){
     </div>`);
 
         card.append(img,cardbody,cardfooter);
-        let a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
+        const a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
 
         $('.cocktails').append(a);
 
     });
 
-    let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+    const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.likes.forEach(e=>{
             $(`#cocktail_${e.id}`).addClass('fa-heart');
@@ -370,11 +370,11 @@ function getRecipes(data){
 
 
 function search() {
-    let way = $('#search_concept').text();
+    const way = $('#search_concept').text();
 
-    let input_text = $('.serch_text').val();
+    const input_text = $('.serch_text').val();
     let search_q = '';
-    let category= app.getParameter('category')||'';
+    const category= app.getParameter('category')||'';
 
     if(input_text){
         if(way==='Author'){
@@ -504,7 +504,7 @@ function search() {
     } ).then(res => res.json()
         .then(res => {
             try {
-                let {data} = res;
+                const {data} = res;
                 getRecipes(data);
                 Swal.close();
 

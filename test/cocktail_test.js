@@ -67,7 +67,7 @@ describe('cocktails check', () => {
             img: 'https://inch-stylish.s3.ap-southeast-1.amazonaws.com/User/Cockctails/1/comments/21/1596417382713.jpeg',
             title: 'good' ,
         };
-        let commentRes = await request
+        const commentRes = await request
             .post('/graphql')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')

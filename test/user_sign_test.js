@@ -83,7 +83,7 @@ describe('users sign up sign in check', () => {
             email: user1.email,
             password: user1.password
         };
-        let res = await request
+        const res = await request
             .post('/graphql')
             .send({ query: `mutation Login($email: String!, $password: String!) {
                 login(Userlogin: {email: $email, password: $password }) {
@@ -104,7 +104,7 @@ describe('users sign up sign in check', () => {
             password: user1.password
         };
 
-        let res = await request
+        const res = await request
             .post('/graphql')
             .send({ query: `mutation Login($email: String!, $password: String!) {
                 login(Userlogin: {email: $email, password: $password }) {
@@ -120,7 +120,7 @@ describe('users sign up sign in check', () => {
             email: user1.email,
         };
 
-        let res2 = await request
+        const res2 = await request
             .post('/graphql')
             .send({ query: `mutation Login($email: String!, $password: String!) {
                 login(Userlogin: {email: $email, password: $password }) {
@@ -140,7 +140,7 @@ describe('users sign up sign in check', () => {
             email: user1.email,
             password: 'wrong password'
         };
-        let res = await request
+        const res = await request
             .post('/graphql')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -161,7 +161,7 @@ describe('users sign up sign in check', () => {
             email: user1.email,
             password: '" OR 1=1; -- '
         };
-        let res = await request
+        const res = await request
             .post('/graphql')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')

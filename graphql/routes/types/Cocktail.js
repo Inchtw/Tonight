@@ -17,7 +17,7 @@ module.exports = {
 
     },
     author : async (parent,args,context) =>{
-        let author_info = await context.dataloaders.cocktailLoaders.authorDataLoader.load(parent.author_id);
+        const author_info = await context.dataloaders.cocktailLoaders.authorDataLoader.load(parent.author_id);
         return author_info[0];
     }
 };

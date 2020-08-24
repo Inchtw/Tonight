@@ -6,12 +6,12 @@ app.init = function () {
 
 
 
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     if (!id) {
         window.location = './';
     }
 
-    let query = `
+    const query = `
     {  
         cocktails(id:${id}){
             name
@@ -89,23 +89,23 @@ app.init = function () {
 
             }
 
-            let {data} = res;
+            const {data} = res;
             let cocktail ={};
             if(data.cocktails[0]){
                 cocktail = data.cocktails[0];
             }
 
-            let {author} = cocktail;
+            const {author} = cocktail;
             $('#author_id').val(author.id);
 
             $(document).ready(function() {
                 document.title = cocktail.name;
             });
-            let category = cocktail['category'].split(' ',1).join('').split('-',1);
+            const category = cocktail['category'].split(' ',1).join('').split('-',1);
 
             let views= 0;
             let comment = 0;
-            let rank_stars = $('#detailStars');
+            const rank_stars = $('#detailStars');
 
             if(cocktail.rank){
                 for( let i=0;i<Math.floor(cocktail.rank);i++){
@@ -139,7 +139,7 @@ app.init = function () {
             $('.detail_likes').text(likes);
 
             $('.product-title').text(cocktail.name);
-            let author_info = $(`<a href="profile.html?id=${author.id}">
+            const author_info = $(`<a href="profile.html?id=${author.id}">
             <div class="media-object overflow-hidden author_detail_pic"
                                                 style=" width: 50px; height: 50px; background-image: url('${author.photo}');background-repeat: no-repeat; background-size: cover; background-position: center center;">
                                             </div>
@@ -167,7 +167,7 @@ app.init = function () {
             $('.steps_lists').append($(steps_lis));
             $('.ingredients_lists').append($(ingredient_lis));
 
-            let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+            const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
             if(user_info){
                 if (user_info.likes.filter(e => e.id === cocktail.id).length > 0) {
                     $('#Like_btn_bk').addClass('liked_btn_bk');
@@ -201,7 +201,7 @@ app.init = function () {
                 for(let i=0;i< 5-Math.floor(comment.rank);i++){
                     commet_stars+= '<span class="fa fa-star-o text-warning"></span>';
                 }
-                let carouselItem = $(`
+                const carouselItem = $(`
              <div class="carousel-item">
             <div class=" card position-relative  active comments_cards">
                 <div class="p-1">
@@ -237,17 +237,17 @@ app.init = function () {
             $('.carousel-inner').children().first().addClass('active');
 
             cocktail.recommend.forEach(recipe => {
-                let category = recipe['category'].split(' ',1).join('').split('-',1);
+                const category = recipe['category'].split(' ',1).join('').split('-',1);
                 let likes = 0;
                 let views= 0;
                 let comment = 0;
 
 
-                let card = $('<div class="card mb-4 shadow-sm"></div>');
-                let img = $(`<div class="card-img-top overflow-hidden "
+                const card = $('<div class="card mb-4 shadow-sm"></div>');
+                const img = $(`<div class="card-img-top overflow-hidden "
                 style=" height: 250px; background-image: url('${recipe.ori_image}'); background-repeat: no-repeat; background-size: cover; background-position: inherit center;">
             </div>`);
-                let cardbody = $(`<div class=" card-body position-relative ">
+                const cardbody = $(`<div class=" card-body position-relative ">
                 <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
                     <button class="btn btn-sm float-right "><i id=cocktail_${recipe.id} class="fa fa-heart-o"></i>
                     </button>
@@ -260,7 +260,7 @@ app.init = function () {
             </div>`);
 
 
-                let rank_stars = $('<div class="cocktail_ranking"></div>');
+                const rank_stars = $('<div class="cocktail_ranking"></div>');
 
                 if(recipe.rank){
                     for(let i=0;i< 5-Math.floor(recipe.rank);i++){
@@ -289,7 +289,7 @@ app.init = function () {
                     likes=  recipe.likes;
                 }
 
-                let cardfooter = $(` <div class="card-footer d-flex justify-content-between">
+                const cardfooter = $(` <div class="card-footer d-flex justify-content-between">
                 <small class="fa fa-eye w-25 text-center "> <span
                         class="text-muted ">${views}</span></small>
                 <small class="fa fa-comments-o w-25 text-center"> <span
@@ -299,7 +299,7 @@ app.init = function () {
              </div>`);
 
                 card.append(img,cardbody,cardfooter);
-                let a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
+                const a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
 
                 $('.detail_recom').append(a);
                 if(user_info){
@@ -383,8 +383,8 @@ function responseMessage(msg) {
 
 
 async function likeCocktail(){
-    let id = app.getParameter('id');
-    let variables = {
+    const id = app.getParameter('id');
+    const variables = {
         'id': id
     };
 
@@ -401,7 +401,7 @@ async function likeCocktail(){
     }
 
 
-    let likeQuery = `mutation like($id: ID!) {
+    const likeQuery = `mutation like($id: ID!) {
         likeCocktail(likeInput: { id: $id }) 
       }
        `;
@@ -419,7 +419,7 @@ async function likeCocktail(){
     } ).then(res => res.json())
         .then(res=>{
 
-            let {data} = res;
+            const {data} = res;
             if(res.errors){
 
                 Swal.fire({
@@ -433,11 +433,11 @@ async function likeCocktail(){
                 localStorage.removeItem('user_info');
                 return;
             }
-            let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+            const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
             if(data.likeCocktail){
                 likes+=1;
-                let new_like = +likes;
+                const new_like = +likes;
 
                 user_info.likes.push(variables);
                 localStorage.setItem('user_info', JSON.stringify(user_info));
@@ -447,7 +447,7 @@ async function likeCocktail(){
                 $('#Like_btn').removeClass('liked_btn');
                 likes-=1;
                 let new_like = +likes;
-                let newLike = user_info.likes.filter(function(el) { return el.id != id; });
+                const newLike = user_info.likes.filter(function(el) { return el.id != id; });
                 user_info.likes =  newLike;
                 localStorage.setItem('user_info', JSON.stringify(user_info));
                 if(new_like<0){
@@ -463,9 +463,9 @@ async function likeCocktail(){
 
 }
 async function subAuthor(){
-    let a_href = $('.a_t').attr('href').split('=');
+    const a_href = $('.a_t').attr('href').split('=');
 
-    let variables = {
+    const variables = {
         'id': a_href[1]
     };
     if(!accessToken&&!user_info){
@@ -480,7 +480,7 @@ async function subAuthor(){
         return;
     }
 
-    let subQuery = `mutation subscribe($id: ID!) {
+    const subQuery = `mutation subscribe($id: ID!) {
         subscribeAuthor(SubscribeInput: {id: $id}) 
       } `;
     fetch(url, {
@@ -496,7 +496,7 @@ async function subAuthor(){
         }
     } ).then(res => res.json())
         .then(res=>{
-            let {data} = res;
+            const {data} = res;
             if(res.errors){
                 Swal.fire({
                     title: 'Invalid status!',
@@ -509,7 +509,7 @@ async function subAuthor(){
                 localStorage.removeItem('user_info');
                 return;
             }
-            let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+            const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 
             if(!data.subscribeAuthor){
@@ -517,7 +517,7 @@ async function subAuthor(){
                 $('#subtext').removeClass('fa-heart');
                 $('#subtext').addClass('fa-heart-o');
                 $('#subtext').text('Subscribe');
-                let newSub = user_info.subscriptions.filter(function(el) { return el.id != a_href[1]; });
+                const newSub = user_info.subscriptions.filter(function(el) { return el.id != a_href[1]; });
                 user_info.subscriptions =  newSub;
 
                 localStorage.setItem('user_info', JSON.stringify(user_info));
@@ -586,13 +586,13 @@ async function CreateMyComment(){
     }
 
 
-    let cocktail_id = app.getParameter('id');
+    const cocktail_id = app.getParameter('id');
 
-    let comment = $('#comment').val();
-    let title = $('#title').val();
+    const comment = $('#comment').val();
+    const title = $('#title').val();
     $('#comment').val();
-    let rank = $('#stars li.selected').last().data('value');
-    let img_check = $('#customFile').val();
+    const rank = $('#stars li.selected').last().data('value');
+    const img_check = $('#customFile').val();
 
     if(!comment||!title||!rank||!img_check){
         Swal.fire({
@@ -606,9 +606,9 @@ async function CreateMyComment(){
     }
 
 
-    let variables = {comment,title ,rank , cocktail_id };
-    let form = document.getElementById('images');
-    let formData = new FormData(form);
+    const variables = {comment,title ,rank , cocktail_id };
+    const form = document.getElementById('images');
+    const formData = new FormData(form);
 
 
     Swal.fire({
@@ -623,7 +623,7 @@ async function CreateMyComment(){
     });
 
 
-    let uri = '/commentimageload';
+    const uri = '/commentimageload';
     fetch('/commentimageload', {
         method: 'POST',
         body: formData,
@@ -686,7 +686,7 @@ async function CreateMyComment(){
                 .then(res => res.json())
                 .then(async (result) => {
                     Swal.close();
-                    let {rank} = result.data.commentCocktail;
+                    const {rank} = result.data.commentCocktail;
                     if(result.data.commentCocktail.rank){
                         await  Swal.fire({
                             title: `${rank} stars! `,

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 // initialize app structure
-let url = '/graphql';
-let accessToken = JSON.parse(localStorage.getItem('accessToken'))||'';
-let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+const url = '/graphql';
+const accessToken = JSON.parse(localStorage.getItem('accessToken'))||'';
+const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 if(accessToken&&user_info){
     $('#nav_logout').removeClass('d-none');
@@ -37,7 +37,7 @@ function logout(){
 }
 
 
-let app = {
+const app = {
     fb: {},
     state: {
         auth: null
@@ -53,7 +53,7 @@ app.getAll = function (selector) {
     return document.querySelectorAll(selector);
 };
 app.createElement = function (tagName, settings, parentElement) {
-    let obj = document.createElement(tagName);
+    const obj = document.createElement(tagName);
     if (settings.atrs) { app.setAttributes(obj, settings.atrs); }
     if (settings.stys) { app.setStyles(obj, settings.stys); }
     if (settings.evts) { app.setEventHandlers(obj, settings.evts); }
@@ -76,19 +76,19 @@ app.modifyElement = function (obj, settings, parentElement) {
     return obj;
 };
 app.setStyles = function (obj, styles) {
-    for (let name in styles) {
+    for (const name in styles) {
         obj.style[name] = styles[name];
     }
     return obj;
 };
 app.setAttributes = function (obj, attributes) {
-    for (let name in attributes) {
+    for (const name in attributes) {
         obj[name] = attributes[name];
     }
     return obj;
 };
 app.setEventHandlers = function (obj, eventHandlers, useCapture) {
-    for (let name in eventHandlers) {
+    for (const name in eventHandlers) {
         if (eventHandlers[name] instanceof Array) {
             for (let i = 0; i < eventHandlers[name].length; i++) {
                 obj.addEventListener(name, eventHandlers[name][i], useCapture);
@@ -100,7 +100,7 @@ app.setEventHandlers = function (obj, eventHandlers, useCapture) {
     return obj;
 };
 app.ajax = function (method, src, args, headers, callback) {
-    let req = new XMLHttpRequest();
+    const req = new XMLHttpRequest();
     if (method.toLowerCase() === 'post') { // post through json args
         req.open(method, src);
         req.setRequestHeader('Content-Type', 'application/json');
@@ -119,7 +119,7 @@ app.ajax = function (method, src, args, headers, callback) {
     }
 };
 app.setRequestHeaders = function (req, headers) {
-    for (let key in headers) {
+    for (const key in headers) {
         req.setRequestHeader(key, headers[key]);
     }
 };

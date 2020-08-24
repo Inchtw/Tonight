@@ -101,7 +101,7 @@ describe('get profile with login status',  () => {
 
     });
     it('get my profile without sign in', async () => {
-        let res = await request
+        const res = await request
             .post('/graphql')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
@@ -177,7 +177,7 @@ describe('get profile with login status',  () => {
     });
     it('get other profile without sign in', async () => {
 
-        let res = await request
+        const res = await request
             .post('/graphql')
             .send({ query: ` {
                 users(id:${user1.id}){

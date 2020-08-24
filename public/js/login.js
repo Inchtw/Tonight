@@ -53,10 +53,10 @@ $('.tab a').on('click', function (e) {
 
 
 function sendSignUpData() {
-    let name = document.getElementById('signup_name').value;
-    let email = document.getElementById('signup_email').value;
-    let password = document.getElementById('signup_password').value;
-    let emailRegxp = /^([\w]+)(.[\w]+)*@([\w]+)(.[\w]{2,3}){1,2}$/;
+    const name = document.getElementById('signup_name').value;
+    const email = document.getElementById('signup_email').value;
+    const password = document.getElementById('signup_password').value;
+    const emailRegxp = /^([\w]+)(.[\w]+)*@([\w]+)(.[\w]{2,3}){1,2}$/;
 
     if(!name||!email||!password){
         Swal.fire({
@@ -122,8 +122,8 @@ function sendSignUpData() {
                     timer: 2000,
                     timerProgressBar: true,
                 }).then(()=>{
-                    let {accessToken,id} = result.data.createUser;
-                    let user = {accessToken,id , photo :'', gender:'' };
+                    const {accessToken,id} = result.data.createUser;
+                    const user = {accessToken,id , photo :'', gender:'' };
                     localStorage.setItem('accessToken', JSON.stringify(accessToken));
                     localStorage.setItem('user_info', JSON.stringify(user));
                     window.location.replace('/profile.html');
@@ -146,8 +146,8 @@ function sendSignUpData() {
 
 
 function sendLogINData(){
-    let email = document.getElementById('signin_email').value;
-    let password = document.getElementById('signin_password').value;
+    const email = document.getElementById('signin_email').value;
+    const password = document.getElementById('signin_password').value;
 
     if(!email||!password){
         Swal.fire({
@@ -184,7 +184,7 @@ function sendLogINData(){
         .then(res => res.json())
         .then( async (user_info) =>  {
             if (user_info.data.login) {
-                let {accessToken, name, id } = user_info.data.login;
+                const {accessToken, name, id } = user_info.data.login;
 
                 // let user = {
                 //     id,
@@ -220,7 +220,7 @@ function sendLogINData(){
 
 
 function logout(){
-    let ans = confirm('Confirm to logout');
+    const ans = confirm('Confirm to logout');
     if(ans === true){
         localStorage.removeItem('user_token');
         localStorage.removeItem('user_info');

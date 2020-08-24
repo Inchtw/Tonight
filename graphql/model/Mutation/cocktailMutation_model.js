@@ -4,10 +4,10 @@ const { ApolloError} = require('apollo-server-express');
 
 
 const likeCocktail = async (args,context) =>{
-    let {likeInput} = args;
+    const {likeInput} = args;
     if(context.me){
-        let cocktails = await context.tools.DB.query('select * from cocktails where id =? ',likeInput.id);
-        let check = await context.tools.DB.query('select * from user_like_join where user_id =? and cocktail_id=? ',[context.me, likeInput.id]);
+        const cocktails = await context.tools.DB.query('select * from cocktails where id =? ',likeInput.id);
+        const check = await context.tools.DB.query('select * from user_like_join where user_id =? and cocktail_id=? ',[context.me, likeInput.id]);
         if(check.length===0&&cocktails.length){
             try {
                 await context.tools.DB.transaction();
@@ -46,14 +46,14 @@ const likeCocktail = async (args,context) =>{
 
 
 const createCocktail = async (args,context) =>{
-    let {name, ori_image,description,category,ingredients,steps} = args.cocktailInput;
-    let author_id = context.me;
+    const {name, ori_image,description,category,ingredients,steps} = args.cocktailInput;
+    const author_id = context.me;
 
     try {
         await context.tools.DB.transaction();
-        let authors =  await context.tools.DB.query('Select name from user where id = ?',author_id);
-        let author= authors[0];
-        let cocktail_info = {
+        const authors =  await context.tools.DB.query('Select name from user where id = ?',author_id);
+        const author= authors[0];
+        const cocktail_info = {
             name,
             ori_image,
             description,
@@ -69,7 +69,7 @@ const createCocktail = async (args,context) =>{
         const createQuery = 'INSERT INTO cocktails SET ?';
 
 
-        let cockinsert =  await context.tools.DB.query(createQuery,cocktail_info);
+        const cockinsert =  await context.tools.DB.query(createQuery,cocktail_info);
         cocktail_info.link = `detail.html?id=${cockinsert.insertId}`;
         cocktail_info.ingredients =ingredients;
         cocktail_info.steps =steps;
@@ -89,10 +89,10 @@ const createCocktail = async (args,context) =>{
 const commentCocktail = async (args,context) =>{
 
     if(context.me){
-        let { cocktail_id,rank,comment,img,title} = args.commentInput;
-        let user_id = context.me;
+        const { cocktail_id,rank,comment,img,title} = args.commentInput;
+        const user_id = context.me;
         try {
-            let commentInfos = {  user_id,cocktail_id,rank,comment,img,title};
+            const commentInfos = {  user_id,cocktail_id,rank,comment,img,title};
             await context.tools.DB.transaction();
             const commentQuery = 'INSERT INTO comments SET ?';
             await context.tools.DB.query(commentQuery,commentInfos);

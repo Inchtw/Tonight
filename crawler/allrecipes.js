@@ -39,7 +39,7 @@ const getAllLinks= async function(pages)
     });
 
     try{
-        let urls = await page.evaluate(async() => {
+        const urls = await page.evaluate(async() => {
             const array = Array.from(document.querySelectorAll('#fixedGridSection > article > div.grid-card-image-container > a '));
             return array.map(a => a.getAttribute('href')).filter(a => a.includes('com/recipe'));
         });
@@ -58,16 +58,16 @@ const crawler = async function(){
 
     let urls = [];
     for(let pages =1;pages<2;pages++ ){
-        let linksArray = await getAllLinks(pages);
+        const linksArray = await getAllLinks(pages);
         urls= [...new Set([...urls ,...linksArray])];
     }
 
-    let alreadySave = await query('select link from cocktails');
-    let alreadyArray =  alreadySave.map(a=>{
+    const alreadySave = await query('select link from cocktails');
+    const alreadyArray =  alreadySave.map(a=>{
         return   a.link;
     } );
 
-    let filters = [...new Set([...failures ,...alreadyArray])];
+    const filters = [...new Set([...failures ,...alreadyArray])];
     urls = urls.filter(e => !filters.includes(e));
     console.log(urls);
 
@@ -125,9 +125,9 @@ async function newPageGO (url){
 
         try{
             const categories = ['Shot' , 'Rum', 'Tequila', 'Vodka' , 'Champangne','Whiskey','Brandy','Gin','Wine'];
-            let rumLike = ['mojito','caribbean'];
-            let tequilaLike = ['mexican'];
-            let categoryText = await document.querySelector('body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.content-breadcrumbs > div > nav > ol > li.breadcrumbs__item.breadcrumbs__item--last > a > span.breadcrumbs__title').innerText ||'no category!';
+            const rumLike = ['mojito','caribbean'];
+            const tequilaLike = ['mexican'];
+            const categoryText = await document.querySelector('body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.content-breadcrumbs > div > nav > ol > li.breadcrumbs__item.breadcrumbs__item--last > a > span.breadcrumbs__title').innerText ||'no category!';
             console.log(categoryText);
             let category   =  categories.filter(x=> {
                 if(categoryText.toLowerCase().includes(x.toLowerCase())){
@@ -172,8 +172,8 @@ async function newPageGO (url){
     });
     const ingredients = await  page.evaluate(async() => {
         try{
-            let all=  document.querySelectorAll('#ar-calvera-app > section.component.recipe-ingredients-new.container.interactive > fieldset > ul > li');
-            let ingredients =[];
+            const all=  document.querySelectorAll('#ar-calvera-app > section.component.recipe-ingredients-new.container.interactive > fieldset > ul > li');
+            const ingredients =[];
             for(let i=0;i<all.length;i++){
                 ingredients.push(all[i].querySelector('label > span >span').innerText);
             }
@@ -188,8 +188,8 @@ async function newPageGO (url){
         try{
 
 
-            let all = document.querySelectorAll('body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.two-col-main-content.karma-content-container.railDockSection-0 > div.recipe-content.two-col-content.karma-main-column > div.two-col-content-wrapper > div.recipe-content-container > section.recipe-instructions.recipe-instructions-new.component.container > fieldset > ul > li');
-            let steps =[];
+            const all = document.querySelectorAll('body > div.docked-sharebar-content-container > div > main > div.recipe-container.two-col-container > div.content.two-col-main-content.karma-content-container.railDockSection-0 > div.recipe-content.two-col-content.karma-main-column > div.two-col-content-wrapper > div.recipe-content-container > section.recipe-instructions.recipe-instructions-new.component.container > fieldset > ul > li');
+            const steps =[];
             for(let i=0;i<all.length;i++){
                 steps.push(all[i].querySelector('div.section-body > div > p').innerText);
             }
@@ -237,11 +237,11 @@ async function newPageGO (url){
 cron.schedule('0 0 0 28 * *', () => {
 
     (async()=>{
-        let result = await crawler();
+        const result = await crawler();
         console.log(result);
         fs.writeFile('./failures/failures.json', JSON.stringify( failures, null, 2));
-        let cocktail_sql = 'Insert INTO cocktails (name, ori_image , description , steps , ingredients , link, resource, author ,category ,author_id) VALUES ?';
-        let queryResult = await query(cocktail_sql,[result.map(x => Object.values(x))]);
+        const cocktail_sql = 'Insert INTO cocktails (name, ori_image , description , steps , ingredients , link, resource, author ,category ,author_id) VALUES ?';
+        const queryResult = await query(cocktail_sql,[result.map(x => Object.values(x))]);
         console.log(queryResult);
     })();
 

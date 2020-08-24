@@ -6,7 +6,7 @@ const Upload = require('../photoUpload');
 
 router.route('/headimageload')
     .post(isAuth.uploadAuth,Upload.myHeadUpload.fields([{ name: 'change_headpic' }]), async(req,res)=>{
-        let updateHeadsql = `UPDATE user SET user.photo = "${req.files.change_headpic[0].location}" where user.id = ?`;
+        const updateHeadsql = `UPDATE user SET user.photo = "${req.files.change_headpic[0].location}" where user.id = ?`;
         await DB.query(updateHeadsql,req.id);
         res.status(200).json({ url : req.files.change_headpic[0].location });
 

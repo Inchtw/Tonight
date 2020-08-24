@@ -43,7 +43,7 @@ if(!accessToken&&!user_info){
         }
     } ).then(res => res.json())
         .then(res =>{
-            let categories_select = $('.cateshow');
+            const categories_select = $('.cateshow');
             categories.forEach(cate=>{
                 categories_select.append($(`<option class="dropdown-item">${cate}</option>`));
             });
@@ -62,23 +62,23 @@ if(!accessToken&&!user_info){
 
 async function CreateMyRecipe(){
 
-    let name = document.getElementById('name').value;
-    let category = $('#Category').val();
+    const name = document.getElementById('name').value;
+    const category = $('#Category').val();
     // document.getElementById('category').value;
-    let steps = [];
+    const steps = [];
     document.querySelectorAll('.stepsarray').forEach(Step=>{
         if(Step.value){
             steps.push(Step.value);
         }
     });
-    let ingredients = [];
+    const ingredients = [];
     document.querySelectorAll('.ingredientsarray').forEach(ingredient=>{
         if(ingredient.value){
             ingredients.push(ingredient.value);
         }
     });
-    let description = document.getElementById('description').value;
-    let variables = {name,category ,steps ,description , ingredients  };
+    const description = document.getElementById('description').value;
+    const variables = {name,category ,steps ,description , ingredients  };
 
 
     if(!name||!category||!steps.length||!ingredients.length||!description){
@@ -91,10 +91,10 @@ async function CreateMyRecipe(){
 
     }
 
-    let form = document.getElementById('createRecipe');
-    let formData = new FormData(form);
+    const form = document.getElementById('createRecipe');
+    const formData = new FormData(form);
 
-    let uri = '/imageload';
+    const uri = '/imageload';
 
     Swal.fire({
         title: 'Uploading...',
@@ -159,7 +159,7 @@ async function CreateMyRecipe(){
                 .then(res => res.json())
                 .then(async (result) => {
                     Swal.close();
-                    let {id} = result.data.createCocktail;
+                    const {id} = result.data.createCocktail;
                     if(result.data.createCocktail.name){
 
 

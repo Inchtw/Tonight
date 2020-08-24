@@ -12,13 +12,13 @@
 //     },
 // });
 
-let id = app.getParameter('id');
+const id = app.getParameter('id');
 if (id===user_info.id) {
     window.location = '/profile.html';
 }
 
 
-let myPostquery = ` {
+const myPostquery = ` {
   me{
     id
     name
@@ -54,7 +54,7 @@ let myPostquery = ` {
 }
 `;
 
-let myLikeQuery = ` {
+const myLikeQuery = ` {
   me{
     name
     photo
@@ -90,7 +90,7 @@ let myLikeQuery = ` {
 }
 `;
 
-let mySubQuery = ` {
+const mySubQuery = ` {
   me{
     post{
       id
@@ -120,7 +120,7 @@ let mySubQuery = ` {
 `;
 
 
-let myFollowerQuery =`{
+const myFollowerQuery =`{
   me{
     post{
       id
@@ -149,7 +149,7 @@ let myFollowerQuery =`{
   }`;
 
 
-let userPostquery = ` {
+const userPostquery = ` {
     users(id:${id}){
       id
       name
@@ -187,7 +187,7 @@ let userPostquery = ` {
   `;
 
 
-let userLikeQuery = ` {
+const userLikeQuery = ` {
     users(id:${id}){
       id
       name
@@ -224,7 +224,7 @@ let userLikeQuery = ` {
   }
   `;
 
-let userSubQuery = ` {
+const userSubQuery = ` {
     users(id:${id}){
       id
       post{
@@ -255,7 +255,7 @@ let userSubQuery = ` {
   `;
 
 
-let userFollowerQuery =`{
+const userFollowerQuery =`{
     users(id:${id}){
       id
       post{
@@ -288,7 +288,7 @@ let userFollowerQuery =`{
 app.init = function () {
 
 
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     let Query;
     if(id){
         Query = userPostquery;
@@ -354,11 +354,11 @@ app.init = function () {
                 window.location.replace('/login.html');
             }
 
-            let {data} = info;
+            const {data} = info;
             Swal.close();
 
             if(data.me){
-                let {me} = data;
+                const {me} = data;
                 localStorage.setItem('user_info', JSON.stringify(me));
                 update(me);
 
@@ -366,7 +366,7 @@ app.init = function () {
 
 
             }else if(data.users[0]){
-                let user = data.users[0];
+                const user = data.users[0];
                 update(user);
 
             }else{
@@ -384,7 +384,7 @@ app.init = function () {
 
             }
             function update(user){
-                let {followers ,  likes, name, photo , post , subscriptions ,} = user;
+                const {followers ,  likes, name, photo , post , subscriptions ,} = user;
                 $('#myposts').text(post.length);
                 $('#mylikes').text(likes.length);
                 $('#myfollowers').text(followers.length);
@@ -394,7 +394,7 @@ app.init = function () {
   
           </div>`));
 
-                let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+                const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
                 if(user_info){
                     user_info.subscriptions.forEach(e=>{
                         if(e.id ===id){
@@ -434,16 +434,16 @@ app.init = function () {
 function getPost(post){
 
     post.forEach(recipe => {
-        let category = recipe['category'].split(' ',1).join('').split('-',1);
+        const category = recipe['category'].split(' ',1).join('').split('-',1);
         let likes = 0;
         let views= 0;
         let comment = 0;
 
-        let card = $('<div class="card mb-4 shadow-sm"></div>');
-        let img = $(`<div class="card-img-top overflow-hidden "
+        const card = $('<div class="card mb-4 shadow-sm"></div>');
+        const img = $(`<div class="card-img-top overflow-hidden "
   style=" height: 250px; background-image: url('${recipe.ori_image}'); background-repeat: no-repeat; background-size: cover; background-position: inherit center;">
 </div>`);
-        let cardbody = $(`<div class=" card-body position-relative ">
+        const cardbody = $(`<div class=" card-body position-relative ">
   <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
       <button class="btn btn-sm float-right "><i id="cocktail_${recipe.id}" class="fa fa-heart-o"></i>
       </button>
@@ -456,7 +456,7 @@ function getPost(post){
 </div>`);
 
 
-        let rank_stars = $('<div class="cocktail_ranking"></div>');
+        const rank_stars = $('<div class="cocktail_ranking"></div>');
 
         if(recipe.rank){
             for(i=0;i< 5-Math.floor(recipe.rank);i++){
@@ -485,7 +485,7 @@ function getPost(post){
             likes=    recipe.likes;
         }
 
-        let cardfooter = $(` <div class="card-footer d-flex justify-content-between">
+        const cardfooter = $(` <div class="card-footer d-flex justify-content-between">
   <small class="fa fa-eye w-25 text-center "> <span
           class="text-muted ">${views}</span></small>
   <small class="fa fa-comments-o w-25 text-center"> <span
@@ -495,12 +495,12 @@ function getPost(post){
 </div>`);
 
         card.append(img,cardbody,cardfooter);
-        let a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
+        const a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
 
         $('.profile_card').append(a);
 
     });
-    let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+    const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.likes.forEach(e=>{
             $(`#cocktail_${e.id}`).addClass('fa-heart');
@@ -532,7 +532,7 @@ function getUsers (UserInfo){
             u_post=  user.post.length;
         }
 
-        let card = $(` 
+        const card = $(` 
     <div class="card mb-4 shadow-sm">
         <button  id="user_${user.id}"  class="btn btn-sm  position-absolute fa text-muted fa-bookmark followMe "
             style=" margin: 1em ;">
@@ -564,13 +564,13 @@ function getUsers (UserInfo){
 
 
 
-        let a = $(`<a href="profile.html?id=${user.id}" class="card-group col-md-3 text-reset text-decoration-none"></a>`).append(card);
+        const a = $(`<a href="profile.html?id=${user.id}" class="card-group col-md-3 text-reset text-decoration-none"></a>`).append(card);
 
 
         $('.profile_card').append(a);
 
     });
-    let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+    const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.subscriptions.forEach(e=>{
 
@@ -626,7 +626,7 @@ function graphMeFetch(query){
                 localStorage.removeItem('user_info');
                 window.location.replace('/login.html');
             }
-            let {data} = info;
+            const {data} = info;
             // let {me} = data;
             // return me;
             return data;
@@ -646,16 +646,16 @@ async function GetmyPost(){
         },
     });
 
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     if(id){
-        let data =await graphMeFetch(userPostquery);
+        const data =await graphMeFetch(userPostquery);
         $('.profile_card').html('');
         getPost(data.users[0].post);
         Swal.close();
 
 
     }else{
-        let data =await graphMeFetch(myPostquery);
+        const data =await graphMeFetch(myPostquery);
         $('.profile_card').html('');
         getPost(data.me.post);
         Swal.close();
@@ -677,15 +677,15 @@ async function getMyLikes(){
             Swal.showLoading();
         },
     });
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     if(id){
-        let data =await graphMeFetch(userLikeQuery);
+        const data =await graphMeFetch(userLikeQuery);
         $('.profile_card').html('');
         getPost(data.users[0].likes);
         Swal.close();
 
     }else{
-        let data =await graphMeFetch(myLikeQuery);
+        const data =await graphMeFetch(myLikeQuery);
         $('.profile_card').html('');
         getPost(data.me.likes);
         Swal.close();
@@ -704,16 +704,16 @@ async function getMyFollowing(){
         },
     });
 
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     if(id){
-        let data =await graphMeFetch(userSubQuery);
+        const data =await graphMeFetch(userSubQuery);
         $('.profile_card').html('');
         getUsers(data.users[0].subscriptions);
         Swal.close();
 
 
     }else{
-        let data =await graphMeFetch(mySubQuery);
+        const data =await graphMeFetch(mySubQuery);
         $('.profile_card').html('');
         getUsers(data.me.subscriptions);
         Swal.close();
@@ -725,7 +725,7 @@ async function getMyFollowing(){
 
 
 async function getMyFollower() {
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     Swal.fire({
         background: 'none',
         onBeforeOpen: () => {
@@ -733,13 +733,13 @@ async function getMyFollower() {
         },
     });
     if(id){
-        let data =await graphMeFetch(userFollowerQuery);
+        const data =await graphMeFetch(userFollowerQuery);
         $('.profile_card').html('');
         getUsers(data.users[0].followers);
         Swal.close();
 
     }else{
-        let data =await graphMeFetch(myFollowerQuery);
+        const data =await graphMeFetch(myFollowerQuery);
         $('.profile_card').html('');
         getUsers(data.me.followers);
         Swal.close();
@@ -748,15 +748,15 @@ async function getMyFollower() {
 }
 
 function subAuthor(){
-    let id = app.getParameter('id');
+    const id = app.getParameter('id');
     if(!id){
         return;
     }
-    let variables = {
+    const variables = {
         'id': id
     };
 
-    let subQuery = `mutation subscribe($id: ID!) {
+    const subQuery = `mutation subscribe($id: ID!) {
       subscribeAuthor(SubscribeInput: {id: $id}) 
     } `;
     fetch(url, {
@@ -772,7 +772,7 @@ function subAuthor(){
         }
     } ).then(res => res.json())
         .then(res=>{
-            let {data} = res;
+            const {data} = res;
             if(res.errors){
                 Swal.fire({
                     title: 'Invalid status!',
@@ -786,7 +786,7 @@ function subAuthor(){
                 localStorage.removeItem('user_info');
                 window.location.replace('/login.html');
             }
-            let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+            const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
 
 
             if(!data.subscribeAuthor){
@@ -794,7 +794,7 @@ function subAuthor(){
                 $('#follow').removeClass('fa-check');
                 $('#follow').text('follow');
 
-                let newSub = user_info.subscriptions.filter(function(el) { return el.id != id; });
+                const newSub = user_info.subscriptions.filter(function(el) { return el.id != id; });
                 user_info.subscriptions =  newSub;
 
                 localStorage.setItem('user_info', JSON.stringify(user_info));
@@ -830,7 +830,7 @@ $('#change_headpic').change ( async function() {
     };
     reader.readAsDataURL( file );
 
-    let formData = new FormData();
+    const formData = new FormData();
 
     formData.append( 'change_headpic', file );
 

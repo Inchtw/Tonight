@@ -7,8 +7,8 @@ function userCommentsDataLoader(){
     return new DataLoader(commentsByUserIds);
 }
 async function commentsByUserIds(userIds){
-    let myComment_sql = 'SELECT * FROM tonight.comments where user_id in (?) order by id DESC';
-    let userComments = await DB.query(myComment_sql,[userIds]);
+    const myComment_sql = 'SELECT * FROM tonight.comments where user_id in (?) order by id DESC';
+    const userComments = await DB.query(myComment_sql,[userIds]);
     const groupById = groupBy(comment=>comment.user_id , userComments);
     return await map(user_id=>groupById[user_id], userIds);
 
@@ -18,12 +18,12 @@ function userLikesDataLoader(){
     return new DataLoader(likesByUserIds);
 }
 async function likesByUserIds(userIds){
-    let mylikes_sql = `SELECT * , cocktails.id as LIKE_ID
+    const mylikes_sql = `SELECT * , cocktails.id as LIKE_ID
             FROM cocktails
             INNER JOIN  user_like_join
             ON user_like_join.cocktail_id=cocktails.id
             where user_like_join.user_id in (?) order by LIKE_ID DESC `;
-    let userLikes = await DB.query(mylikes_sql,[userIds]);
+    const userLikes = await DB.query(mylikes_sql,[userIds]);
     userLikes.forEach(e=>{
         if(e){
             e.id = e.LIKE_ID;
@@ -38,14 +38,14 @@ function userSubscriptionsDataLoader(){
     return new DataLoader(subscriptionsByUserIds);
 }
 async function subscriptionsByUserIds(userIds){
-    let userSub_sql = `SELECT  user.id , user.name ,user.photo , user_subscribe_join.user_id  as me_id
+    const userSub_sql = `SELECT  user.id , user.name ,user.photo , user_subscribe_join.user_id  as me_id
     FROM user 
     left Join user_subscribe_join
     on user.id = user_subscribe_join.author_id
     where user_subscribe_join.user_id in(?) order by id DESC
     
     ;`;
-    let userSubscriptions = await DB.query(userSub_sql,[userIds]);
+    const userSubscriptions = await DB.query(userSub_sql,[userIds]);
     const groupById = groupBy(subscribed=>subscribed.me_id , userSubscriptions);
 
     return await map(me_id=>groupById[me_id], userIds);
@@ -55,12 +55,12 @@ function userFollowersDataLoader(){
     return new DataLoader(userFollowersByUserIds);
 }
 async function userFollowersByUserIds(userIds){
-    let userFollowers_sql = `SELECT  user.id  , user.name ,user.photo , user_subscribe_join.author_id  as me_id
+    const userFollowers_sql = `SELECT  user.id  , user.name ,user.photo , user_subscribe_join.author_id  as me_id
     FROM user 
     left Join user_subscribe_join
     on user.id = user_subscribe_join.user_id
     where user_subscribe_join.author_id in(?) order by id DESC;`;
-    let userFollowers = await DB.query(userFollowers_sql,[userIds]);
+    const userFollowers = await DB.query(userFollowers_sql,[userIds]);
     const groupById = groupBy(follower=>follower.me_id , userFollowers);
 
     return await map(me_id=>groupById[me_id], userIds);
@@ -70,10 +70,10 @@ function userPostsDataLoader(){
     return new DataLoader(userPostsByUserIds);
 }
 async function userPostsByUserIds(userIds){
-    let userPost_sql = `SELECT *
+    const userPost_sql = `SELECT *
     FROM cocktails
    where author_id in (?) order by id DESC limit 300 ;`;
-    let myposts = await DB.query(userPost_sql,[userIds]);
+    const myposts = await DB.query(userPost_sql,[userIds]);
     myposts.forEach(cocktail=> {
         cocktail.ingredients = JSON.parse(cocktail['ingredients']);
         cocktail.steps = JSON.parse(cocktail['steps']);

@@ -3,7 +3,7 @@
 module.exports = {
 
     comments : async (parent,args,context)=>{
-        let myComments = await context.dataloaders.userLoaders.userCommentsDataLoader.load(parent.id);
+        const myComments = await context.dataloaders.userLoaders.userCommentsDataLoader.load(parent.id);
         if(myComments){
             myComments.forEach(comment=> {
                 comment.id = parent.id;

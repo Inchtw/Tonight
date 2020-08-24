@@ -3,7 +3,7 @@
 app.init = function () {
 
 
-    let carouselQuery = ` {
+    const carouselQuery = ` {
         cocktailThree{
           hots{
             id
@@ -56,7 +56,7 @@ app.init = function () {
         }
     } ).then(res => res.json())
         .then(res=>{
-            let {data} = res;
+            const {data} = res;
 
             getCarousel(data.cocktailThree.hots,'Hots');
             getCarousel(data.cocktailThree.news,'News');
@@ -74,16 +74,16 @@ function getCarousel(cocktailArray,version){
 
 
     cocktailArray.forEach(recipe => {
-        let category = recipe['category'].split(' ',1).join('').split('-',1);
+        const category = recipe['category'].split(' ',1).join('').split('-',1);
         let likes = 0;
         let views= 0;
         let comment = 0;
 
-        let card = $('<div class="card mb-4 shadow-sm"></div>');
-        let img = $(`<div class="card-img-top overflow-hidden "
+        const card = $('<div class="card mb-4 shadow-sm"></div>');
+        const img = $(`<div class="card-img-top overflow-hidden "
         style=" height: 250px; background-image: url('${recipe.ori_image}'); background-repeat: no-repeat; background-size: cover; background-position: inherit center;">
     </div>`);
-        let cardbody = $(`<div class=" card-body position-relative ">
+        const cardbody = $(`<div class=" card-body position-relative ">
         <h5 class="card-title d-flex justify-content-between align-items-center ">${recipe.name}
             <button class="btn btn-sm float-right "><i id="${version}_${recipe.id}" class="fa fa-heart-o"></i>
             </button>
@@ -96,7 +96,7 @@ function getCarousel(cocktailArray,version){
     </div>`);
 
 
-        let rank_stars = $('<div class="cocktail_ranking"></div>');
+        const rank_stars = $('<div class="cocktail_ranking"></div>');
 
         if(recipe.rank){
             for(i=0;i< 5-Math.floor(recipe.rank);i++){
@@ -125,7 +125,7 @@ function getCarousel(cocktailArray,version){
             likes=    recipe.likes;
         }
 
-        let cardfooter = $(` <div class="card-footer d-flex justify-content-between">
+        const cardfooter = $(` <div class="card-footer d-flex justify-content-between">
         <small class="fa fa-eye w-25 text-center "> <span
                 class="text-muted ">${views}</span></small>
         <small class="fa fa-comments-o w-25 text-center"> <span
@@ -135,12 +135,12 @@ function getCarousel(cocktailArray,version){
     </div>`);
 
         card.append(img,cardbody,cardfooter);
-        let a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
+        const a = $(`<a href="detail.html?id=${recipe.id}" class="card-group col-md-4 text-reset text-decoration-none"></a>`).append(card);
 
         $(`.${version}`).append(a);
 
     });
-    let user_info = JSON.parse(localStorage.getItem('user_info'))||'';
+    const user_info = JSON.parse(localStorage.getItem('user_info'))||'';
     if(user_info){
         user_info.likes.forEach(e=>{
             $(`#${version}_${e.id}`).addClass('likes_color');

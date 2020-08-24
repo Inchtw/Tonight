@@ -7,7 +7,7 @@
     "test": "NODE_ENV=test mocha ./test --exit",
     "start": "node app.js",
     "devstart": "nodemon",
-    "lint": "eslint ./*.js"
+    "lint": "eslint --fix --ext .js ."
   },
   "repository": {
     "type": "git",

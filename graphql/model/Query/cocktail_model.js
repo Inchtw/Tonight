@@ -3,12 +3,12 @@ const { UserInputError } = require('apollo-server-express');
 
 
 const getCocktailRecipe = async(args,context)=>{
-    let {id} = args;
-    let {tools,pubsub,req} = context;
+    const {id} = args;
+    const {tools,pubsub,req} = context;
 
     if(id){
 
-        let cocktail = await tools.DB.query('select * from cocktails where id=?',id);
+        const cocktail = await tools.DB.query('select * from cocktails where id=?',id);
         if(cocktail.length===0){
             return new UserInputError('Wrong cocktial id!');
         }
@@ -24,8 +24,8 @@ const getCocktailRecipe = async(args,context)=>{
         cocktail[0].steps = JSON.parse(cocktail[0]['steps']);
         return cocktail;
     }
-    let cocktailssql = 'select * from cocktails';
-    let cocktails = await tools.DB.query(cocktailssql);
+    const cocktailssql = 'select * from cocktails';
+    const cocktails = await tools.DB.query(cocktailssql);
     pubsub.publish('new_viewer', { newViewer : req.id});
     cocktails.forEach(cocktail=> {
         cocktail.ingredients = JSON.parse(cocktail['ingredients']);
@@ -37,12 +37,12 @@ const getCocktailRecipe = async(args,context)=>{
 };
 
 const getThreeSelections = async(context)=>{
-    let hots_sql = 'select * from cocktails order by views DESC limit 3 ';
-    let tops_sql = 'select * from cocktails order by likes DESC limit 3 ';
-    let news_sql = 'select * from cocktails order by id DESC limit 3 ';
-    let hots = await context.tools.DB.query(hots_sql);
-    let tops = await context.tools.DB.query(tops_sql);
-    let news = await context.tools.DB.query(news_sql);
+    const hots_sql = 'select * from cocktails order by views DESC limit 3 ';
+    const tops_sql = 'select * from cocktails order by likes DESC limit 3 ';
+    const news_sql = 'select * from cocktails order by id DESC limit 3 ';
+    const hots = await context.tools.DB.query(hots_sql);
+    const tops = await context.tools.DB.query(tops_sql);
+    const news = await context.tools.DB.query(news_sql);
     return {hots,tops,news};
 
 
@@ -50,8 +50,8 @@ const getThreeSelections = async(context)=>{
 
 
 const getCategories = async (context)=>{
-    let categories =  await context.tools.DB.query('SELECT DISTINCT category FROM cocktails;');
-    let category = await categories .map(e=>{
+    const categories =  await context.tools.DB.query('SELECT DISTINCT category FROM cocktails;');
+    const category = await categories .map(e=>{
         return   e.category;
     });
     return category;
@@ -148,7 +148,7 @@ const getAllRecipes = async (args,context) =>{
 
 const getAuthorRecipes = async (args,context) =>{
 
-    let auth = `%${args.author}%`;
+    const auth = `%${args.author}%`;
 
     if(args.sort === 'DESC'){
         if(args.first){
@@ -215,7 +215,7 @@ const getCategoryRecipes = async(args,context) =>{
 
 const getIngredientRecipes = async(args,context) =>{
 
-    let ingri = `%${args.ingredient}%`;
+    const ingri = `%${args.ingredient}%`;
     if(args.sort === 'DESC'){
         if(args.first){
             return args.after
@@ -250,7 +250,7 @@ const getIngredientRecipes = async(args,context) =>{
 
 const getCategoryWithAuthorRecipes = async (args,context) =>{
 
-    let auth = `%${args.author}%`;
+    const auth = `%${args.author}%`;
     if(args.sort === 'DESC'){
         if(args.first){
             return args.after
@@ -283,7 +283,7 @@ const getCategoryWithAuthorRecipes = async (args,context) =>{
 
 
 const getIngredientWithCategoryRecipes = async (args,context) =>{
-    let ingri = `%${args.ingredient}%`;
+    const ingri = `%${args.ingredient}%`;
     if(args.sort === 'DESC'){
         if(args.first){
             return args.after

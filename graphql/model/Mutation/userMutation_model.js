@@ -4,13 +4,13 @@ require('dotenv').config();
 // const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-let access_expired = process.env.TOKEN_EXPIRE;
+const access_expired = process.env.TOKEN_EXPIRE;
 // const got = require('got');
 const SecrectKEY = process.env.SecrectKEY;
 
 const signUp = async (args,context) => {
 
-    let {name, email,password} = args.userInput;
+    const {name, email,password} = args.userInput;
     if(!name||!email||!password){
 
         throw new UserInputError('Wrong format');
@@ -25,7 +25,7 @@ const signUp = async (args,context) => {
             await context.tools.DB.commit();
             throw new UserInputError('Email Already Existed!');
         }
-        let hash = crypto.createHash('sha256');
+        const hash = crypto.createHash('sha256');
         const user = {
             provider: 'native',
             email: email,
@@ -35,7 +35,7 @@ const signUp = async (args,context) => {
         };
         const queryStr = 'INSERT INTO user SET ?';
         const result = await context.tools.DB.query(queryStr, user);
-        let id = result.insertId;
+        const id = result.insertId;
         user.id = id;
         const accessToken = jwt.sign({ id, provider: 'native', name, email, photo: '/imgs/defaultphoto.jpg' }, SecrectKEY, { expiresIn: access_expired });
         user.accessToken =accessToken;
@@ -48,8 +48,8 @@ const signUp = async (args,context) => {
 };
 
 const signIn = async (args,context) => {
-    let { email, password } = args.Userlogin;
-    let hash = crypto.createHash('sha256');
+    const { email, password } = args.Userlogin;
+    const hash = crypto.createHash('sha256');
     try {
         await context.tools.DB.transaction();
         const users = await context.tools.DB.query('select * from user where email = ? AND password = ?', [email , hash.update(password + SecrectKEY).digest('hex') ]);
@@ -58,7 +58,7 @@ const signIn = async (args,context) => {
             throw new UserInputError( 'Email or password incorrect!');
         }
         const loginAt = new Date();
-        let user = users[0];
+        const user = users[0];
         const accessToken = jwt.sign({ id : user.id , provider: user.provider, name : user.name , photo : user.photo, email : user.email, loginAt}, SecrectKEY, { expiresIn: access_expired });
         user.accessToken =accessToken;
         await context.tools.DB.commit();
@@ -71,12 +71,12 @@ const signIn = async (args,context) => {
 
 
 const subscribeAuthor =  async (args,context) =>{
-    let {me,tools} = context;
-    let {SubscribeInput}= args;
+    const {me,tools} = context;
+    const {SubscribeInput}= args;
 
     if(me){
-        let users = await tools.DB.query('select * from user where id =? ',SubscribeInput.id);
-        let check = await tools.DB.query('select * from user_subscribe_join where user_id =? and author_id=? ',[me, SubscribeInput.id]);
+        const users = await tools.DB.query('select * from user where id =? ',SubscribeInput.id);
+        const check = await tools.DB.query('select * from user_subscribe_join where user_id =? and author_id=? ',[me, SubscribeInput.id]);
         if(check.length===0&&users.length){
             try {
                 await tools.DB.transaction();

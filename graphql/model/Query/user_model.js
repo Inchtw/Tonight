@@ -4,7 +4,7 @@ const { AuthenticationError} = require('apollo-server-express');
 
 const getMyInfo = async (context)=>{
     if(context.me){
-        let myinfo = await context.tools.DB.query('select * from user where id=?',[context.me]);
+        const myinfo = await context.tools.DB.query('select * from user where id=?',[context.me]);
 
         return myinfo[0];
     }
