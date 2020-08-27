@@ -49,6 +49,7 @@ const getAllLinks= async function(pages)
     }catch(e){
         console.log(e);
         console.log(`This is ${pages} no more pages!`);
+        await browser.close();
         return [];
     }
 

@@ -16,7 +16,7 @@ app.use(isAuth.isAuth);
 const context = require('./graphql/context/context');
 const subscriptions = require('./graphql/subscriptions/subscriptions');
 const depthLimit = require('graphql-depth-limit');
-app.use(require('./utils/routes/image_upload'));
+app.use(require('./graphql/routes/image/image_upload'));
 
 
 const server = new ApolloServer({

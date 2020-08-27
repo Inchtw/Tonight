@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const DB = require('../mysqlcon');
-const isAuth = require('../is-auth');
-const Upload = require('../photoUpload');
+const DB = require('../../../utils/mysqlcon');
+const isAuth = require('../../../utils/is-auth');
+const Upload = require('../../../utils/photoUpload');
 
 
 router.route('/headimageload')
