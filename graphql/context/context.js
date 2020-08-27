@@ -1,4 +1,4 @@
-const {  PubSub } = require('apollo-server-express');
+const {PubSub} = require('apollo-server-express');
 const pubsub = new PubSub();
 
 // const dataloaders = require('../model/dataloders');
@@ -15,49 +15,50 @@ const cocktailQuery = require('../model/Query/cocktail_model');
 const userMutation = require('../model/Mutation/userMutation_model');
 const cocktailMutaion = require('../model/Mutation/cocktailMutation_model');
 const tools = {
-    DB,
-    moment,
+  DB,
+  moment,
 };
 const types = {
-    userType,
-    cocktailType
+  userType,
+  cocktailType,
 };
 
 const dataloaders = {
-    userLoaders,
-    cocktailLoaders
+  userLoaders,
+  cocktailLoaders,
 };
 const Mutation ={
-    userMutation,
-    cocktailMutaion
+  userMutation,
+  cocktailMutaion,
 };
 const Query ={
-    cocktailQuery,
-    userQuery,
-    types
+  cocktailQuery,
+  userQuery,
+  types,
 };
 
 
 module.exports = ({req})=>{
-    if(req){
-        return {
-            pubsub,
-            me : req.id,
-            isAuth : req.isAuth,
-            req,
-            tools,
-            startTime: Date.now(),
-            dataloaders,
-            Query,
-            Mutation
-        };
-    }else{
-        return {
-            pubsub,
-            req,
-            tools,
-            startTime: Date.now(),
+  if (req) {
+    return {
+      pubsub,
+      me: req.id,
+      isAuth: req.isAuth,
+      req,
+      tools,
+      startTime: Date.now(),
+      dataloaders,
+      Query,
+      Mutation,
+    };
+  } else {
+    return {
+      pubsub,
+      req,
+      tools,
+      startTime: Date.now(),
 
 
-        };}
+    };
+  }
 };

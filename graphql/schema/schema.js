@@ -1,4 +1,4 @@
-const { gql} = require('apollo-server-express');
+const {gql} = require('apollo-server-express');
 const typeDefs = gql`
 "Cocktail include recipes and other info"
   type Cocktail{
@@ -40,7 +40,6 @@ input CocktailInput{
     category : String! 
     ingredients : [String!] 
     steps : [String!]!
-
 }
 
 input CommentInput{
@@ -50,7 +49,6 @@ input CommentInput{
     rank : Int!
     title : String
 }
-
 
 type Comment{
     "user ID"
@@ -93,6 +91,7 @@ input UserInput {
     name : String!
     password: String!
 }
+
 input Userlogin {
     email: String!
     password: String!
@@ -102,16 +101,13 @@ input SubscribeInput{
     id : ID!
 }
 
-
 input AddFriendInput {
     id : ID!
 }
 
 input LikeInput {
      id : ID!
-    
 }
-
 
 input UpdateMyInfoInput {
     nickname : String
@@ -153,14 +149,15 @@ type Mutation{
     commentCocktail(commentInput : CommentInput) : Comment
     subscribeAuthor(SubscribeInput:SubscribeInput) : Boolean
 }
+
 type Subscription {
     newUser: User
     newViewer : Int
   }
-
 `;
+
 module.exports ={
-    typeDefs
+  typeDefs,
 };
 
 

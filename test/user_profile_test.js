@@ -1,36 +1,33 @@
 require('dotenv').config();
-const {request,expect} = require('./setting.js');
+const {request, expect} = require('./setting.js');
 const {users} = require('./fake_data');
-
 const user1 = users[0];
 const user = {
-    email: user1.email,
-    password: user1.password
+  email: user1.email,
+  password: user1.password,
 };
 
-describe('get profile with login status',  () => {
-
-
-    it('sign in get my profile', async () => {
-        const res = await request
-            .post('/graphql')
-            .send({ query: `mutation Login($email: String!, $password: String!) {
+describe('get profile with login status', () => {
+  it('sign in get my profile', async () => {
+    const res = await request
+        .post('/graphql')
+        .send({query: `mutation Login($email: String!, $password: String!) {
                 login(Userlogin: {email: $email, password: $password }) {
                   id
                   accessToken
                   name
                 }
               }
-              `,variables:user})
-            .expect(200);
-        expect(res.body.data.login).to.have.property('accessToken');
-        const {accessToken} = res.body.data.login;
-        await request
-            .post('/graphql')
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .set('Authorization', 'Bearer '+ accessToken)
-            .send({ query: ` {
+              `, variables: user})
+        .expect(200);
+    expect(res.body.data.login).to.have.property('accessToken');
+    const {accessToken} = res.body.data.login;
+    await request
+        .post('/graphql')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .set('Authorization', 'Bearer '+ accessToken)
+        .send({query: ` {
                 me{
                   id
                   name
@@ -48,7 +45,6 @@ describe('get profile with login status',  () => {
                     likes
                     views
                     comment
-                    
                   }
                   subscriptions
                   {
@@ -92,20 +88,18 @@ describe('get profile with login status',  () => {
                     likes
                     views
                     comment
-                    
                   }
                 }
               }
               `})
-            .expect(200);
-
-    });
-    it('get my profile without sign in', async () => {
-        const res = await request
-            .post('/graphql')
-            .set('Content-Type', 'application/json')
-            .set('Accept', 'application/json')
-            .send({ query: ` {
+        .expect(200);
+  });
+  it('get my profile without sign in', async () => {
+    const res = await request
+        .post('/graphql')
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send({query: ` {
                 me{
                   id
                   name
@@ -122,8 +116,7 @@ describe('get profile with login status',  () => {
                     link
                     likes
                     views
-                    comment
-                    
+                    comment       
                   }
                   subscriptions
                   {
@@ -167,19 +160,16 @@ describe('get profile with login status',  () => {
                     likes
                     views
                     comment
-                    
                   }
                 }
               }
               `});
-        expect(res.body).to.have.own.property('errors');
-
-    });
-    it('get other profile without sign in', async () => {
-
-        const res = await request
-            .post('/graphql')
-            .send({ query: ` {
+    expect(res.body).to.have.own.property('errors');
+  });
+  it('get other profile without sign in', async () => {
+    const res = await request
+        .post('/graphql')
+        .send({query: ` {
                 users(id:${user1.id}){
                   id
                   name
@@ -197,7 +187,6 @@ describe('get profile with login status',  () => {
                     likes
                     views
                     comment
-                    
                   }
                   subscriptions
                   {
@@ -241,11 +230,10 @@ describe('get profile with login status',  () => {
                     likes
                     views
                     comment
-                    
                   }
                 }
               }
               `})
-            .expect(200);
-    });
+        .expect(200);
+  });
 });
