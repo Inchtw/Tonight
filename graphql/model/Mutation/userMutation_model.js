@@ -16,7 +16,6 @@ const signUp = async (args, context) => {
 
   try {
     await context.tools.DB.transaction();
-
     const emails = await context.tools.DB.query('SELECT email FROM user WHERE email = ?', [email]);
     if (emails.length > 0) {
       await context.tools.DB.commit();
@@ -66,11 +65,9 @@ const signIn = async (args, context) => {
   }
 };
 
-
 const subscribeAuthor = async (args, context) =>{
   const {me, tools} = context;
   const {SubscribeInput}= args;
-
   if (me) {
     const users = await tools.DB.query('select * from user where id =? ', SubscribeInput.id);
     const check = await tools.DB.query('select * from user_subscribe_join where user_id =? and author_id=? ', [me, SubscribeInput.id]);

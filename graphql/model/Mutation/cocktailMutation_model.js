@@ -63,8 +63,6 @@ const createCocktail = async (args, context) =>{
       createdAt: context.tools.moment().format('YYYY/MM/DD HH:mm:ss'),
     };
     const createQuery = 'INSERT INTO cocktails SET ?';
-
-
     const cockinsert = await context.tools.DB.query(createQuery, cocktail_info);
     cocktail_info.link = `detail.html?id=${cockinsert.insertId}`;
     cocktail_info.ingredients =ingredients;
@@ -110,10 +108,7 @@ const commentCocktail = async (args, context) =>{
 
 
 module.exports ={
-
   likeCocktail,
   commentCocktail,
   createCocktail,
-
-
 };

@@ -36,12 +36,12 @@ function userSubscriptionsDataLoader() {
   return new DataLoader(subscriptionsByUserIds);
 }
 async function subscriptionsByUserIds(userIds) {
-  const userSub_sql = `SELECT  user.id , user.name ,user.photo , user_subscribe_join.user_id  as me_id
+  const userSub_sql =
+    `SELECT  user.id , user.name ,user.photo , user_subscribe_join.user_id  as me_id
     FROM user 
     left Join user_subscribe_join
     on user.id = user_subscribe_join.author_id
     where user_subscribe_join.user_id in(?) order by id DESC
-    
     ;`;
   const userSubscriptions = await DB.query(userSub_sql, [userIds]);
   const groupById = groupBy((subscribed)=>subscribed.me_id, userSubscriptions);
@@ -53,7 +53,8 @@ function userFollowersDataLoader() {
   return new DataLoader(userFollowersByUserIds);
 }
 async function userFollowersByUserIds(userIds) {
-  const userFollowers_sql = `SELECT  user.id  , user.name ,user.photo , user_subscribe_join.author_id  as me_id
+  const userFollowers_sql =
+    `SELECT  user.id  , user.name ,user.photo , user_subscribe_join.author_id  as me_id
     FROM user 
     left Join user_subscribe_join
     on user.id = user_subscribe_join.user_id
@@ -68,7 +69,8 @@ function userPostsDataLoader() {
   return new DataLoader(userPostsByUserIds);
 }
 async function userPostsByUserIds(userIds) {
-  const userPost_sql = `SELECT *
+  const userPost_sql =
+    `SELECT *
     FROM cocktails
    where author_id in (?) order by id DESC limit 300 ;`;
   const myposts = await DB.query(userPost_sql, [userIds]);
@@ -82,12 +84,9 @@ async function userPostsByUserIds(userIds) {
 
 
 module.exports={
-
   userCommentsDataLoader: userCommentsDataLoader(),
   userLikesDataLoader: userLikesDataLoader(),
   userSubscriptionsDataLoader: userSubscriptionsDataLoader(),
   userFollowersDataLoader: userFollowersDataLoader(),
   userPostsDataLoader: userPostsDataLoader(),
-
-
 };

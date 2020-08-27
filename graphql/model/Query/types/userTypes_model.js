@@ -1,6 +1,7 @@
 const getUserRecommends = async (parent, context)=>{
   const {id} = parent;
-  const my_like_suggest = `select * from cocktails where category  in (SELECT category
+  const my_like_suggest =
+        `select * from cocktails where category  in (SELECT category
         FROM cocktails
         INNER JOIN  user_like_join
         ON user_like_join.cocktail_id=cocktails.id
@@ -26,5 +27,4 @@ const getUserRecommends = async (parent, context)=>{
 
 module.exports = {
   getUserRecommends,
-
 };

@@ -17,7 +17,6 @@ async function commentsByCocktailIds(cocktailIds) {
   return await map((cocktail_id)=>groupById[cocktail_id], cocktailIds);
 }
 
-
 function cocktailLikersDataLoader() {
   return new DataLoader(likersByCocktailIds);
 }
@@ -32,7 +31,6 @@ async function likersByCocktailIds(cocktailIds) {
   return await map((cocktail_id)=>groupById[cocktail_id], cocktailIds);
 }
 
-
 function authorDataLoader() {
   return new DataLoader(authorByAuthorIds);
 }
@@ -45,10 +43,7 @@ async function authorByAuthorIds(author_ids) {
 
 
 module.exports={
-
   cocktailCommentsDataLoader: cocktailCommentsDataLoader(),
   authorDataLoader: authorDataLoader(),
   cocktailLikersDataLoader: cocktailLikersDataLoader(),
-
-
 };

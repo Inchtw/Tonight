@@ -1,11 +1,4 @@
-
-
-
-
-
 module.exports = {
-
-
     likeGivers : async (parent,args,context) =>{
         return await context.dataloaders.cocktailLoaders.cocktailLikersDataLoader.load(parent.id)||[];
     },
@@ -14,7 +7,6 @@ module.exports = {
     },
     recommend : async (parent,args,context) =>{
         return await context.Query.types.cocktailType.getCocktailRecommends(parent,context);
-
     },
     author : async (parent,args,context) =>{
         const author_info = await context.dataloaders.cocktailLoaders.authorDataLoader.load(parent.author_id);

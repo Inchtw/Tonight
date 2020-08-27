@@ -4,7 +4,6 @@ const {AWS_BUCKET} = process.env;
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 
-
 const imageupload = multer({
   storage: multerS3({
     s3: s3,
@@ -32,7 +31,6 @@ const imageupload = multer({
     },
   }),
 });
-
 
 const commentImgUpload = multer({
   storage: multerS3({

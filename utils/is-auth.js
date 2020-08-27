@@ -11,7 +11,6 @@ const uploadAuth = (req, res, next) => {
 
 const isAuth = (req, res, next) => {
   const authHeader = req.get('Authorization');
-
   if (!authHeader) {
     req.isAuth = false;
     return next();
@@ -41,5 +40,4 @@ const isAuth = (req, res, next) => {
 module.exports = {
   isAuth,
   uploadAuth,
-
 };

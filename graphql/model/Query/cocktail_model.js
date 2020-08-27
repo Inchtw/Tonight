@@ -42,7 +42,6 @@ const getThreeSelections = async (context)=>{
   return {hots, tops, news};
 };
 
-
 const getCategories = async (context)=>{
   const categories = await context.tools.DB.query('SELECT DISTINCT category FROM cocktails;');
   const category = await categories .map((e)=>{
@@ -51,10 +50,8 @@ const getCategories = async (context)=>{
   return category;
 };
 
-
 const getRecipesPaging = async (args, context) =>{
   const {first, after, last, before} =args;
-
   if (!first && after) {
     throw new UserInputError('after must be with first');
   }
@@ -86,7 +83,6 @@ const getRecipesPaging = async (args, context) =>{
     recipes = await getAllRecipes(args, context);
   }
 
-
   if (recipes[0]) {
     const countWithoutLimit = recipes[0].count||0;
     const allCount = await context.tools.DB.query('SELECT count(*) as number FROM cocktails;');
@@ -109,7 +105,6 @@ const getRecipesPaging = async (args, context) =>{
   }
   return new UserInputError('no result');
 };
-
 
 const getAllRecipes = async (args, context) =>{
   if (args.sort === 'DESC') {
@@ -140,7 +135,6 @@ const getAllRecipes = async (args, context) =>{
 
 const getAuthorRecipes = async (args, context) =>{
   const auth = `%${args.author}%`;
-
   if (args.sort === 'DESC') {
     if (args.first) {
       return args.after ?
@@ -169,8 +163,6 @@ const getAuthorRecipes = async (args, context) =>{
 
 const getCategoryRecipes = async (args, context) =>{
   const {first, after, last, before, sort, category} =args;
-
-
   if (sort === 'DESC') {
     if (first) {
       return after ?
@@ -223,7 +215,6 @@ const getIngredientRecipes = async (args, context) =>{
   }
 };
 
-
 const getCategoryWithAuthorRecipes = async (args, context) =>{
   const auth = `%${args.author}%`;
   if (args.sort === 'DESC') {
@@ -250,7 +241,6 @@ const getCategoryWithAuthorRecipes = async (args, context) =>{
     }
   }
 };
-
 
 const getIngredientWithCategoryRecipes = async (args, context) =>{
   const ingri = `%${args.ingredient}%`;

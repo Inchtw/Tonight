@@ -1,5 +1,3 @@
-
-
 module.exports = {
   me: async (parent, args, context) => {
     return await context.Query.userQuery.getMyInfo(context);

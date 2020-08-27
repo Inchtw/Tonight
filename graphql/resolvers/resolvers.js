@@ -5,7 +5,6 @@ const Subscription = require('../routes/Subscription');
 const Cocktail = require('../routes/types/Cocktail');
 const User = require('../routes/types/User');
 
-
 const resolvers = {
   Query,
   Cocktail,
@@ -13,6 +12,7 @@ const resolvers = {
   Mutation,
   Subscription,
 };
+
 
 module.exports ={
   resolvers,

@@ -1,7 +1,4 @@
-
-
 module.exports = {
-
     comments : async (parent,args,context)=>{
         const myComments = await context.dataloaders.userLoaders.userCommentsDataLoader.load(parent.id);
         if(myComments){
@@ -28,7 +25,5 @@ module.exports = {
     },
     recommend : async (parent,args,context) =>{
         return await context.Query.types.userType.getUserRecommends(parent,context);
-
     }
-
 };
