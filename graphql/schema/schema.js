@@ -69,7 +69,6 @@ type User {
     password: String @deprecated (reason: "It's secret")
     name : String!
     photo : String
-    friends :[User]
     post : [Cocktail]
     comments :  [Comment]
     subscriptions : [User]
