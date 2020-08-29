@@ -100,9 +100,6 @@ input SubscribeInput{
     id : ID!
 }
 
-input AddFriendInput {
-    id : ID!
-}
 
 input LikeInput {
     id : ID!
@@ -158,12 +155,3 @@ type Subscription {
 module.exports ={
   typeDefs,
 };
-
-
-// input SubscribeInput {
-//     id : ID!
-// }
-
-// input LikeInput {
-//     id : ID!
-// }
