@@ -1,30 +1,30 @@
-const { gql} = require('apollo-server-express');
+const {gql} = require('apollo-server-express');
 const typeDefs = gql`
 "Cocktail include recipes and other info"
   type Cocktail{
-     "Cocktail's ID"
-      id: ID!
-      name : String!
-      ori_image : String 
-      description : String 
-      category : String 
-      resource : String!
-      link :  String 
-      author : User 
-      ingredients : [String!] 
-      steps : [String!]!
-      likeGivers : [User]
-      likes : Int
-      views : Int
-      rank : Float
-      comment : Int
-      comments : [Comment]
-      createdAt : String
-      recommend :[Cocktail]
-      author_id : Int
+    " Cocktail's ID"
+    id: ID!
+    name : String!
+    ori_image : String 
+    description : String 
+    category : String 
+    resource : String!
+    link :  String 
+    author : User 
+    ingredients : [String!] 
+    steps : [String!]!
+    likeGivers : [User]
+    likes : Int
+    views : Int
+    rank : Float
+    comment : Int
+    comments : [Comment]
+    createdAt : String
+    recommend :[Cocktail]
+    author_id : Int
   }
   type CocktailThree{
-      " base on viewers "
+    " base on viewers "
     hots:[Cocktail]
     " base on likes "
     tops:[Cocktail]
@@ -40,7 +40,6 @@ input CocktailInput{
     category : String! 
     ingredients : [String!] 
     steps : [String!]!
-
 }
 
 input CommentInput{
@@ -50,7 +49,6 @@ input CommentInput{
     rank : Int!
     title : String
 }
-
 
 type Comment{
     "user ID"
@@ -71,7 +69,6 @@ type User {
     password: String @deprecated (reason: "It's secret")
     name : String!
     photo : String
-    friends :[User]
     post : [Cocktail]
     comments :  [Comment]
     subscriptions : [User]
@@ -93,6 +90,7 @@ input UserInput {
     name : String!
     password: String!
 }
+
 input Userlogin {
     email: String!
     password: String!
@@ -103,15 +101,9 @@ input SubscribeInput{
 }
 
 
-input AddFriendInput {
+input LikeInput {
     id : ID!
 }
-
-input LikeInput {
-     id : ID!
-    
-}
-
 
 input UpdateMyInfoInput {
     nickname : String
@@ -142,7 +134,7 @@ type Query {
     reciepesPaging(first:Int,after:Int,last:Int,before:Int,category:String,author :String , ingredient :String, sort :String) : ReciepesConnection!
     cocktailThree : CocktailThree
     categories : [String]
-  }
+}
 
 type Mutation{
     createCocktail( cocktailInput :CocktailInput!) : Cocktail
@@ -153,21 +145,13 @@ type Mutation{
     commentCocktail(commentInput : CommentInput) : Comment
     subscribeAuthor(SubscribeInput:SubscribeInput) : Boolean
 }
+
 type Subscription {
     newUser: User
     newViewer : Int
-  }
-
+}
 `;
+
 module.exports ={
-    typeDefs
+  typeDefs,
 };
-
-
-// input SubscribeInput {
-//     id : ID!
-// }
-
-// input LikeInput {
-//     id : ID!
-// }

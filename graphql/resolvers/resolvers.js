@@ -5,15 +5,15 @@ const Subscription = require('../routes/Subscription');
 const Cocktail = require('../routes/types/Cocktail');
 const User = require('../routes/types/User');
 
-
 const resolvers = {
-    Query,
-    Cocktail,
-    User,
-    Mutation,
-    Subscription
+  Query,
+  Cocktail,
+  User,
+  Mutation,
+  Subscription,
 };
 
+
 module.exports ={
-    resolvers
+  resolvers,
 };
