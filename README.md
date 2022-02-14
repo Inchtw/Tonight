@@ -22,44 +22,37 @@ Tonight is a cocktail community where you can search cocktail recipe and get rec
 * Recommendation
     * Show top three selection on home page(likes,views,newest)
 
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/R_home.gif" width="450px">
-
+<img src="https://media.giphy.com/media/eoQETV86JQgSOuFoR3/giphy.gif" width="450px">
 
 * Cocktails search
     * Support categories select options.
     * Search by ingredients and Author name.
 * Cocktail detail recommendation
-    * Recommend three cock related to the same category.  
-    
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/R_search.gif" width="450px">
+    * Recommend three cock related to the same category.
 
+<img src="https://media.giphy.com/media/sAqfdA3pBZZzNjhU3d/giphy.gif" width="450px">
 
 * Membership system
-    * Users could sign up and upload a personal photo. The profile page would show what users posted, liked and what they following and their followers. 
+    * Users could sign up and upload a personal photo. The profile page would show what users posted, liked and what they following and their followers.
 
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/Login.gif" width="450px">
+<img src="https://media.giphy.com/media/PT18h9k2csj2hnKXJv/giphy.gif" width="450px">
 
 * Cocktail likes
     * Members could like the recipes.
 * Subscription system
     * Members could follow recipes author.
 
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/r_subLike.gif" width="450px">
+<img src="https://media.giphy.com/media/xFtNXcizfDTTpVKkMk/giphy.gif" width="450px">
 
-
-
-* Cocktail comment 
+* Cocktail comment
     * Members could rank the recipes and upload the cocktail they made.
 
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/R_comment.gif" width="450px">
-
-
+<img src="https://media.giphy.com/media/rdXiLptdK2eJ701vsq/giphy.gif" width="450px">
 
 * Create recipe
     * Members could create their recipes.
 
-<img src="https://inch-stylish.s3-ap-southeast-1.amazonaws.com/gif/R_createCocktail.gif" width="450px">
-
+<img src="https://media.giphy.com/media/ruijAFfO6QGOl1WmVn/giphy.gif" width="450px">
 
 
 ## Technologies
@@ -68,7 +61,7 @@ Tonight is a cocktail community where you can search cocktail recipe and get rec
 
 * Node.js / Express.js
 * GrapQL API
-* Apollo 
+* Apollo
 * NGINX
 * PM2
 
@@ -99,7 +92,7 @@ Tonight is a cocktail community where you can search cocktail recipe and get rec
 
 * Mocha
 * Chia
-* Supertest 
+* Supertest
 
 ### Tools
 
